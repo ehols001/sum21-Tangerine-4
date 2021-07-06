@@ -3,3 +3,4 @@
 # Members
 
   - ehols001 - Evan Holster - ehols001@odu.edu
+  - cpalm012 - Chris Palmer - cpalm012@odu.edu
