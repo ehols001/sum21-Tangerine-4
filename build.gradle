@@ -1,4 +1,4 @@
-buildScript {
+buildscript {
 	repositories {
 		jcenter()
 	}
@@ -73,7 +73,7 @@ jacocoTestReport {
 }
 
 // SpotBugs
-spotBugsMain {
+spotbugsMain {
 	ignoreFailures = true
 	effort = "max"
 	reportLevel = "medium"
@@ -83,7 +83,7 @@ spotBugsMain {
 	}
 }
 
-spotBugsTest.enabled = false
+spotbugsTest.enabled = false
 // End SpotBugs config
 
 pmd {
