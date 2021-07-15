@@ -19,10 +19,11 @@ targetCompatibility = 1.8
 
 //location from which third party libraries will be downloaded
 repositories {
-	jcenter()
+	//jcenter()
+	mavenCentral()
 }
 
-//libraries that we want to use
+//libraries that we want to uses
 dependencies {
 	testImplementation "org.junit.jupiter:junit-jupiter:5.7.0"
 	testImplementation "org.hamcrest:hamcrest-library:1.3"
@@ -43,11 +44,13 @@ jar {
 }
 
 test {
+	
+	usejunitPlatform()
+
 	reports {
 		html.enabled = true
 	}
 	ignoreFailures = true
-	useJUnitPlatform()
 
 	testLogging {
 		events "passed", "skipped", "failed", "standardOut", "standardError"
