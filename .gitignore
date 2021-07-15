@@ -1,5 +1,11 @@
+# Gradle Rules
 .gradle
 /build/
+
+# Eclipse Rules
+.project
+.classpath
+.settings
 
 # Ignore Gradle GUI config
 gradle-app.setting

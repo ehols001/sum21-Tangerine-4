@@ -8,4 +8,3 @@
  */
 
 rootProject.name = 'sum21-Tangerine-4'
-include ('src')
