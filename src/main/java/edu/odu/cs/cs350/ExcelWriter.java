@@ -49,7 +49,7 @@ public class ExcelWriter {
 		
 	}
 	
-	public Vector<String> getCSS
+	public Vector<String> getCSS()
 	{
 		return css;
 	}
@@ -59,7 +59,7 @@ public class ExcelWriter {
 		
 	}
 	
-	public Vector<String> getScripts
+	public Vector<String> getScripts()
 	{
 		return scripts;
 	}
@@ -69,7 +69,7 @@ public class ExcelWriter {
 		
 	}
 	
-	public Vector<String> getIntraLinks
+	public Vector<String> getIntraLinks()
 	{
 		return intraLinks;
 	}
@@ -79,16 +79,29 @@ public class ExcelWriter {
 		return intraLinks;
 	}
 	
-	void setCSS (Website website)
+	public Vector<String> getInternalLinks()
 	{
 		
 	}
+	
+	void setInternalLinks (Website website)
+	{
+		return internalLinks
+	}
+	
+	public Vector<String> getExternalLinks()
+	}
+
+	}
+
+	void setExternalLinks (Website website)
+	}
+		return externalLinks
+	{
 	
 	void writeToFile()
 	{
 		
 	}
-	
-}
 
 }
