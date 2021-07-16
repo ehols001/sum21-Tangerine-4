@@ -31,7 +31,7 @@ public class CommandLineInterface {
 	static String urlToLocalPath(String url)
 	{
 		String translatedURL = new String();
-		translatedURL = url.toString(); //Placeholder, just testing output
+		//Translate URL to reflect the local copy site's directory structure
 		return translatedURL;
 	}
 
@@ -44,11 +44,11 @@ public class CommandLineInterface {
 		if(isURLValid(url))
 		{
 			String translatedUrl = urlToLocalPath(url);
-			System.out.println(translatedUrl);	//Placeholder, just testing output
+			//Add translatedUrl to Website list of paths
 		}
 		else
 		{
-			System.out.println("URL is not valid"); //Placeholder, just testing output
+			//Print corresponding error message if URL is not valid
 		}
 	}
 }

@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Website {
 
-	 private Vector<String> localFilePaths;
+	 private Vector<String> localPaths;
 	 private Vector<HTMLDocument> webpages;
 
 	//Default constructor for initializing a new Website
@@ -27,8 +27,8 @@ public class Website {
 			return false;
 	}
 	
-	//Add a local file path to a Container of localFilePaths
-	public void addLocalFilePath(String lfp)
+	//Add a local path to a Container of localPaths
+	public void addLocalPath(String lp)
 	{
 		
 	}
@@ -52,7 +52,7 @@ public class Website {
 			return false;
 	}
 	
-	//Return the size of the Website Containers for webpages/localFilePaths
+	//Return the size of the Website Containers for webpages/localPaths
 	public int size()
 	{
 		return 0; //placeholder

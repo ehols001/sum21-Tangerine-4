@@ -11,18 +11,18 @@ class TestWebsite {
 	
 	Website ws1;
 	Website ws2;
-	String lfp = new String("localFilePath");
-	String lfp2 = new String("localFilePath2");
+	String lp = new String("localPath");
+	String lp2 = new String("localPath2");
 	HTMLDocument hd = new HTMLDocument();
 	HTMLDocument hd2 = new HTMLDocument();
-	Vector<String> testFilePaths;
+	Vector<String> testLocalPaths;
 	Vector<HTMLDocument> testWebpages;
 	
 	@BeforeEach
 	void setup() {
 		ws1 = new Website();
 		ws2 = new Website();
-		testFilePaths = new Vector<String>();
+		testLocalPaths = new Vector<String>();
 		testWebpages = new Vector<HTMLDocument>();
 	}
 
@@ -34,13 +34,13 @@ class TestWebsite {
 	}
 
 	@Test
-	void testAddLocalFilePath() {
-		ws1.addLocalFilePath(lfp);
-		assertEquals(1, testFilePaths.size());
-		assertTrue(testFilePaths.contains(lfp));
-		assertFalse(testFilePaths.contains(lfp2));
+	void testAddLocalPath() {
+		ws1.addLocalPath(lp);
+		assertEquals(1, testLocalPaths.size());
+		assertTrue(testLocalPaths.contains(lp));
+		assertFalse(testLocalPaths.contains(lp2));
 		assertNotEquals(ws1, new Website());
-		ws2.addLocalFilePath(lfp);
+		ws2.addLocalPath(lp);
 		assertEquals(ws2, ws1);
 	}
 
