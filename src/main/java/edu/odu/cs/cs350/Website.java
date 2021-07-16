@@ -1,11 +1,12 @@
 package edu.odu.cs.cs350;
 
+import java.io.*;
+import java.util.*;
+
 public class Website {
-	/*
-	 * private DATASTRUCTURE<type> pageURLs;
-	 * private DATASTRUCTURE<type> pages;
-	 * (potentially combine the two, maybe using ?map?)
-	 */
+
+	 private Vector<String> localFilePaths;
+	 private Vector<HTMLDocument> webpages;
 
 	//Default constructor for initializing a new Website
 	public Website()
@@ -14,42 +15,44 @@ public class Website {
 	}
 	
 	/*
-	 * Determine whether a page contains the type of 
+	 * Determine whether a webpage contains the type of 
 	 * HTML content we are looking for
+	 * @param URL of the current webpage
 	 */
-	static boolean containsHTMLContent(String page)
+	static boolean containsHTMLContent(String wp)
 	{
-		if(/*page contains HTML content*/)
+		if(/*webpage contains HTML content*/)
 			return true;
 		else
 			return false;
 	}
 	
-	//Add a page URL to a Container of page URLs
-	public void addPageURL(String pageURL)
+	//Add a local file path to a Container of localFilePaths
+	public void addLocalFilePath(String lfp)
 	{
 		
 	}
 	
-	//Add a page to a Container of pages
-	public void addPage(String page)
+	//Add a webpage to a Container of webpages
+	public void addWebpage(HTMLDocument hd)
 	{
 		
 	}
 	
 	/*
-	 * Search for a page
-	 * return true if that page exists
+	 * Search for a webpage
+	 * return true if that webpage exists
+	 * @param URL of the webpage
 	 */
-	public boolean contains(String page)
+	public boolean contains(String wp)
 	{
-		if(/*page exists*/)
+		if(/*webpage exists*/)
 			return true;
 		else
 			return false;
 	}
 	
-	//Return the size of the Website Containers for Pages/PageURLs
+	//Return the size of the Website Containers for webpages/localFilePaths
 	public int size()
 	{
 		return 0; //placeholder
