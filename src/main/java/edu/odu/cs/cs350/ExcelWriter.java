@@ -71,32 +71,32 @@ public class ExcelWriter {
 	
 	public Vector<String> getIntraLinks()
 	{
-		
+		return intraLinks;
 	}
 	
 	void setIntraLinks (Website website)
 	{
-		return intraLinks;
+		
 	}
 	
 	public Vector<String> getInternalLinks()
 	{
-		
+		return internalLinks;
 	}
 	
 	void setInternalLinks (Website website)
 	{
-		return internalLinks
+		
 	}
 	
 	public Vector<String> getExternalLinks()
 	}
-
+		return externalLinks;
 	}
 
 	void setExternalLinks (Website website)
 	}
-		return externalLinks
+		
 	{
 	
 	void writeToFile()
