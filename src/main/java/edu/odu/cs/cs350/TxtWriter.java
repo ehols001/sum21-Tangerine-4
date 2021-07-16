@@ -27,9 +27,9 @@ public class TxtWriter {
 	void setSizes(Website website)
 	{
 		/*
-		for(int i = 0; i < website.Pages.size; i++) 
+		for(int i = 0; i < website.Pages.get(i).size(); i++) 
 		{
-			sizes.add(website.Pages[i].size);
+			sizes.add(website.Pages.get(i).size);
 		}
 		*/
 	}
@@ -42,9 +42,9 @@ public class TxtWriter {
 	void setPages(Website website)
 	{	
 		/*
-		for(int i = 0; i < website.Pages.size; i++) 
+		for(int i = 0; i < website.Pages.get(i).size(); i++) 
 		{
-			pages.add(website.Pages[i].path);
+			pages.add(website.Pages.get(i).path);
 		}
 		*/
 	}
