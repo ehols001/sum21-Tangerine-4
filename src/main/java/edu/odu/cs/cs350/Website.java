@@ -17,13 +17,13 @@ public class Website {
 	 * Determine whether a page contains the type of 
 	 * HTML content we are looking for
 	 */
-	static boolean containsHTMLContent(String page)
-	{
-		if(/*page contains HTML content*/)
-			return true;
-		else
-			return false;
-	}
+	//static boolean containsHTMLContent(String page)
+	//{
+	//	if(/*page contains HTML content*/)
+	//		return true;
+	//	else
+	//		return false;
+	//}
 	
 	//Add a page URL to a Container of page URLs
 	public void addPageURL(String pageURL)
@@ -41,13 +41,13 @@ public class Website {
 	 * Search for a page
 	 * return true if that page exists
 	 */
-	public boolean contains(String page)
-	{
-		if(/*page exists*/)
-			return true;
-		else
-			return false;
-	}
+	//public boolean contains(String page)
+	//{
+	//	if(/*page exists*/)
+	//		return true;
+	//	else
+	//		return false;
+	//}
 	
 	//Return the size of the Website Containers for Pages/PageURLs
 	public int size()

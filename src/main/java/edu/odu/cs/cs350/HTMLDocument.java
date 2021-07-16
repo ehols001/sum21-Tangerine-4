@@ -2,8 +2,6 @@ package edu.odu.cs.cs350;
 
 import org.w3c.dom.Document;
 
-import java.util.Vector;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
