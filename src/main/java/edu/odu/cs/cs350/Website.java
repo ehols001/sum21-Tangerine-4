@@ -1,11 +1,12 @@
 package edu.odu.cs.cs350;
 
+import java.io.*;
+import java.util.*;
+
 public class Website {
-	/*
-	 * DATA STRUCTURE for PAGEURLs
-	 * DATA STRUCTURE for PAGES
-	 * (potentially combine the two, maybe using ?map?)
-	 */
+
+	 private Vector<String> localPaths;
+	 private Vector<HTMLDocument> webpages;
 
 	//Default constructor for initializing a new Website
 	public Website()
@@ -14,32 +15,47 @@ public class Website {
 	}
 	
 	/*
-	 * Determine whether a page contains the type of 
+	 * Determine whether a webpage contains the type of 
 	 * HTML content we are looking for
+	 * @param URL of the current webpage
 	 */
-	static boolean containsHTMLContent(/*page*/)
+	static boolean containsHTMLContent(String wp)
 	{
-		if(/*page contains HTML content*/)
+		if(/*webpage contains HTML content*/)
 			return true;
 		else
 			return false;
 	}
 	
-	//Add a page URL to a Container of page URLs
-	public void addPageURL()
+	//Add a local path to a Container of localPaths
+	public void addLocalPath(String lp)
 	{
 		
 	}
 	
-	//Add a page to a Container of pages
-	public void addPage()
+	//Add a webpage to a Container of webpages
+	public void addWebpage(HTMLDocument hd)
 	{
 		
 	}
 	
-	//Main method for running the WebAnalysis tool
-	public static void main(String[] args)
+	/*
+	 * Search for a webpage
+	 * return true if that webpage exists
+	 * @param URL of the webpage
+	 */
+	public boolean contains(String wp)
 	{
-		
+		if(/*webpage exists*/)
+			return true;
+		else
+			return false;
 	}
+	
+	//Return the size of the Website Containers for webpages/localPaths
+	public int size()
+	{
+		return 0; //placeholder
+	}
+	
 }

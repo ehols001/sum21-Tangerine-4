@@ -37,4 +37,9 @@ class HTMLdocTest {
 		fail("Not yet implemented");
 	}
 	
+	@Test
+	void testImages()
+	{
+		fail("Not yet implemented");
+	}
 }
