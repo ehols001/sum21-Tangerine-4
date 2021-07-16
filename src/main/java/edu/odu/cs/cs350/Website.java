@@ -58,9 +58,4 @@ public class Website {
 		return 0; //placeholder
 	}
 	
-	//Main method for running the WebAnalysis tool
-	public static void main(String[] args)
-	{
-		
-	}
 }
