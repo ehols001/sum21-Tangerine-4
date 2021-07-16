@@ -13,6 +13,9 @@ import org.jsoup.select.Elements;
 public class HTMLDocument {
 	private org.jsoup.nodes.Document webPage;
 	private String localPath;
+	private Elements links;
+	private Elements media;
+	
 	
 	
 	//Default constructor for HTMLDocument
@@ -24,19 +27,19 @@ public class HTMLDocument {
 	//Non-default constructor using Parse class
 	public HTMLDocument(String html) {
 		webPage = Jsoup.parse(html);
+		links = webPage.select("a[href]");
 	}
 	
 	//Accessor for links
 	
 	public Elements getLinks(String ID, String tag) {
-		Element content = (Element) webPage.getElementById(ID);
-		Elements links = content.getElementsByTag(tag);
-		
+				
 		return links;
 	}
 
-	public Elements getImages() {
+	public Elements getMedia() {
 		
+		return media;
 	}
 	
 	public Elements getScripts() {
@@ -47,9 +50,6 @@ public class HTMLDocument {
 		
 	}
 	
-	public Elements getAudio() {
-		
-	}
 	
 	public Elements getMisc() {
 		
