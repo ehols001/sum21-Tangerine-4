@@ -109,7 +109,7 @@ spotbugsMain {
 spotbugsTest.enabled = false
 */
 // End SpotBugs config
-*/
+
 pmd {
 	ignoreFailures = true
 	ruleSets = [
