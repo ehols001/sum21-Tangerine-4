@@ -44,9 +44,6 @@ dependencies {
 	implementation "org.json:json:20210307"
 	testImplementation "org.json:json:20210307"
 	
-	
-
-	
 }
 
 jar {
@@ -62,6 +59,7 @@ jar {
 test {
 	
 	//usejunitPlatform()
+	
 
 	reports {
 		html.enabled = true 
@@ -74,7 +72,7 @@ test {
 	}
 
 	jacoco {
-		//append = "false"
+		
 	}
 }
 

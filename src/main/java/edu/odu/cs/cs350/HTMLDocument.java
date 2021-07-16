@@ -1,8 +1,7 @@
 package edu.odu.cs.cs350;
 
-import org.w3c.dom.Document;
-
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -61,5 +60,9 @@ public class HTMLDocument {
 
 	public void setLocalPath(String localPath) {
 		this.localPath = localPath;
+	}
+	
+	public void setwebPage(Document page){
+		this.webPage = page;
 	}
 }
