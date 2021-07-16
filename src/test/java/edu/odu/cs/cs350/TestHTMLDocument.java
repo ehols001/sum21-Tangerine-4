@@ -20,7 +20,7 @@ class TestHTMLDocument {
 	@BeforeEach
 	void setup() {
 		html1 = new HTMLDocument();
-		File input = new File("/home/slowmobro/Documents/School/CS350");
+		File input = new File("src/test/java/edu/odu/cs/cs350/TestTxtWriter.java");
 		Document page = Jsoup.parse(input, "UTF-8", "http://www.csszengarden.com/");
 	
 		html1.setwebPage(page);

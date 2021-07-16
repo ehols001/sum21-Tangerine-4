@@ -14,6 +14,9 @@ public class HTMLDocument {
 	private String localPath;
 	private Elements links;
 	private Elements media;
+	private Elements scripts;
+	private Elements styleSheets;
+	private Elements misc;
 	
 	
 	
@@ -42,16 +45,16 @@ public class HTMLDocument {
 	}
 	
 	public Elements getScripts() {
-		
+		return scripts;
 	}
 	
 	public Elements getStyleSheets() {
-		
+		return styleSheets;
 	}
 	
 	
 	public Elements getMisc() {
-		
+		return misc;
 	}
 
 	public String getLocalPath() {

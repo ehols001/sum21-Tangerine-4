@@ -1,6 +1,6 @@
 buildscript {
 	repositories {
-		jcenter()
+		//jcenter()
 		mavenCentral()
 	}
 }
@@ -81,7 +81,7 @@ javadoc {
 }
 
 jacoco {
-	toolVersion = "0.8.4"
+	toolVersion = "0.8.7"
 }
 
 jacocoTestReport {
@@ -107,11 +107,11 @@ spotbugsMain {
 spotbugsTest.enabled = false
 */
 // End SpotBugs config
-*/
+
 pmd {
 	ignoreFailures = true
 	ruleSets = [
-		"category/java/bestPractices.xml",
+		"category/java/bestpractices.xml",
 		"category/java/codestyle.xml",
 		"category/java/design.xml",
 		"category/java/errorprone.xml",
