@@ -1,8 +1,9 @@
 package edu.odu.cs.cs350;
 
 import java.io.FileWriter;
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
 import java.util.*;
+
 ///import WebsiteParser?
 
 public class JsonWriter {
