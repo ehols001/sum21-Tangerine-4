@@ -21,13 +21,8 @@ class TestHTMLDocument {
 	void setup() {
 		html1 = new HTMLDocument();
 		File input = new File("/home/slowmobro/Documents/School/CS350");
-		Document page;
-		try {
-			page = Jsoup.parse(input, "UTF-8", "http://www.csszengarden.com/");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Document page = Jsoup.parse(input, "UTF-8", "http://www.csszengarden.com/");
+	
 		html1.setwebPage(page);
 	}
 	
