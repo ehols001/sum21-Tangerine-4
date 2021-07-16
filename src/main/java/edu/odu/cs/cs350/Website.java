@@ -33,8 +33,8 @@ public class Website {
 		
 	}
 	
-	//Add a webpage to a Container of webpages
-	public void addWebpage(HTMLDocument hd)
+	//Add a page to a Container of pages
+	public void addPage(String page)
 	{
 		
 	}
@@ -44,13 +44,13 @@ public class Website {
 	 * return true if that webpage exists
 	 * @param URL of the webpage
 	 */
-	public boolean contains(String wp)
+	public boolean contains(String page)
 	{
-		if(/*webpage exists*/)
+		if(/*page exists*/)
 			return true;
 		else
 			return false;
-	}
+	}	
 	
 	//Return the size of the Website Containers for webpages/localFilePaths
 	public int size()
