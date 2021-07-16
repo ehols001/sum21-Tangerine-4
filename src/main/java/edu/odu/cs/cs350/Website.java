@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Website {
 
-	 private Vector<String> localFilePaths;
+	 private Vector<String> localPaths;
 	 private Vector<HTMLDocument> webpages;
 
 	//Default constructor for initializing a new Website
@@ -27,14 +27,14 @@ public class Website {
 			return false;
 	}
 	
-	//Add a local file path to a Container of localFilePaths
-	public void addLocalFilePath(String lfp)
+	//Add a local path to a Container of localPaths
+	public void addLocalPath(String lp)
 	{
 		
 	}
 	
-	//Add a page to a Container of pages
-	public void addPage(String page)
+	//Add a webpage to a Container of webpages
+	public void addWebpage(HTMLDocument hd)
 	{
 		
 	}
@@ -44,23 +44,18 @@ public class Website {
 	 * return true if that webpage exists
 	 * @param URL of the webpage
 	 */
-	public boolean contains(String page)
+	public boolean contains(String wp)
 	{
-		if(/*page exists*/)
+		if(/*webpage exists*/)
 			return true;
 		else
 			return false;
-	}	
+	}
 	
-	//Return the size of the Website Containers for webpages/localFilePaths
+	//Return the size of the Website Containers for webpages/localPaths
 	public int size()
 	{
 		return 0; //placeholder
 	}
 	
-	//Main method for running the WebAnalysis tool
-	public static void main(String[] args)
-	{
-		
-	}
 }

@@ -105,6 +105,7 @@ spotbugsMain {
 }
 
 spotbugsTest.enabled = false
+*/
 // End SpotBugs config
 */
 pmd {
@@ -117,3 +118,4 @@ pmd {
 		"category/java/performance.xml"
 	]
 }
+
