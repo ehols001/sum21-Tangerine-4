@@ -71,7 +71,7 @@ public class ExcelWriter {
 	
 	public Vector<String> getIntraLinks()
 	{
-		return intraLinks;
+		
 	}
 	
 	void setIntraLinks (Website website)
