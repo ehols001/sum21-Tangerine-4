@@ -3,10 +3,6 @@ package edu.odu.cs.cs350;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-import TxtWriter.java;
-import Website.java;
-import HTMLDocument.java;
-
 class TestTxtWriter {
  
 	@Test
