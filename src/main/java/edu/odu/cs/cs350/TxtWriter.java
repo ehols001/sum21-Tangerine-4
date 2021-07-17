@@ -1,7 +1,5 @@
 package edu.odu.cs.cs350;
 
-import Website.java;
-import HTMLDocument.java;
 import java.util.*;
 
 public class TxtWriter {
