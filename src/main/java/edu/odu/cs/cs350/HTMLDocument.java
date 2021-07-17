@@ -1,8 +1,7 @@
 package edu.odu.cs.cs350;
 
-import org.w3c.dom.Document;
-
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -13,6 +12,12 @@ import org.jsoup.select.Elements;
 public class HTMLDocument {
 	private org.jsoup.nodes.Document webPage;
 	private String localPath;
+	private Elements links;
+	private Elements media;
+	private Elements scripts;
+	private Elements styleSheets;
+	private Elements misc;
+	
 	
 	
 	//Default constructor for HTMLDocument
@@ -21,45 +26,49 @@ public class HTMLDocument {
 		setLocalPath("");
 	}
 	
-	//Non-default constructor using Parse class
-	public HTMLDocument(String html) {
-		webPage = Jsoup.parse(html);
+	//Non-default constructor using parse class
+	//Parser class passes constructed HTML as document object?
+	public HTMLDocument(Document doc) {
+		//webPage = Jsoup.parse(html);
+		webPage = doc;
+		
+		links = webPage.select("a[href]");
 	}
 	
 	//Accessor for links
 	
-	public Elements getLinks(String ID, String tag) {
-		Element content = (Element) webPage.getElementById(ID);
-		Elements links = content.getElementsByTag(tag);
-		
-		return links;
+	public Elements getLinks() {
+				
+		return this.links;
 	}
 
-	public Elements getImages() {
+	public Elements getMedia() {
 		
+		return this.media;
 	}
 	
 	public Elements getScripts() {
-		
+		return this.scripts;
 	}
 	
 	public Elements getStyleSheets() {
-		
+		return this.styleSheets;
 	}
 	
-	public Elements getAudio() {
-		
-	}
 	
 	public Elements getMisc() {
-		
+		return this.misc;
 	}
 
 	public String getLocalPath() {
-		return localPath;
+		return this.localPath;
 	}
 
 	public void setLocalPath(String localPath) {
 		this.localPath = localPath;
+	}
+	
+	public void setwebPage(Document page){
+		this.webPage = page;
 	}
 }

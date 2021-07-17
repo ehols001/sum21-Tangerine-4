@@ -24,6 +24,12 @@ public class CommandLineInterface {
 		}
 	}
 	
+	static boolean isLocalPathValid(String lp)
+	{
+		//check for localpath access (unreadable, non-existant, etc)
+		return true;
+	}
+	
 	/*
 	 * Translates a URL to the local directory structure
 	 * of a local copy of a site
