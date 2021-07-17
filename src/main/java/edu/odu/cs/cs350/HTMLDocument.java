@@ -26,39 +26,42 @@ public class HTMLDocument {
 		setLocalPath("");
 	}
 	
-	//Non-default constructor using Parse class
-	public HTMLDocument(String html) {
-		webPage = Jsoup.parse(html);
+	//Non-default constructor using parse class
+	//Parser class passes constructed HTML as document object?
+	public HTMLDocument(Document doc) {
+		//webPage = Jsoup.parse(html);
+		webPage = doc;
+		
 		links = webPage.select("a[href]");
 	}
 	
 	//Accessor for links
 	
-	public Elements getLinks(String ID, String tag) {
+	public Elements getLinks() {
 				
-		return links;
+		return this.links;
 	}
 
 	public Elements getMedia() {
 		
-		return media;
+		return this.media;
 	}
 	
 	public Elements getScripts() {
-		return scripts;
+		return this.scripts;
 	}
 	
 	public Elements getStyleSheets() {
-		return styleSheets;
+		return this.styleSheets;
 	}
 	
 	
 	public Elements getMisc() {
-		return misc;
+		return this.misc;
 	}
 
 	public String getLocalPath() {
-		return localPath;
+		return this.localPath;
 	}
 
 	public void setLocalPath(String localPath) {
