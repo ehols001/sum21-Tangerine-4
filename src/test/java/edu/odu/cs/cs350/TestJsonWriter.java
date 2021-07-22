@@ -1,12 +1,16 @@
 package edu.odu.cs.cs350;
 
 //import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
-
+//import static org.junit.jupiter.api.Assertions.*;
+//import org.junit.jupiter.api.Test;
 import java.util.LinkedList;
 
 //import org.json.simple.*;
-import org.junit.jupiter.api.Test;
+
+
+import static org.junit.Assert.*;
+import org.junit.Test;
+
 
 class TestJsonWriter {
 
@@ -85,7 +89,7 @@ class TestJsonWriter {
 	void TestSetScriptFiles() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
-		LinkedList<String> list= new LinkedList();
+		LinkedList<String> list= new LinkedList<String>();
 		
 		list.add("Test1");
 		list.add("Test2");
@@ -106,7 +110,7 @@ class TestJsonWriter {
 	void TestSetStylesheetFiles() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
-		LinkedList<String> list= new LinkedList();
+		LinkedList<String> list= new LinkedList<String>();
 		
 		list.add("Test1");
 		list.add("Test2");
@@ -127,7 +131,7 @@ class TestJsonWriter {
 	void TestSetImageFiles() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
-		LinkedList<String> list= new LinkedList();
+		LinkedList<String> list= new LinkedList<String>();
 		
 		list.add("Test1");
 		list.add("Test2");
@@ -149,7 +153,7 @@ class TestJsonWriter {
 	void TestSetArchiveFiles() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
-		LinkedList<String> list= new LinkedList();
+		LinkedList<String> list= new LinkedList<String>();
 		
 		list.add("Test1");
 		list.add("Test2");
@@ -170,7 +174,7 @@ class TestJsonWriter {
 	void TestSetVideoFiles() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
-		LinkedList<String> list= new LinkedList();
+		LinkedList<String> list= new LinkedList<String>();
 		
 		list.add("Test1");
 		list.add("Test2");
@@ -191,7 +195,7 @@ class TestJsonWriter {
 	void TestSetAudioFiles() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
-		LinkedList<String> list= new LinkedList();
+		LinkedList<String> list= new LinkedList<String>();
 		
 		list.add("Test1");
 		list.add("Test2");
@@ -212,7 +216,7 @@ class TestJsonWriter {
 	void TestSetUncategorizedFiles() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
-		LinkedList<String> list= new LinkedList();
+		LinkedList<String> list= new LinkedList<String>();
 		
 		list.add("Test1");
 		list.add("Test2");
@@ -233,7 +237,7 @@ class TestJsonWriter {
 	void TestJSONFormatter() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
-		LinkedList<String> list= new LinkedList();
+		LinkedList<String> list= new LinkedList<String>();
 		
 		int num=15;
 		

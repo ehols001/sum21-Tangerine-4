@@ -1,11 +1,16 @@
 package edu.odu.cs.cs350;
 
-import static org.junit.jupiter.api.Assertions.*;
+//import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Vector;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.Test;
+
+import static org.junit.Assert.*;
+import org.junit.Test;
+import org.junit.Before;
+
 
 class TestWebsite {
 	
@@ -18,7 +23,7 @@ class TestWebsite {
 	Vector<String> testLocalPaths;
 	Vector<HTMLDocument> testWebpages;
 	
-	@BeforeEach
+	@Before
 	void setup() {
 		ws1 = new Website();
 		ws2 = new Website();

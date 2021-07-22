@@ -1,12 +1,14 @@
 package edu.odu.cs.cs350;
 
-import static org.junit.jupiter.api.Assertions.*;
+//import static org.junit.jupiter.api.Assertions.*;
+//
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
+import org.junit.Test;
+import org.junit.Before;
+
 
 class TestHTMLDocument {
 
@@ -15,7 +17,7 @@ class TestHTMLDocument {
 	String lfp = new String("localFilePath");
 	
 	
-	@BeforeEach
+	@Before
 	void setup() {
 		html1 = new HTMLDocument();
 		
