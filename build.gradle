@@ -36,7 +36,7 @@ dependencies {
 }
 
 jar {
-	baseName = "WebAnalysis"
+	archiveBaseName = "WebAnalysis"
 
 	manifest {
 		attributes(
@@ -47,7 +47,7 @@ jar {
 
 test {
 	reports {
-		html.enabled = true 
+		html.required = true 
 	}
 	ignoreFailures = true
 
