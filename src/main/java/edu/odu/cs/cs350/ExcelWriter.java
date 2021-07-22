@@ -8,17 +8,7 @@ public class ExcelWriter {
 	  
   }
   
-  public TxtWriter(Website website) 
-	{	
-		setPages(website);
-		setImages(website);
-	  	setCSS(website);
-	  	setScripts(website);
-	  	setIntraLinks(website);
-	  	setInternalLinks(website);
-	  	setExternalLinks(website);
-	}
-	
+/*	
 	public Vector<String> getPages()
 	{
 		return pages;
@@ -85,13 +75,13 @@ public class ExcelWriter {
 	}
 
 	void setExternalLinks (Website website)
-	}
-		
 	{
+		
+	}
 	
 	void writeToFile()
 	{
 		
 	}
-
+*/
 }
