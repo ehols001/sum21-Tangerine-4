@@ -7,10 +7,10 @@ package edu.odu.cs.cs350;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-class TestCLI {
+public class TestCLI {
 
 	@Test
-	void testIsURLValid() {
+	public void testIsURLValid() {
 		//fail("Not yet implemented");
 				
 		String testURL = "https://www.google.com";
@@ -20,19 +20,19 @@ class TestCLI {
 	}
 
 	@Test
-	void testLocalPathAccess() {
+	public void testLocalPathAccess() {
 		fail("Not yet implemented");
 	}
 	
 	@Test
-	void testUrlToLocalPath() {
+	public void testUrlToLocalPath() {
 		//fail("Not yet implemented");
 		
 		
 	}
 
 	@Test
-	void testMain() {
+	public void testMain() {
 		fail("Not yet implemented");
 	}
 
