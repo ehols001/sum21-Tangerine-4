@@ -1,6 +1,5 @@
 package edu.odu.cs.cs350;
 
-import java.io.*;
 import java.util.*;
 
 public class Website {
@@ -10,27 +9,13 @@ public class Website {
 	//Default constructor for initializing a new Website
 	public Website()
 	{
-
-	}
-	
-	/*
-	 * Determine whether a webpage contains the type of 
-	 * HTML content we are looking for
-	 * @param URL of the current webpage
-	 */
-	static boolean containsHTMLContent(String wp)
-	{
-//		if(/*webpage contains HTML content*/)
-//			return true;
-//		else
-//			return false;
-		return false;
+		webpages = new Vector<HTMLDocument>();
 	}
 	
 	//Add a webpage to a Container of webpages
 	public void addWebpage(HTMLDocument hd)
 	{
-		
+		webpages.add(hd);
 	}
 	
 	/*
@@ -40,17 +25,16 @@ public class Website {
 	 */
 	public boolean contains(HTMLDocument hd)
 	{
-//		if(/*webpage exists*/)
-//			return true;
-//		else
-//			return false;
-		return false;
+		if(webpages.contains(hd) == true)
+			return true;
+		else
+			return false;
 	}
 	
 	//Return the size of the Website Container for webpages
 	public int size()
 	{
-		return 0; //placeholder
+		return webpages.size();
 	}
 	
 }
