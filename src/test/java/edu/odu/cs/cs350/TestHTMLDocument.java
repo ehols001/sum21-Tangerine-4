@@ -10,77 +10,88 @@ import org.junit.Test;
 import org.junit.Before;
 
 
-class TestHTMLDocument {
+public class TestHTMLDocument {
 
-	HTMLDocument html1;
+	private HTMLDocument html1;
 	
-	String lfp = new String("localFilePath");
+	private String lfp;
 	
 	
 	@Before
-	void setup() {
+	public void setup() {
 		html1 = new HTMLDocument();
-		
+		lfp = new String("localFilePath");
 		html1.setLocalPath(lfp);
 	}
 	
 	@Test
-	void testDefaultConstructor() {
-		fail("Not yet implemented");
-		//HTMLDocument doc = new HTMLDocument();
+	public void testDefaultConstructor() {
+		//fail("Not yet implemented");
+		HTMLDocument doc = new HTMLDocument();
+		
+		assertEquals(doc.getMisc().size(), 0);
+		assertEquals(doc.getStyleSheets().size(), 0);
+		assertEquals(doc.getScripts().size(), 0);
+		assertEquals(doc.getMedia().size(), 0);
+		assertEquals(doc.getLinks().size(), 0);
+		assertEquals(doc.getLocalPath(), "");
 	}
 
-	@Test
-	void testNonDefaultConstructor() {
-		fail("Not yet implemented");
-		//Document page = null;
-		//HTMLDocument doc = new HTMLDocument();
-	}
+//	@Test
+//	public void testNonDefaultConstructor() {
+//		fail("Not yet implemented");
+//		//Document page = null;
+//		//HTMLDocument doc = new HTMLDocument();
+//	}
 
 	@Test
-	void testGetLinks() {
-		fail("Not yet implemented");
-		assertEquals(html1.getLinks().size(), 0);
+	public void testSetLinks() {
+		//fail("Not yet implemented");
+		html1.setLinks("www.google.com");
+		
+		assertEquals(html1.getLinks().size(), 1);
 		
 	}
 
 	@Test
-	void testGetMedia() {
-		fail("Not yet implemented");
-		assertEquals(html1.getMedia().size(), 0);
+	public void testSetMedia() {
+		//fail("Not yet implemented");
+		html1.setMedia("wwww.test.com/random/video.mp4");
+		
+		assertEquals(html1.getMedia().size(), 1);
 
 	}
 
 	@Test
-	void testGetScripts() {
-		fail("Not yet implemented");
-		assertEquals(html1.getScripts().size(), 0);
+	public void testSetScripts() {
+//		fail("Not yet implemented");
+		html1.setScripts("www.test.com/scripts/javascript.js");
+		
+		assertEquals(html1.getScripts().size(), 1);
 
 	}
 
 	@Test
-	void testGetStyleSheets() {
-		fail("Not yet implemented");
-		assertEquals(html1.getStyleSheets().size(), 0);
+	public void testSetStyleSheets() {
+//		fail("Not yet implemented");
+		html1.setStyleSheets("www.test.com/scripts/script.css");
+		
+		assertEquals(html1.getStyleSheets().size(), 1);
 
 	}
 
 	@Test
-	void testGetMisc() {
-		fail("Not yet implemented");
-		assertEquals(html1.getMisc().size(), 0);
+	public void testSetMisc() {
+//		fail("Not yet implemented");
+		html1.setMisc("www.test.com/misc/misc.zip");
+		
+		assertEquals(html1.getMisc().size(), 1);
 
 	}
 
 	@Test
-	void testGetLocalPath() {
-		fail("Not yet implemented");
-		assertEquals(html1.getLocalPath(), "localFilePath");
-	}
-
-	@Test
-	void testSetLocalPath() {
-		fail("Not yet implemented");
+	public void testSetLocalPath() {
+//		fail("Not yet implemented");
 		html1.setLocalPath("test/val");
 		assertEquals(html1.getLocalPath(), "test/val");
 	}

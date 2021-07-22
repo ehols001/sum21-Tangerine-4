@@ -1,6 +1,6 @@
 package edu.odu.cs.cs350;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 //import org.jsoup.nodes;
 
@@ -8,42 +8,64 @@ import java.util.Vector;
 
 public class HTMLDocument {
 	private String localPath;
-	private Vector<String> links;
-	private Vector<String> media;
-	private Vector<String> scripts;
-	private Vector<String> styleSheets;
-	private Vector<String> misc;
+	private ArrayList<String> links;
+	private ArrayList<String> media;
+	private ArrayList<String> scripts;
+	private ArrayList<String> styleSheets;
+	private ArrayList<String> misc;
 	
 	
 	
 	//Default constructor for HTMLDocument
 	public HTMLDocument() {
 		setLocalPath("");
+		links = new ArrayList<String>();
+		media = new ArrayList<String>();
+		scripts = new ArrayList<String>();
+		misc = new ArrayList<String>();
+		styleSheets = new ArrayList<String>();
 	}
 	
+	public void setLinks(String linkURL) {
+		this.links.add(linkURL);
+	}
 	
-	//Accessor for links
+	public void setMedia(String media) {
+		this.media.add(media);
+	}
 	
-	public Vector<String> getLinks() {
+	public void setScripts(String scripts) {
+		this.scripts.add(scripts);
+	}
+	
+	public void setStyleSheets(String styleSheets) {
+		this.styleSheets.add(styleSheets);
+	}
+	
+	public void setMisc(String misc) {
+		this.misc.add(misc);
+	}
+	
+	public ArrayList<String> getLinks() {
 				
 		return this.links;
 	}
 
-	public Vector<String> getMedia() {
+	public ArrayList<String> getMedia() {
 		
 		return this.media;
 	}
 	
-	public Vector<String> getScripts() {
+	public ArrayList<String> getScripts() {
 		return this.scripts;
 	}
 	
-	public Vector<String> getStyleSheets() {
+	public ArrayList<String> getStyleSheets() {
 		return this.styleSheets;
 	}
 	
 	
-	public Vector<String> getMisc() {
+	public ArrayList<String> getMisc() {
 		return this.misc;
 	}
 
