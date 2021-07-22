@@ -5,13 +5,12 @@ import java.util.*;
 
 public class Website {
 
-	 private Vector<String> localPaths;
-	 private Vector<HTMLDocument> webpages;
+	private Vector<HTMLDocument> webpages;
 
 	//Default constructor for initializing a new Website
 	public Website()
 	{
-		
+
 	}
 	
 	/*
@@ -28,12 +27,6 @@ public class Website {
 		return false;
 	}
 	
-	//Add a local path to a Container of localPaths
-	public void addLocalPath(String lp)
-	{
-		
-	}
-	
 	//Add a webpage to a Container of webpages
 	public void addWebpage(HTMLDocument hd)
 	{
@@ -45,7 +38,7 @@ public class Website {
 	 * return true if that webpage exists
 	 * @param URL of the webpage
 	 */
-	public boolean contains(String wp)
+	public boolean contains(HTMLDocument hd)
 	{
 //		if(/*webpage exists*/)
 //			return true;
@@ -54,7 +47,7 @@ public class Website {
 		return false;
 	}
 	
-	//Return the size of the Website Containers for webpages/localPaths
+	//Return the size of the Website Container for webpages
 	public int size()
 	{
 		return 0; //placeholder
