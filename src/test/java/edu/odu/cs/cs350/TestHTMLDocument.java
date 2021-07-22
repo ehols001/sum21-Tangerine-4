@@ -18,27 +18,21 @@ class TestHTMLDocument {
 	@BeforeEach
 	void setup() {
 		html1 = new HTMLDocument();
-		/*Not sure where to put input file for testing
-		 * or if I should populate the test webPage manually
-		 */
-		File input = new File("cs350/TestTxtWriter.java");
-		//Document page = Jsoup.parse(input, null);
-	
-		//html1.setwebPage(page);
+		
 		html1.setLocalPath(lfp);
 	}
 	
 	@Test
 	void testDefaultConstructor() {
 		fail("Not yet implemented");
-		HTMLDocument doc = new HTMLDocument();
+		//HTMLDocument doc = new HTMLDocument();
 	}
 
 	@Test
 	void testNonDefaultConstructor() {
 		fail("Not yet implemented");
-		Document page = null;
-		HTMLDocument doc = new HTMLDocument(page);
+		//Document page = null;
+		//HTMLDocument doc = new HTMLDocument();
 	}
 
 	@Test

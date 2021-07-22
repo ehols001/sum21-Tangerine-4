@@ -1,62 +1,49 @@
 package edu.odu.cs.cs350;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import java.util.Vector;
 
 //import org.jsoup.nodes;
 
 
 
 public class HTMLDocument {
-	private org.jsoup.nodes.Document webPage;
 	private String localPath;
-	private Elements links;
-	private Elements media;
-	private Elements scripts;
-	private Elements styleSheets;
-	private Elements misc;
+	private Vector<String> links;
+	private Vector<String> media;
+	private Vector<String> scripts;
+	private Vector<String> styleSheets;
+	private Vector<String> misc;
 	
 	
 	
 	//Default constructor for HTMLDocument
 	public HTMLDocument() {
-		webPage = Jsoup.parse("");
 		setLocalPath("");
 	}
 	
-	//Non-default constructor using parse class
-	//Parser class passes constructed HTML as document object?
-	public HTMLDocument(Document doc) {
-		//webPage = Jsoup.parse(html);
-		webPage = doc;
-		
-		links = webPage.select("a[href]");
-	}
 	
 	//Accessor for links
 	
-	public Elements getLinks() {
+	public Vector<String> getLinks() {
 				
 		return this.links;
 	}
 
-	public Elements getMedia() {
+	public Vector<String> getMedia() {
 		
 		return this.media;
 	}
 	
-	public Elements getScripts() {
+	public Vector<String> getScripts() {
 		return this.scripts;
 	}
 	
-	public Elements getStyleSheets() {
+	public Vector<String> getStyleSheets() {
 		return this.styleSheets;
 	}
 	
 	
-	public Elements getMisc() {
+	public Vector<String> getMisc() {
 		return this.misc;
 	}
 
@@ -68,7 +55,5 @@ public class HTMLDocument {
 		this.localPath = localPath;
 	}
 	
-	public void setwebPage(Document page){
-		this.webPage = page;
-	}
+	
 }

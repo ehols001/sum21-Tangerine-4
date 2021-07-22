@@ -9,11 +9,11 @@ class TestFileResource {
 	@Test
 	void testDefaultConstructor() {
 		fail("Not yet implemented");
-		FileResource file = new FileResource();
+		//FileResource file = new FileResource();
 		
-		assertThat(file.getPath(), equalTo(""));
-		assertThat(file.getSize(), equalTo(0));
-		assertThat(file.getPages(), equalTo(0));
+//		assertThat(file.getPath(), equalTo(""));
+//		assertThat(file.getSize(), equalTo(0));
+//		assertThat(file.getPages(), equalTo(0));
 		//assertThat(file.getType(), )
 	}
 

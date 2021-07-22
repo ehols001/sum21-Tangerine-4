@@ -21,10 +21,11 @@ public class Website {
 	 */
 	static boolean containsHTMLContent(String wp)
 	{
-		if(/*webpage contains HTML content*/)
-			return true;
-		else
-			return false;
+//		if(/*webpage contains HTML content*/)
+//			return true;
+//		else
+//			return false;
+		return false;
 	}
 	
 	//Add a local path to a Container of localPaths
@@ -46,10 +47,11 @@ public class Website {
 	 */
 	public boolean contains(String wp)
 	{
-		if(/*webpage exists*/)
-			return true;
-		else
-			return false;
+//		if(/*webpage exists*/)
+//			return true;
+//		else
+//			return false;
+		return false;
 	}
 	
 	//Return the size of the Website Containers for webpages/localPaths
