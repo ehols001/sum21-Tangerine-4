@@ -10,6 +10,11 @@ public class Anchor {
 		linkType = new String("");
 	}
 	
+	public Anchor(String url, String type) {
+		this.linkType = type;
+		this.linkURL = url;
+	}
+	
 	public String getURL() {
 		return this.linkURL;
 	}
