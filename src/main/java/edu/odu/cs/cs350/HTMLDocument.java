@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 public class HTMLDocument {
 	private String localPath;
-	private ArrayList<String> links;
-	private ArrayList<String> media;
-	private ArrayList<String> scripts;
-	private ArrayList<String> styleSheets;
-	private ArrayList<String> misc;
+    private ArrayList<Anchor> links;
+    private ArrayList<FileResource> media;
+    private ArrayList<FileResource> scripts;
+    private ArrayList<FileResource> styleSheets;
+    private ArrayList<FileResource> misc;
 	
 	
 	
@@ -19,11 +19,11 @@ public class HTMLDocument {
      */
 	public HTMLDocument() {
 		setLocalPath("");
-		links = new ArrayList<String>();
-		media = new ArrayList<String>();
-		scripts = new ArrayList<String>();
-		misc = new ArrayList<String>();
-		styleSheets = new ArrayList<String>();
+		links = new ArrayList<Anchor>();
+		media = new ArrayList<FileResource>();
+		scripts = new ArrayList<FileResource>();
+		misc = new ArrayList<FileResource>();
+		styleSheets = new ArrayList<FileResource>();
 	}
 	
     /**
@@ -31,8 +31,8 @@ public class HTMLDocument {
      *
      * @param linkURL new url of a link
      */	
-	public void setLinks(String linkURL) {
-		this.links.add(linkURL);
+	public void setLinks(Anchor link) {
+		this.links.add(link);
 	}
 	
     /**
@@ -40,7 +40,7 @@ public class HTMLDocument {
      *
      * @param media new url of a some media (IMG, MP4, etc)
      */	
-	public void setMedia(String media) {
+	public void setMedia(FileResource media) {
 		this.media.add(media);
 	}
 	
@@ -49,7 +49,7 @@ public class HTMLDocument {
      *
      * @param scripts  a new url of a JavaScript file
      */	
-	public void setScripts(String scripts) {
+	public void setScripts(FileResource scripts) {
 		this.scripts.add(scripts);
 	}
 	
@@ -59,7 +59,7 @@ public class HTMLDocument {
      *
      * @param styleSheets new url of a CSS file
      */	
-	public void setStyleSheets(String styleSheets) {
+	public void setStyleSheets(FileResource styleSheets) {
 		this.styleSheets.add(styleSheets);
 	}
 	
@@ -68,14 +68,14 @@ public class HTMLDocument {
      *
      * @param misc new url of a misc file (zip, rar, etc)
      */	
-	public void setMisc(String misc) {
+	public void setMisc(FileResource misc) {
 		this.misc.add(misc);
 	}
 	
     /**
      * Retrieve the links container
      */
-	public ArrayList<String> getLinks() {
+	public ArrayList<Anchor> getLinks() {
 				
 		return this.links;
 	}
@@ -83,7 +83,7 @@ public class HTMLDocument {
     /**
      * Retrieve the media container
      */
-	public ArrayList<String> getMedia() {
+	public ArrayList<FileResource> getMedia() {
 		
 		return this.media;
 	}
@@ -91,21 +91,21 @@ public class HTMLDocument {
     /**
      * Retrieve the scripts container
      */
-	public ArrayList<String> getScripts() {
+	public ArrayList<FileResource> getScripts() {
 		return this.scripts;
 	}
 	
     /**
      * Retrieve the stylesheets container
      */
-	public ArrayList<String> getStyleSheets() {
+	public ArrayList<FileResource> getStyleSheets() {
 		return this.styleSheets;
 	}
 	
     /**
      * Retrieve the misc container
      */
-	public ArrayList<String> getMisc() {
+	public ArrayList<FileResource> getMisc() {
 		return this.misc;
 	}
 
