@@ -15,6 +15,10 @@ public class TestHTMLDocument {
 	private HTMLDocument html1;
 	private Anchor testLink;
 	private FileResource testImage;
+	private FileResource testVideo;
+	private FileResource testJavaScript;
+	private FileResource testCSS;
+	private FileResource testMisc;
 	
 	private String lfp;
 	
@@ -23,15 +27,12 @@ public class TestHTMLDocument {
 	public void setup() {
 		html1 = new HTMLDocument();
 		testLink = new Anchor("www.test.org", "external");
-		testImage = new FileResource();
+		testImage = new FileResource(3, 1024, "image");
+		testVideo = new FileResource(900, 4000, "video");
+		testJavaScript = new FileResource(1, 2056, "script");
+		testCSS = new FileResource(1, 4096, "stylesheet");
+		testMisc = new FileResource(2, 40, "misc");
 		
-		testImage.setPages(3);
-		testImage.setSize(1024);
-		testImage.setType("img");
-		
-		
-		lfp = new String("localFilePath");
-		html1.setLocalPath(lfp);
 	}
 	
 	@Test
@@ -47,12 +48,6 @@ public class TestHTMLDocument {
 		assertEquals(doc.getLocalPath(), "");
 	}
 
-//	@Test
-//	public void testNonDefaultConstructor() {
-//		fail("Not yet implemented");
-//		//Document page = null;
-//		//HTMLDocument doc = new HTMLDocument();
-//	}
 
 	@Test
 	public void testSetLinks() {
@@ -71,33 +66,41 @@ public class TestHTMLDocument {
 		
 		assertEquals(html1.getMedia().size(), 1);
 		assertEquals(html1.getMedia().get(0), testImage);
+		
+		html1.setMedia(testVideo);
+		
+		assertEquals(html1.getMedia().size(), 2);
+		assertEquals(html1.getMedia().get(1), testVideo);
 
 	}
 
 	@Test
 	public void testSetScripts() {
-		fail("Not yet implemented");
-//		html1.setScripts("www.test.com/scripts/javascript.js");
-//		
-//		assertEquals(html1.getScripts().size(), 1);
+		//fail("Not yet implemented");
+		html1.setScripts(testJavaScript);
+		
+		assertEquals(html1.getScripts().size(), 1);
+		assertEquals(html1.getScripts().get(0), testJavaScript);
 
 	}
 
 	@Test
 	public void testSetStyleSheets() {
-		fail("Not yet implemented");
-//		html1.setStyleSheets("www.test.com/scripts/script.css");
-//		
-//		assertEquals(html1.getStyleSheets().size(), 1);
+		//fail("Not yet implemented");
+		html1.setStyleSheets(testCSS);
+		
+		assertEquals(html1.getStyleSheets().size(), 1);
+		assertEquals(html1.getStyleSheets().get(0), testCSS);
 
 	}
 
 	@Test
 	public void testSetMisc() {
-		fail("Not yet implemented");
-//		html1.setMisc("www.test.com/misc/misc.zip");
-//		
-//		assertEquals(html1.getMisc().size(), 1);
+		//fail("Not yet implemented");
+		html1.setMisc(testMisc);
+		
+		assertEquals(html1.getMisc().size(), 1);
+		assertEquals(html1.getMisc().get(0), testMisc);
 
 	}
 
