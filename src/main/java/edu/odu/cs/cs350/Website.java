@@ -4,14 +4,14 @@ import java.util.*;
 
 public class Website {
 
-	private Vector<HTMLDocument> webpages;
+	private ArrayList<HTMLDocument> webpages;
 
 	/**
 	 * Default constructor for initializing a new Website
 	 */
 	public Website()
 	{
-		webpages = new Vector<HTMLDocument>();
+		webpages = new ArrayList<HTMLDocument>();
 	}
 	
 	/**
