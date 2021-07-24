@@ -1,20 +1,21 @@
 package edu.odu.cs.cs350;
 
-import java.io.FileWriter;
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
+import java.io.*;
 import java.util.*;
 
-///import WebsiteParser?
+import javax.swing.text.html.HTMLDocument;
+
 
 public class JsonWriter {
 	
-	
+	private JSONObject json;
 	
 	public JsonWriter() { 
 		
+	 json=new JSONObject(); //JSON file to be written to
+	 
 	}
-	
-	private JSONObject json = new JSONObject(); //JSON file to be written to
 	
 	//Variables holding the count of each type of file
 	private int localImageCount;
@@ -27,90 +28,106 @@ public class JsonWriter {
 	
 	//Lists of the names of each type of file and the corresponding information for each file
 	//Number of pages it's on, names of pages it is on, etc. 
-	private LinkedList<String> imageFiles = new LinkedList<String>();
-	private LinkedList<String> archiveFiles = new LinkedList<String>();
-	private LinkedList<String> videoFiles = new LinkedList<String>();
-	private LinkedList<String> audioFiles = new LinkedList<String>();
-	private LinkedList<String> uncategorizedFiles = new LinkedList<String>();
-	private LinkedList<String> stylesheetFiles = new LinkedList<String>();
-	private LinkedList<String> scriptFiles = new LinkedList<String>();
-	
+	private ArrayList<HTMLDocument> pages = new ArrayList<HTMLDocument>();
+	/*private ArrayList<String> imageFiles = new ArrayList<String>();
+	private ArrayList<String> archiveFiles = new ArrayList<String>();
+	private ArrayList<String> videoFiles = new ArrayList<String>();
+	private ArrayList<String> audioFiles = new ArrayList<String>();
+	private ArrayList<String> uncategorizedFiles = new ArrayList<String>();
+	private ArrayList<String> stylesheetFiles = new ArrayList<String>();
+	private ArrayList<String> scriptFiles = new ArrayList<String>();
+	*/
 	public JSONObject getJSONObject() { //Accessor for the JSON object created in this class
 		return json;
 	}
 	
-	void setLocalImageCount(int num) {
+	void setLocalImageCount(HTMLDocument page) {///Should this be in HTMLDocument instead?
 		
-		//Sets the count of the number of local images
+		//Sets the count of the number of local images by iterating through the list and counting
+		
+		localImageCount=page.getMedia().size();
+		
 	}
 	
 	
 	public int getLocalImageCount() {
 		
 		//returns localImageCount;
-		return 0;
+		return localImageCount;
 	}
 	
 	
-	void setExternalImageCount(int num) {
+	void setExternalImageCount(HTMLDocument page) {
 		
-		//Sets the count of the number of external images
+		//Sets the count of the number of external images by iterating through the list and counting
+		
+		externalImageCount=page.getMedia().size(); //Should be getExternalImage and in HTMLDocument?
 	}
 	
 	public int getExternalImageCount() {
 		
 		//returns externalImageCount;
-		return 0;
+		return externalImageCount;
 	}
 	
-	void setScriptCount(int num) {
+	void setScriptCount(HTMLDocument page) {
 		
-		//Sets the count of the number of scripts
+		//Sets the count of the number of scripts by iterating through the list and counting
+		scriptCount=page.getScripts().size();
 	}
 	
 	public int getScriptCount() {
 		
 		//returns scriptCount;
-		return 0;
+		return scriptCount;
 	}
 	
-	void setStylesheetCount(int num) {
+	void setStylesheetCount(HTMLDocument page) {
 		
 		//Sets the count of the number of stylesheets
+		
+		stylesheetCount=page.getStyleSheets().size();
+		
 	}
 	
 	
 	public int getStylesheetCount() {
 		
 		//returns stylesheetCount;
-		return 0;
+		return stylesheetCount;
 	}
 	
-	public void setIntraPageLinkCount(int intraPageLinkCount) {
+	public void setIntraPageLinkCount(HTMLDocument page) {
 		//Sets the count of the number of intra-page links
+		
+		intraPageLinkCount=page.getLinks().size();
 	}
 	
 	public int getIntraPageLinkCount() {
 		//returns intraPageLinkCount;
-		return 0;
+		return intraPageLinkCount;
 	}
 	
-	public void setInterSiteLinkCount(int interSiteLinkCount) {
+	public void setInterSiteLinkCount(HTMLDocument page) {
 		//Sets the count of the number of inter-site links
+		
+		interSiteLinkCount=page.getLinks().size();
+		
 	}
 
 	public int getInterSiteLinkCount() {
 		//returns interSiteLinkCount;
-		return 0;
+		return interSiteLinkCount;
 	}
 	
-	public void setExternalLinkCount(int externalLinkCount) {
+	public void setExternalLinkCount(HTMLDocument page) {
 		//Sets the count of the number of external links
+		externalLinkCount=page.getLinks().size();
 	}
 
 	public int getExternalLinkCount() {
 		//returns externalLinkCount;
-		return 0;
+		return externalLinkCount;
 	}
 	
 	void setStylesheetFiles(LinkedList<String> list) {
@@ -118,7 +135,7 @@ public class JsonWriter {
 		//Creates list of stylesheet files and their corresponding information
 	}
 	
-	public LinkedList<String> getStylesheetFiles() {
+	/*public LinkedList<String> getStylesheetFiles() {
 		
 		return stylesheetFiles;
 	}	
@@ -182,26 +199,81 @@ public class JsonWriter {
 		
 		return uncategorizedFiles;
 	}	
+	*/
 	
-	void JSONFormatter() {
-		//Puts local image count into the JSON Object
-			/* Ex: JsonObject.put("Image Count", this.getImageCount())*/
-		//Puts external image count into the JSON Object
-		//Puts script count into the JSON Object
-		//Puts stylesheet count into the JSON Object
-		//Uses a loop to put the list of images into the JSON Object
-		//Uses a loop to put the list of scripts into the JSON Object
-		//Uses a loop to put the list of stylesheets into the JSON Object
-		//Puts the intra-page link count into the JSON Object
-		//Puts the inter-site link count into the JSON Object
-		//Puts the external link count into the JSON Object
+	void JSONFormatter(Website pages) {
 		
-		///Use getter to put the number of pages and list of pages where an image occurs??
-		///Use a getter to put the file size and path to resource of archive files?
-		///Use a getter to put the file size and path to resource for video files?
-		///Use a getter to put the file size and path to resource for audio files?
-		///Use a getter to put the file size and path to resource for non-categorized files?
+		//Loops through each page in the website
+		for(int i=0; i<pages.size(); i++) {
+			
+			//Outputs the counts of various files in each webpage
+			this.put("Page", pages.get(i).getLocalPath());
+			
+			json.setLocalImageCount(pages.get(i));
+			json.put("Local Image Count", this.getLocalImageCount());
+			
+			this.setExternalImageCount(pages.get(i));
+			json.put("External Image Count", this.getExternalImageCount());
+			
+			this.setScriptCount(pages.get(i));
+			json.put("Script Count", this.getScriptCount());
+			
+			this.setStylesheetCount(pages.get(i));
+			json.put("Stylesheet Count", this.getStylesheetCount());
+			
+			this.setIntraPageLinkCount(pages.get(i));
+			json.put("Intra-Page Link Count", this.getIntraPageLinkCount());
+			
+			this.setInterSiteLinkCount(pages.get(i));
+			json.put("Inter-Site Link Count", this.getInterSiteLinkCount());
+			
+			this.setExternalLinkCount(pages.get(i));
+			json.put("External Link Count", this.getExternalLinkCount());
+			
+			//Outputs the list of images throughout the website and the number of pages that it appears on
+			for(int j=0; j<pages.get(i).getMedia().size(); j++) {
+				json.put("Image", pages.get(i).getMedia().get(j));
+				json.put("Number of Pages", pages.get(i).getMedia().get(j).getPages());
+			}
+			
+			//Outputs the list of scripts throughout the website
+			for(int j=0; j<pages.get(i).getScripts().size(); j++) {
+				json.put("Script", pages.get(i).getScripts().get(j));
+			}
+			
+			//Outputs the list of stylesheets throughout the website
+			for(int j=0; j<pages.get(i).getStyleSheets().size(); j++) {
+				json.put("Stylesheets", pages.getPages().get(i).getStyleSheets().get(j));
+			}
+			
+			//Outputs the file size and path of each archive file in the website
+			for(int j=0; j<pages.get(i).getMedia().size(); j++) { //should be getArchives rather than getMedia
+				json.put("File Size", pages.get(i).getMedia().get(j).getSize());
+				json.put("Path", pages.get(i).getMedia.get(j).getSize());//should be getPath rather than getSize
+			}
+			
+			//Outputs the file size and path of each video file in the website
+			for(int j=0; j<pages.get(i).getMedia().size(); j++) { //should be getVideos rather than getMedia
+				json.put("File Size", pages.get(i).getMedia().get(j).getSize());
+				json.put("Path", pages.get(i).getMedia.get(j).getSize());//should be getPath rather than getSize
+			}
+			
+			//Outputs the file size and path of each audio file in the website
+			for(int j=0; j<pages.get(i).getMedia().size(); j++) { //should be getAudio rather than getMEdia
+				json.put("File Size", pages.get(i).getMedia().get(j).getSize());
+				json.put("Path", pages.get(i).getMedia.get(j).getSize());//should be getPath rather than getSize
+			}
+			
+			//Outputs the file size and path of each miscellaneous file in the website.
+			for(int j=0; j<pages.get(i).getMisc().size(); j++) {
+				json.put("File Size", pages.get(i).getMisc().get(j).getSize());
+				json.put("Path", pages.get(i).getMisc.get(j).getSize());
+			}
+		}
 		
+		FileWriter file = new FileWriter("E:/output.json");
+        	file.write(json.toJSONString());
+        	file.close();
 	}
 
 }
