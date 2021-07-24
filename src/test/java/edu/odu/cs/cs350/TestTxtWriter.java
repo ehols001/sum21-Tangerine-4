@@ -68,10 +68,10 @@ public class TestTxtWriter
 		assertEquals(0, writer.getSizes().size());
 	}
 	
-	
 	@Test
 	public void writeToFileTest() 
 	{
 		fail("Incomplete");
+		writer2.writeToFile();
 	}
 }
