@@ -42,6 +42,7 @@ class TestTxtWriter {
 //		assertEquals(pages, writer.getPages());
 	}
 	
+	
 	@Test
 	void writeToFileTest() 
 	{
