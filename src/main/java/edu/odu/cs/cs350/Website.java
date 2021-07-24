@@ -4,14 +4,14 @@ import java.util.*;
 
 public class Website {
 
-	private Vector<HTMLDocument> webpages;
+	private ArrayList<HTMLDocument> webpages;
 
 	/**
 	 * Default constructor for initializing a new Website
 	 */
 	public Website()
 	{
-		webpages = new Vector<HTMLDocument>();
+		webpages = new ArrayList<HTMLDocument>();
 	}
 	
 	/**
@@ -44,6 +44,17 @@ public class Website {
 	public int size()
 	{
 		return webpages.size();
+	}
+	
+	/**
+	 * Retrieves the HTMLDocument at the given index
+	 * 
+	 * @param index Index of the desired HTMLDocument
+	 * @return HTMLDocument at the given index
+	 */
+	public HTMLDocument getWebpage(int index)
+	{
+		return webpages.get(index);
 	}
 	
 }
