@@ -46,4 +46,15 @@ public class Website {
 		return webpages.size();
 	}
 	
+	/**
+	 * Retrieves the HTMLDocument at the given index
+	 * 
+	 * @param index Index of the desired HTMLDocument
+	 * @return HTMLDocument at the given index
+	 */
+	public HTMLDocument getWebpage(int index)
+	{
+		return webpages.get(index);
+	}
+	
 }
