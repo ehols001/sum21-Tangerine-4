@@ -2,6 +2,7 @@ package edu.odu.cs.cs350;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
+import org.junit.Before;
 
 public class TestTxtWriter 
 {
@@ -28,8 +29,8 @@ public class TestTxtWriter
 		htmldoc2.setLocalPath("/exit/light/");
 		htmldoc.setMedia(image);
 		htmldoc2.setMedia(image2);
-		website.add(htmldoc);
-		website2.add(htmldoc2);
+		website.addWebpage(htmldoc);
+		website2.addWebpage(htmldoc2);
 		
 		writer = new TxtWriter();
 		writer2 = new TxtWriter(website);
@@ -52,7 +53,7 @@ public class TestTxtWriter
 	@Test
 	void setSizesTest() 
 	{
-		writer.setSizes(writer2);
+		writer.setSizes(website2);
 		
 		assertEquals(20, writer.getSizes().get(0), 0.01);
 		assertEquals(0, writer.getPages().size());
@@ -61,7 +62,7 @@ public class TestTxtWriter
 	@Test
 	void setPagesTest() 
 	{
-		writer.setPages(writer2);
+		writer.setPages(website2);
 		
 		assertEquals("/exit/light/", writer2.getPages().get(0));
 		assertEquals(0, writer.getSizes().size());
