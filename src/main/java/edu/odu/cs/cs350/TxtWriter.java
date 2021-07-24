@@ -4,7 +4,7 @@ import java.util.*;
 
 public class TxtWriter {
 	
-	private Vector<Float> sizes = new Vector<Float>();
+	private Vector<Double> sizes = new Vector<Double>();
 	private Vector<String> pages = new Vector<String>();
 	
 	/**
