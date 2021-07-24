@@ -24,7 +24,7 @@ public class TestFileResource {
 		FileResource testFile = new FileResource();
 		
 		assertEquals(testFile.getPages(), 0);
-		assertEquals(testFile.getSize(), 0);
+		assertEquals(testFile.getSize(), 0, 0.001);
 		assertEquals(testFile.getType(), "");
 	}
 	
@@ -34,7 +34,7 @@ public class TestFileResource {
 		FileResource test = new FileResource(1, 23, "CSS");
 		
 		assertEquals(test.getPages(), 23);
-		assertEquals(test.getSize(), 1);
+		assertEquals(test.getSize(), 1, 0.001);
 		assertEquals(test.getType(), "CSS");
 	}
 
@@ -43,7 +43,7 @@ public class TestFileResource {
 		//fail("Not yet implemented");
 		file.setSize(94);
 		
-		assertEquals(file.getSize(), 94);
+		assertEquals(file.getSize(), 94, 0.001);
 
 	}
 	

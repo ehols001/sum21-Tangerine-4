@@ -1,7 +1,7 @@
 package edu.odu.cs.cs350;
 
 public class FileResource{
-	private int fileSize;
+	private double fileSize;
 	private int numPages;
 	private String fileType;
   
@@ -57,7 +57,7 @@ public class FileResource{
 	 * Retrieve the file size
 	 * @return size of the file
 	 */
-	public int getSize() {
+	public double getSize() {
 		return this.fileSize;
 	}
 	
