@@ -45,7 +45,7 @@ public class TestTxtWriter
 	@Test
 	void parameterizedConstructorTest() 
 	{	
-		assertEquals(20, writer2.getSizes().get(0));
+		assertEquals(20, writer2.getSizes().get(0), 0.01);
 		assertEquals("/exit/light/", writer2.getPages().get(0));
 	}
 	
@@ -54,7 +54,7 @@ public class TestTxtWriter
 	{
 		writer.setSizes(writer2);
 		
-		assertEquals(20, writer.getSizes().get(0));
+		assertEquals(20, writer.getSizes().get(0), 0.01);
 		assertEquals(0, writer.getPages().size());
 	}
 	
@@ -64,7 +64,7 @@ public class TestTxtWriter
 		writer.setPages(writer2);
 		
 		assertEquals("/exit/light/", writer2.getPages().get(0));
-		assertEquals(0, writer.Sizes().size());
+		assertEquals(0, writer.getSizes().size());
 	}
 	
 	
