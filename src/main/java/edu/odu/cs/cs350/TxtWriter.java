@@ -4,7 +4,7 @@ import java.util.*;
 
 public class TxtWriter {
 	
-	private Vector<String> sizes = new Vector<String>();
+	private Vector<Float> sizes = new Vector<Float>();
 	private Vector<String> pages = new Vector<String>();
 	
 	/**
@@ -26,10 +26,11 @@ public class TxtWriter {
 	}
 	
 	/**
-	 * Returns Vector<String> of cumulative image sizes for each page
+	 * Returns Vector<Double> of cumulative image sizes for each page
 	 * 
+	 * @return each page's cumulative image size
 	 */
-	public Vector<String> getSizes()
+	public Vector<Double> getSizes()
 	{
 		return sizes;
 	}
@@ -53,6 +54,7 @@ public class TxtWriter {
 	/**
 	 * Returns Vector<String> of path names for each page
 	 * 
+	 * @return each page's path name
 	 */
 	public Vector<String> getPages()
 	{
