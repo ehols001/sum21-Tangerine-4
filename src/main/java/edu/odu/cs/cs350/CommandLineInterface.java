@@ -58,17 +58,16 @@ public class CommandLineInterface {
 	 */
 	public static String urlToLocalPath(String url, String path)
 	{
-		String translatedURL = new String();
+		String translatedURL = new String();                   // path = /home/tkennedy/cs350/sum21/
 		try
 		{
-			URL tempUrl = new URL(url);
-			String protocol = tempUrl.getProtocol() + ":/";
-			String temp = url.replace(protocol, "");
-			//URI URLtoURI = new URI(tempString);
-			//String temp = URLtoURI.toString();
-			Path tempPath = Paths.get(temp);
-			Path tempPath2 = tempPath.getFileName();
-			translatedURL = tempPath2.toString();
+			URL tempUrl = new URL(url);                        // tempUrl = https://www.cs.odu.edu/~tkennedy/cs350/sum21/Directory/outline/
+			String protocol = tempUrl.getProtocol() + ":/";    // protocol = https:/
+			String temp = url.replace(protocol, "");           // temp = /www.cs.odu.edu/~tkennedy/cs350/sum21/Directory/outline/
+			String stripRoot = temp.replace(path, "");         // stripRoot = Directory/outline/
+			Path tempPath = Paths.get(stripRoot);
+			//Path tempPath2 = tempPath.getFileName();
+			translatedURL = tempPath.toString();
 		}
 		catch (MalformedURLException mue)
 		{
@@ -127,12 +126,14 @@ public class CommandLineInterface {
 
 		Website ws = new Website();
 		HTMLDocument htmldoc = new HTMLDocument();
+		TxtWriter tw = new TxtWriter();
 		
 		if(isURLValid(url) && isLocalPathValid(path))
 		{
-			String newPath = urlToLocalPath(url, path);
-			System.out.println(newPath);
-			//htmldoc = parse(newPath);
+			String localPath = urlToLocalPath(url, path);
+			ws.root = localPath;
+			System.out.println(ws.root);
+			//htmldoc = parse(localPath);
 			ws.addWebpage(htmldoc);	
 		}
 		else
@@ -140,8 +141,8 @@ public class CommandLineInterface {
 			printArgumentErrors(url, path);
 		}
 		
-		/*
-		 * calls to the three writer functions
-		 */
+		tw.writeToFile();
+		//Call to Json writer
+		//Call to Excel writer
 	}
 }
