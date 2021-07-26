@@ -116,6 +116,8 @@ public class TxtWriter {
 				txtWriter.write(sizes.get(i) + "MiB " + pages.get(i));
 			}
 			
+			txtWriter.close();
+			
 		} catch (IOException e) 
 		{
 			System.out.println("Error writing to file.");

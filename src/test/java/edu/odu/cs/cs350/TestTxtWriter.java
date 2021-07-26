@@ -70,9 +70,8 @@ public class TestTxtWriter
 	
 	
 	@Test
-	public void writeToFileTest() 
+	public void writeToFileTest()
 	{
-		fail("Incomplete");
 		writer2.writeToFile();
 	}
 }
