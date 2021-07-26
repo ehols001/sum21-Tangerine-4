@@ -18,12 +18,12 @@ public class TestTxtWriter
 	@Before 
 	public void setup() 
 	{
-		image = new FileResource(10, 10, "image");
-		image = new FileResource(20, 10, "image");
-		htmldoc = new HTMLDocument();
-		htmldoc2 = new HTMLDocument();
 		website = new Website();
 		website2 = new Website();
+		htmldoc = new HTMLDocument();
+		htmldoc2 = new HTMLDocument();
+		image = new FileResource(10, 10, "image");
+		image2 = new FileResource(20, 10, "image");
 		
 		htmldoc.setLocalPath("/enter/night/");
 		htmldoc2.setLocalPath("/exit/light/");
@@ -33,25 +33,25 @@ public class TestTxtWriter
 		website2.addWebpage(htmldoc2);
 		
 		writer = new TxtWriter();
-		writer2 = new TxtWriter(website);
+		writer2 = new TxtWriter(website2);
 	}
 	
 	@Test
-	void defaultConstructorTest() 
+	public void defaultConstructorTest() 
 	{
 		assertEquals(0, writer.getPages().size());
 		assertEquals(0, writer.getSizes().size());
 	}
 	
 	@Test
-	void parameterizedConstructorTest() 
+	public void parameterizedConstructorTest() 
 	{	
 		assertEquals(20, writer2.getSizes().get(0), 0.01);
 		assertEquals("/exit/light/", writer2.getPages().get(0));
 	}
 	
 	@Test
-	void setSizesTest() 
+	public void setSizesTest() 
 	{
 		writer.setSizes(website2);
 		
@@ -60,18 +60,18 @@ public class TestTxtWriter
 	}
 	
 	@Test
-	void setPagesTest() 
+	public void setPagesTest() 
 	{
 		writer.setPages(website2);
 		
-		assertEquals("/exit/light/", writer2.getPages().get(0));
+		assertEquals("/exit/light/", writer.getPages().get(0));
 		assertEquals(0, writer.getSizes().size());
 	}
 	
 	
 	@Test
-	void writeToFileTest() 
+	public void writeToFileTest()
 	{
-		fail("Incomplete");
+		writer2.writeToFile();
 	}
 }
