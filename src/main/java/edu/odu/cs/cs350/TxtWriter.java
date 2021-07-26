@@ -1,58 +1,131 @@
 package edu.odu.cs.cs350;
 
-import Website.java;
-import HTMLDocument.java;
 import java.util.*;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DecimalFormat;
 
 public class TxtWriter {
 	
-	private Vector<String> sizes = new Vector<String>();
+	private Vector<Double> sizes = new Vector<Double>();
 	private Vector<String> pages = new Vector<String>();
 	
+	/**
+	 * Constructs a text writer object with empty containers
+	 */
 	public TxtWriter()
 	{
 	}
 	
+	/**
+	 * Constructs a text writer object with containers filled by Website object
+	 * 
+	 * @param website website supplies website image size and path data
+	 */
 	public TxtWriter(Website website) 
 	{	
 		setSizes(website);
 		setPages(website);
 	}
 	
-	public Vector<String> getSizes()
+	/**
+	 * Returns Vector<Double> of cumulative image sizes for each page
+	 * 
+	 * @return vector of each page's cumulative image size
+	 */
+	public Vector<Double> getSizes()
 	{
 		return sizes;
 	}
 	
+	/**
+	 * Stores cumulative image sizes for each page supplied 
+	 * from website
+	 * 
+	 * @param website website supplies website image size data for each page
+	 */
 	void setSizes(Website website)
 	{
-		/*
-		for(int i = 0; i < website.Pages.get(i).size(); i++) 
+		sizes.clear();
+		
+		double cumulativeSize;
+		
+		for(int i = 0; i < website.size(); i++) 
 		{
-			sizes.add(website.Pages.get(i).size);
+			cumulativeSize = 0;
+			
+			for(int j = 0; j < website.getWebpage(i).getMedia().size(); j++)
+			{
+				if (website.getWebpage(i).getMedia().get(j).getType() == "image")
+				{
+					cumulativeSize = cumulativeSize + website.getWebpage(i).getMedia().get(j).getSize();
+				}
+				sizes.add(cumulativeSize);
+			}
 		}
-		*/
 	}
 	
+	/**
+	 * Returns Vector<String> of path names for each page
+	 * 
+	 * @return vector of each page's path name
+	 */
 	public Vector<String> getPages()
 	{
 		return pages;
 	}
 	
+	/**
+	 * Stores path names for each page supplied 
+	 * from website
+	 * 
+	 * @param website website supplies website path names for each page
+	 */
 	void setPages(Website website)
 	{	
-		/*
-		for(int i = 0; i < website.Pages.get(i).size(); i++) 
+		pages.clear();
+		
+		String temp = "";
+		
+		for(int i = 0; i < website.size(); i++) 
 		{
-			pages.add(website.Pages.get(i).path);
+			if(temp == "" || temp != website.getWebpage(i).getLocalPath())
+			{
+				pages.add(website.getWebpage(i).getLocalPath());
+				temp = website.getWebpage(i).getLocalPath();
+			}
 		}
-		*/
 	}
 	
+	/**
+	 * Writes formated Vector<Double> sizes and Vector<String> pages to YYYYMMDD-hhmmss-summary.txt file
+	 */
 	void writeToFile()
 	{
-		//Write data in Vector<String> sizes and Vector<String> pages to YYYYMMDD-hhmmss-summary.txt file
-		//according to conventions
+		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
+		LocalDateTime fileCreationDateTime = LocalDateTime.now();
+		String dateTime = fileCreationDateTime.format(dateTimeFormat);
+		
+		try
+		{
+			FileWriter txtWriter = new FileWriter(dateTime + "-summary.txt");
+			
+			DecimalFormat twoDP = new DecimalFormat("#.00");
+			
+			for (int i = 0; i < sizes.size(); i++)
+			{
+				txtWriter.write(twoDP.format(sizes.get(i)) + "M   " + pages.get(i));
+			}
+			
+			txtWriter.close();
+			
+		} catch (IOException e) 
+		{
+			System.out.println("Error writing to file.");
+			e.printStackTrace();
+		}
 	}
 	
 }

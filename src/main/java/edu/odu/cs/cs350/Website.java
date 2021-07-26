@@ -1,61 +1,60 @@
 package edu.odu.cs.cs350;
 
-import java.io.*;
 import java.util.*;
 
 public class Website {
 
-	 private Vector<String> localPaths;
-	 private Vector<HTMLDocument> webpages;
+	private ArrayList<HTMLDocument> webpages;
 
-	//Default constructor for initializing a new Website
+	/**
+	 * Default constructor for initializing a new Website
+	 */
 	public Website()
 	{
-		
+		webpages = new ArrayList<HTMLDocument>();
 	}
 	
-	/*
-	 * Determine whether a webpage contains the type of 
-	 * HTML content we are looking for
-	 * @param URL of the current webpage
+	/**
+	 * Add a webpage to a container of webpages
 	 */
-	static boolean containsHTMLContent(String wp)
-	{
-		if(/*webpage contains HTML content*/)
-			return true;
-		else
-			return false;
-	}
-	
-	//Add a local path to a Container of localPaths
-	public void addLocalPath(String lp)
-	{
-		
-	}
-	
-	//Add a webpage to a Container of webpages
 	public void addWebpage(HTMLDocument hd)
 	{
-		
+		webpages.add(hd);
 	}
 	
-	/*
-	 * Search for a webpage
-	 * return true if that webpage exists
-	 * @param URL of the webpage
+	/**
+	 * Search for a webpage within the webpages container
+	 * 
+	 * @param hd URL of the webpage
+	 * @return true if webpage exists
 	 */
-	public boolean contains(String wp)
+	public boolean contains(HTMLDocument hd)
 	{
-		if(/*webpage exists*/)
+		if(webpages.contains(hd) == true)
 			return true;
 		else
 			return false;
 	}
 	
-	//Return the size of the Website Containers for webpages/localPaths
+	/**
+	 * Retrieves the size of the Website container for webpages
+	 * 
+	 * @return integer size of webpages
+	 */
 	public int size()
 	{
-		return 0; //placeholder
+		return webpages.size();
+	}
+	
+	/**
+	 * Retrieves the HTMLDocument at the given index
+	 * 
+	 * @param index Index of the desired HTMLDocument
+	 * @return HTMLDocument at the given index
+	 */
+	public HTMLDocument getWebpage(int index)
+	{
+		return webpages.get(index);
 	}
 	
 }
