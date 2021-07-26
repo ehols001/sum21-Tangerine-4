@@ -33,7 +33,7 @@ public class TestTxtWriter
 		website2.addWebpage(htmldoc2);
 		
 		writer = new TxtWriter();
-		writer2 = new TxtWriter(website);
+		writer2 = new TxtWriter(website2);
 	}
 	
 	@Test
@@ -64,9 +64,10 @@ public class TestTxtWriter
 	{
 		writer.setPages(website2);
 		
-		assertEquals("/exit/light/", writer2.getPages().get(0));
+		assertEquals("/exit/light/", writer.getPages().get(0));
 		assertEquals(0, writer.getSizes().size());
 	}
+	
 	
 	@Test
 	public void writeToFileTest() 

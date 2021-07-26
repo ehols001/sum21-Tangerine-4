@@ -47,12 +47,23 @@ public class TxtWriter {
 	 */
 	void setSizes(Website website)
 	{
-		/*
-		for(int i = 0; i < website.Pages.get(i).size(); i++) 
+		sizes.clear();
+		
+		double cumulativeSize;
+		
+		for(int i = 0; i < website.size(); i++) 
 		{
-			sizes.add(website.Pages.get(i).size);
+			cumulativeSize = 0;
+			
+			for(int j = 0; j < website.getWebpage(i).getMedia().size(); j++)
+			{
+				if (website.getWebpage(i).getMedia().get(j).getType() == "image")
+				{
+					cumulativeSize = cumulativeSize + website.getWebpage(i).getMedia().get(j).getSize();
+				}
+				sizes.add(cumulativeSize);
+			}
 		}
-		*/
 	}
 	
 	/**
@@ -73,12 +84,18 @@ public class TxtWriter {
 	 */
 	void setPages(Website website)
 	{	
-		/*
-		for(int i = 0; i < website.Pages.get(i).size(); i++) 
+		pages.clear();
+		
+		String temp = "";
+		
+		for(int i = 0; i < website.size(); i++) 
 		{
-			pages.add(website.Pages.get(i).path);
+			if(temp == "" || temp != website.getWebpage(i).getLocalPath())
+			{
+				pages.add(website.getWebpage(i).getLocalPath());
+				temp = website.getWebpage(i).getLocalPath();
+			}
 		}
-		*/
 	}
 	
 	/**
@@ -94,15 +111,16 @@ public class TxtWriter {
 		{
 			FileWriter txtWriter = new FileWriter(dateTime + "-summary.txt");
 			
+			for (int i = 0; i < sizes.size(); i++)
+			{
+				txtWriter.write(sizes.get(i) + "MiB " + pages.get(i));
+			}
 			
 		} catch (IOException e) 
 		{
 			System.out.println("Error writing to file.");
 			e.printStackTrace();
 		}
-		
-		//Write data in Vector<Double> sizes and Vector<String> pages to YYYYMMDD-hhmmss-summary.txt file
-		//according to conventions
 	}
 	
 }

@@ -11,63 +11,63 @@ class TestExcelWriter {
   //Website website = new Website();
  
 	@Test
-	void defaultConstructorTest() {
+	public void defaultConstructorTest() {
 		fail("Incomplete");
 		
 		//ExcelWriter writer = new ExcelWriter();
 	}
 	
 	@Test
-	void parameterizedConstructorTest() {
+	public void parameterizedConstructorTest() {
 		fail("Incomplete");
 		
 		//ExcelWriter writer2 = new ExcelWriter(website);
 	}
 	
 	@Test
-	void setPagesTest() 
+	public void setPagesTest() 
 	{
 		fail("Incomplete");
 	}
 	
 	@Test
-	void setImagesTest() 
+	public void setImagesTest() 
 	{
 		fail("Incomplete");
 	}
 	
 	@Test
-  void setCSSTest() 
+	public void setCSSTest() 
 	{
 		fail("Incomplete");
 	}
 	
 	@Test
-  void setScriptsTest() 
+	public void setScriptsTest() 
 	{
 		fail("Incomplete");
 	}
 	
 	@Test
-  void setIntraLinkTest() 
+	public void setIntraLinkTest() 
 	{
 		fail("Incomplete");
 	}
 	
 	@Test
-  void setInternalLinkTest() 
+	public void setInternalLinkTest() 
 	{
 		fail("Incomplete");
 	}
 	
 	@Test
-  void setExternalLinkTest() 
+	public void setExternalLinkTest() 
 	{
 		fail("Incomplete");
 	}
 	
 	@Test
-	void writeToFileTest() 
+	public void writeToFileTest() 
 	{
 		fail("Incomplete");
 	}
