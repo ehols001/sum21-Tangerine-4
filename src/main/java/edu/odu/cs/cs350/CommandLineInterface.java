@@ -131,8 +131,7 @@ public class CommandLineInterface {
 		if(isURLValid(url) && isLocalPathValid(path))
 		{
 			String localPath = urlToLocalPath(url, path);
-			ws.root = localPath;
-			System.out.println(ws.root);
+			System.out.println(localPath);
 			//htmldoc = parse(localPath);
 			ws.addWebpage(htmldoc);	
 		}
