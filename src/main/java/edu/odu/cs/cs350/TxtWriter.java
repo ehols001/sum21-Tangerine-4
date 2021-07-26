@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 public class TxtWriter {
 	
@@ -111,9 +112,11 @@ public class TxtWriter {
 		{
 			FileWriter txtWriter = new FileWriter(dateTime + "-summary.txt");
 			
+			DecimalFormat twoDP = new DecimalFormat("#.00");
+			
 			for (int i = 0; i < sizes.size(); i++)
 			{
-				txtWriter.write(sizes.get(i) + "MiB " + pages.get(i));
+				txtWriter.write(twoDP.format(sizes.get(i)) + "M   " + pages.get(i));
 			}
 			
 			txtWriter.close();
