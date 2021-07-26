@@ -19,7 +19,11 @@ public class CommandLineInterface {
 			new URL(url).toURI();
 			return true;
 		}
-		catch (Exception exc)
+		catch (MalformedURLException mue)
+		{
+			return false;
+		}
+		catch (URISyntaxException use)
 		{
 			return false;
 		}
@@ -49,12 +53,30 @@ public class CommandLineInterface {
 	 * of a local copy of a site
 	 * 
 	 * @param url URL to be translated
+	 * @param path Local path to be reflected
 	 * @return translatedURL url translated to its local path
 	 */
-	public static String urlToLocalPath(String url)
+	public static String urlToLocalPath(String url, String path)
 	{
-		String translatedURL = new String();
-		//Translate URL to reflect the local copy site's directory structure
+		String translatedURL = new String();                   // path = /home/tkennedy/cs350/sum21/
+		try
+		{
+			URL tempUrl = new URL(url);                        // tempUrl = https://www.cs.odu.edu/~tkennedy/cs350/sum21/Directory/outline/
+			String protocol = tempUrl.getProtocol() + ":/";    // protocol = https:/
+			String temp = url.replace(protocol, "");           // temp = /www.cs.odu.edu/~tkennedy/cs350/sum21/Directory/outline/
+			String stripRoot = temp.replace(path, "");         // stripRoot = Directory/outline/
+			Path tempPath = Paths.get(stripRoot);
+			//Path tempPath2 = tempPath.getFileName();
+			translatedURL = tempPath.toString();
+		}
+		catch (MalformedURLException mue)
+		{
+			System.err.println(mue);
+		}/*
+		catch (URISyntaxException use)
+		{
+			System.err.println(use);
+		}*/
 		return translatedURL;
 	}
 	
@@ -73,12 +95,12 @@ public class CommandLineInterface {
 		{
 			System.err.println("The URL provided is malformed.");
 			System.err.println("The path provided is either non-existent or "
-					+ "is an unreadable directory.");
+					+ "an unreadable directory.");
 		}
 		else if(!isLocalPathValid(path))
 		{
 			System.err.println("The path provided is either non-existent or "
-					+ "is an unreadable directory.");
+					+ "an unreadable directory.");
 		}
 		else
 		{
@@ -91,26 +113,35 @@ public class CommandLineInterface {
 	 */
 	public static void main(String[] args) throws IOException
 	{
-		if(args.length == 0)
+		if(args.length < 1)
 		{
-			System.err.println("\nNo command line arugments provided.\n");
+			System.err.println("usage: localPath url\n"
+					+ "   localPath: the path to a local copy of the site\n"
+					+ "   url: one or more URLs separated by spaces");
 			System.exit(0);
 		}
+
 		String path = args[0];
 		String url = args[1];
-		
+
 		Website ws = new Website();
-		HTMLDocument hd = new HTMLDocument();
+		HTMLDocument htmldoc = new HTMLDocument();
+		TxtWriter tw = new TxtWriter();
 		
 		if(isURLValid(url) && isLocalPathValid(path))
 		{
-			String translatedUrl = urlToLocalPath(url);
-			//hd = parse(translatedUrl);
-			ws.addWebpage(hd);	
+			String localPath = urlToLocalPath(url, path);
+			System.out.println(localPath);
+			//htmldoc = parse(localPath);
+			ws.addWebpage(htmldoc);	
 		}
 		else
 		{
 			printArgumentErrors(url, path);
 		}
+		
+		tw.writeToFile();
+		//Call to Json writer
+		//Call to Excel writer
 	}
 }
