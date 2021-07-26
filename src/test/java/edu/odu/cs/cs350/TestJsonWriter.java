@@ -11,7 +11,7 @@ import org.junit.Test;
 class TestJsonWriter {
 
 	@Test
-	void TestSetLocalImageCount() {
+	public void TestSetLocalImageCount() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
 		
@@ -21,7 +21,7 @@ class TestJsonWriter {
 	}
 	
 	@Test
-	void TestSetExternalImageCount() {
+	public void TestSetExternalImageCount() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
 		//int num= 15;
@@ -32,7 +32,7 @@ class TestJsonWriter {
 	}
 	
 	@Test
-	void TestSetScriptCount() {
+	public void TestSetScriptCount() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
 		//int num= 15;
@@ -43,7 +43,7 @@ class TestJsonWriter {
 	}
 	
 	@Test
-	void TestSetStylesheetCount() {
+	public void TestSetStylesheetCount() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
 		//int num=15;
@@ -54,7 +54,7 @@ class TestJsonWriter {
 	}
 	
 	@Test
-	void TestSetIntraPageLinkCount() {
+	public void TestSetIntraPageLinkCount() {
 		JsonWriter jsonWriterObject = new JsonWriter();
 		//int num=15;
 		
@@ -64,7 +64,7 @@ class TestJsonWriter {
 	}
 	
 	@Test
-	void setInterSiteLinkCount(int interSiteLinkCount) {
+	public void setInterSiteLinkCount(int interSiteLinkCount) {
 		JsonWriter jsonWriterObject = new JsonWriter();
 		//int num=15;
 		
@@ -84,7 +84,7 @@ class TestJsonWriter {
 	}
 	
 	/*@Test
-	void TestSetScriptFiles() {
+	public void TestSetScriptFiles() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
 		LinkedList<String> list= new LinkedList();
@@ -105,7 +105,7 @@ class TestJsonWriter {
 	}
 	
 	@Test
-	void TestSetStylesheetFiles() {
+	public void TestSetStylesheetFiles() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
 		LinkedList<String> list= new LinkedList();
@@ -126,7 +126,7 @@ class TestJsonWriter {
 	}
 	
 	@Test
-	void TestSetImageFiles() {
+	public void TestSetImageFiles() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
 		LinkedList<String> list= new LinkedList();
@@ -148,7 +148,7 @@ class TestJsonWriter {
 
 	
 	@Test
-	void TestSetArchiveFiles() {
+	public void TestSetArchiveFiles() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
 		LinkedList<String> list= new LinkedList();
@@ -169,7 +169,7 @@ class TestJsonWriter {
 	}
 
 	@Test
-	void TestSetVideoFiles() {
+	public void TestSetVideoFiles() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
 		LinkedList<String> list= new LinkedList();
@@ -190,7 +190,7 @@ class TestJsonWriter {
 	}
 	
 	@Test
-	void TestSetAudioFiles() {
+	public void TestSetAudioFiles() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
 		LinkedList<String> list= new LinkedList();
@@ -211,7 +211,7 @@ class TestJsonWriter {
 	}
 	
 	@Test
-	void TestSetUncategorizedFiles() {
+	public void TestSetUncategorizedFiles() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
 		LinkedList<String> list= new LinkedList();
@@ -232,7 +232,7 @@ class TestJsonWriter {
 	}*/	
 	
 	/*@Test
-	void TestJSONFormatter() {
+	public void TestJSONFormatter() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
 		Website list= new Website();
