@@ -7,18 +7,18 @@ import java.util.*;
 public class ExcelWriter {
   
   private Vector<String> pages = new Vector<String>(); 
-  private Vector<String> images = new Vector<String>();
-  private Vector<String> css = new Vector<String>();
-  private Vector<String> scripts = new Vector<String>();
-  private Vector<String> intraLinks = new Vector<String>();
-  private Vector<String> internalLinks = new Vector<String>();
-  private Vector<String> externalLinks = new Vector<String>();
+  private Vector<Integer> images = new Vector<Integer>();
+  private Vector<Integer> css = new Vector<Integer>();
+  private Vector<Integer> scripts = new Vector<Integer>();
+  private Vector<Integer> intraLinks = new Vector<Integer>();
+  private Vector<Integer> internalLinks = new Vector<Integer();
+  private Vector<Integer> externalLinks = new Vector<Integer>();
   
   public class ExcelWriter(){
 	  
   }
   
-  public TxtWriter(Website website) 
+  public ExcelWriter(Website website) 
 	{	
 		setPages(website);
 		setImages(website);
@@ -39,7 +39,7 @@ public class ExcelWriter {
 		
 	}
 	
-	public Vector<String> getImages()
+	public Vector<Integer> getImages()
 	{
 		return images;
 	}
@@ -49,7 +49,7 @@ public class ExcelWriter {
 		
 	}
 	
-	public Vector<String> getCSS()
+	public Vector<Integer> getCSS()
 	{
 		return css;
 	}
@@ -59,7 +59,7 @@ public class ExcelWriter {
 		
 	}
 	
-	public Vector<String> getScripts()
+	public Vector<Integer> getScripts()
 	{
 		return scripts;
 	}
@@ -69,7 +69,7 @@ public class ExcelWriter {
 		
 	}
 	
-	public Vector<String> getIntraLinks()
+	public Vector<Integer> getIntraLinks()
 	{
 		return intraLinks;
 	}
@@ -79,7 +79,7 @@ public class ExcelWriter {
 		
 	}
 	
-	public Vector<String> getInternalLinks()
+	public Vector<Integer> getInternalLinks()
 	{
 		return internalLinks;
 	}
@@ -89,7 +89,7 @@ public class ExcelWriter {
 		
 	}
 	
-	public Vector<String> getExternalLinks()
+	public Vector<Integer> getExternalLinks()
 	}
 		return externalLinks;
 	}
@@ -101,7 +101,8 @@ public class ExcelWriter {
 	
 	void writeToFile()
 	{
-		
+		Workbook wb = new XSSFWorkbook();
+                Sheet sheet1 = wb.createSheet("summary");
 	}
 
 }
