@@ -14,7 +14,7 @@ public class JsonWriter {
 	public JsonWriter() { 
 		
 	 json=new JSONObject(); //JSON file to be written to
-	 
+		
 	}
 	
 	//Variables holding the count of each type of file
@@ -28,28 +28,24 @@ public class JsonWriter {
 	
 	//Lists of the names of each type of file and the corresponding information for each file
 	//Number of pages it's on, names of pages it is on, etc. 
+	
 	private ArrayList<HTMLDocument> pages = new ArrayList<HTMLDocument>();
-	/*private ArrayList<String> imageFiles = new ArrayList<String>();
-	private ArrayList<String> archiveFiles = new ArrayList<String>();
-	private ArrayList<String> videoFiles = new ArrayList<String>();
-	private ArrayList<String> audioFiles = new ArrayList<String>();
-	private ArrayList<String> uncategorizedFiles = new ArrayList<String>();
-	private ArrayList<String> stylesheetFiles = new ArrayList<String>();
-	private ArrayList<String> scriptFiles = new ArrayList<String>();
-	*/
+	
 	public JSONObject getJSONObject() { //Accessor for the JSON object created in this class
 		return json;
 	}
 	
-	void setLocalImageCount(HTMLDocument page) {///Should this be in HTMLDocument instead?
+	void setLocalImageCount(HTMLDocument page) {
 		
-		//Sets the count of the number of local images by iterating through the list and counting
+		//Sets the count of the number of local images by iterating through the list of all media and counting local images
+		localImageCount=0;
 		
-		localImageCount=page.getMedia().size();
-		
-		
+		for(int i=0; i<=page.getMedia().size(); i++){
+			if(page.getMedia.get(i).getType().equals("Local Image"){
+				localImageCount++;
+			}
+		}
 	}
-	
 	
 	public int getLocalImageCount() {
 		
@@ -57,12 +53,17 @@ public class JsonWriter {
 		return localImageCount;
 	}
 	
-	
 	void setExternalImageCount(HTMLDocument page) {
 		
-		//Sets the count of the number of external images by iterating through the list and counting
+		//Sets the count of the number of external images by iterating through the list and counting external images
 		
-		externalImageCount=page.getMedia().size(); //Should be getExternalImage and in HTMLDocument?
+		externalImageCount=0;
+		
+		for(int i=0; i<=page.getMedia().size(); i++){
+			if(page.getMedia.get(i).getType().equals("External Image"){
+				externalImageCount++;
+			}
+		}
 	}
 	
 	public int getExternalImageCount() {
@@ -99,9 +100,15 @@ public class JsonWriter {
 	}
 	
 	public void setIntraPageLinkCount(HTMLDocument page) {
-		//Sets the count of the number of intra-page links
+		//Sets the count of the number of intra-page links by iterating through the list of links and counting
 		
-		intraPageLinkCount=page.getLinks().size();
+		intraPageLinkCount=0;
+		
+		for(int i=0; i<=page.getLinks().size(); i++){
+			if(page.getLinks.get(i).getType().equals("Intra-Page"){
+				intraPageLinkCount++;
+			}
+		}
 	}
 	
 	public int getIntraPageLinkCount() {
@@ -110,9 +117,15 @@ public class JsonWriter {
 	}
 	
 	public void setInterSiteLinkCount(HTMLDocument page) {
-		//Sets the count of the number of inter-site links
+		//Sets the count of the number of inter-site links by iterating through the list of links and counting
 		
-		interSiteLinkCount=page.getLinks().size();
+		interSiteLinkCount=0;
+		
+		for(int i=0; i<=page.getLinks().size(); i++){
+			if(page.getLinks.get(i).getType().equals("Inter-Site"){
+				interSiteLinkCount++;
+			}
+		}
 		
 	}
 
@@ -122,8 +135,15 @@ public class JsonWriter {
 	}
 	
 	public void setExternalLinkCount(HTMLDocument page) {
-		//Sets the count of the number of external links
-		externalLinkCount=page.getLinks().size();
+		//Sets the count of the number of external links by iterating through the list of links and counting
+		
+		externalLinkCount=0;
+		
+		for(int i=0; i<=page.getLinks().size(); i++){
+			if(page.getLinks.get(i).getType().equals("External"){
+				externalLinkCount++;
+			}
+		}
 	}
 
 	public int getExternalLinkCount() {
@@ -131,76 +151,6 @@ public class JsonWriter {
 		return externalLinkCount;
 	}
 	
-	void setStylesheetFiles(LinkedList<String> list) {
-		
-		//Creates list of stylesheet files and their corresponding information
-	}
-	
-	/*public LinkedList<String> getStylesheetFiles() {
-		
-		return stylesheetFiles;
-	}	
-	
-	void setScriptFiles(LinkedList<String> list) {
-		
-		//Creates list of script files and their corresponding information
-	}
-	
-	public LinkedList<String> getScriptFiles() {
-		
-		return scriptFiles;
-	}	
-	
-	void setImageFiles(LinkedList<String> list) {
-		
-		//Creates list of image files and their corresponding information
-	}
-	
-	public LinkedList<String> getImageFiles() {
-		
-		return imageFiles;
-	}	
-	
-	void setArchiveFiles(LinkedList<String> list) {
-		
-		//Creates list of archive files and their corresponding information
-	}
-	
-	public LinkedList<String> getArchiveFiles() {
-		
-		return archiveFiles;
-	}	
-	
-	void setVideoFiles(LinkedList<String> list) {
-		
-		//Creates list of video files and their corresponding information
-	}
-	
-	public LinkedList<String> getVideoFiles() {
-		
-		return videoFiles;
-	}	
-	
-	void setAudioFiles(LinkedList<String> list) {
-		
-		//Creates list of audio files and their corresponding information
-	}
-	
-	public LinkedList<String> getAudioFiles() {
-		
-		return audioFiles;
-	}	
-	
-	void setUncategorizedFiles(LinkedList<String> list) {
-		
-		//Creates list of uncategorized files and their corresponding information
-	}
-	
-	public LinkedList<String> getUncategorizedFiles() {
-		
-		return uncategorizedFiles;
-	}	
-	*/
 	
 	void JSONFormatter(Website pages) {
 		
@@ -233,8 +183,11 @@ public class JsonWriter {
 			
 			//Outputs the list of images throughout the website and the number of pages that it appears on
 			for(int j=0; j<pages.getWebpage(i).getMedia().size(); j++) {
-				json.put("Image", pages.getWebpage(i).getMedia().get(j));
-				json.put("Number of Pages", pages.getWebpage(i).getMedia().get(j).getPages());
+				if(pages.getWebpage(i).getMedia().get(j).getType().equals("External Image") || pages.getWebpage(i).getMedia().get(j).getType().equals("Local Image"))
+				{
+					json.put("Image", pages.getWebpage(i).getMedia().get(j));
+					json.put("Number of Pages", pages.getWebpage(i).getMedia().get(j).getPages());
+				}
 			}
 			
 			//Outputs the list of scripts throughout the website
@@ -248,27 +201,36 @@ public class JsonWriter {
 			}
 			
 			//Outputs the file size and path of each archive file in the website
-			for(int j=0; j<pages.getWebpage(i).getMedia().size(); j++) { //should be getArchives rather than getMedia
-				json.put("File Size", pages.getWebpage(i).getMedia().get(j).getSize());
-				json.put("Path", pages.getWebpage(i).getMedia().get(j).getSize());//should be getPath rather than getSize
+			for(int j=0; j<pages.getWebpage(i).getMedia().size(); j++) { 
+				if(pages.getWebpage(i).getMedia().get(j).getType().equals("Archive"))
+				{
+					json.put("File Size", pages.getWebpage(i).getMedia().get(j).getSize());
+					json.put("Path", pages.getWebpage(i).getLocalPath);
+				}
 			}
 			
 			//Outputs the file size and path of each video file in the website
-			for(int j=0; j<pages.getWebpage(i).getMedia().size(); j++) { //should be getVideos rather than getMedia
-				json.put("File Size", pages.getWebpage(i).getMedia().get(j).getSize());
-				json.put("Path", pages.getWebpage(i).getMedia().get(j).getSize());//should be getPath rather than getSize
+			for(int j=0; j<pages.getWebpage(i).getMedia().size(); j++) { 
+				if(pages.getWebpage(i).getMedia().get(j).getType().equals("Video"))
+				{
+					json.put("File Size", pages.getWebpage(i).getMedia().get(j).getSize());
+					json.put("Path", pages.getWebpage(i).getLocalPath);
+				}
 			}
 			
 			//Outputs the file size and path of each audio file in the website
-			for(int j=0; j<pages.getWebpage(i).getMedia().size(); j++) { //should be getAudio rather than getMEdia
-				json.put("File Size", pages.getWebpage(i).getMedia().get(j).getSize());
-				json.put("Path", pages.getWebpage(i).getMedia().get(j).getSize());//should be getPath rather than getSize
+			for(int j=0; j<pages.getWebpage(i).getMedia().size(); j++) { 
+				if(pages.getWebpage(i).getMedia().get(j).getType().equals("Audio"))
+				{
+					json.put("File Size", pages.getWebpage(i).getMedia().get(j).getSize());
+					json.put("Path", pages.getWebpage(i).getLocalPath());
+				}
 			}
 			
 			//Outputs the file size and path of each miscellaneous file in the website.
 			for(int j=0; j<pages.getWebpage(i).getMisc().size(); j++) {
 				json.put("File Size", pages.getWebpage(i).getMisc().get(j).getSize());
-				json.put("Path", pages.getWebpage(i).getMisc().get(j).getSize());
+				json.put("Path", pages.getWebpage(i));
 			}
 		}
 		
