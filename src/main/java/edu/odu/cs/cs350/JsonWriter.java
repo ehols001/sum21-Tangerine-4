@@ -41,7 +41,7 @@ public class JsonWriter {
 		localImageCount=0;
 		
 		for(int i=0; i<=page.getMedia().size(); i++){
-			if(page.getMedia.get(i).getType().equals("Local Image"){
+			if(page.getMedia.get(i).getType().equals("Local Image")){
 				localImageCount++;
 			}
 		}
@@ -60,7 +60,7 @@ public class JsonWriter {
 		externalImageCount=0;
 		
 		for(int i=0; i<=page.getMedia().size(); i++){
-			if(page.getMedia.get(i).getType().equals("External Image"){
+			if(page.getMedia.get(i).getType().equals("External Image")){
 				externalImageCount++;
 			}
 		}
@@ -105,7 +105,7 @@ public class JsonWriter {
 		intraPageLinkCount=0;
 		
 		for(int i=0; i<=page.getLinks().size(); i++){
-			if(page.getLinks.get(i).getType().equals("Intra-Page"){
+			if(page.getLinks.get(i).getType().equals("Intra-Page")){
 				intraPageLinkCount++;
 			}
 		}
@@ -122,7 +122,7 @@ public class JsonWriter {
 		interSiteLinkCount=0;
 		
 		for(int i=0; i<=page.getLinks().size(); i++){
-			if(page.getLinks.get(i).getType().equals("Inter-Site"){
+			if(page.getLinks.get(i).getType().equals("Inter-Site")){
 				interSiteLinkCount++;
 			}
 		}
@@ -140,9 +140,10 @@ public class JsonWriter {
 		externalLinkCount=0;
 		
 		for(int i=0; i<=page.getLinks().size(); i++){
-			if(page.getLinks.get(i).getType().equals("External"){
-				externalLinkCount++;
+			if(page.getLinks.get(i).getType().equals("External")){
+				
 			}
+				externalLinkCount++;
 		}
 	}
 
@@ -233,6 +234,7 @@ public class JsonWriter {
 				json.put("Path", pages.getWebpage(i));
 			}
 		}
+	}
 		
 	public void createJSONFile(){
 		
