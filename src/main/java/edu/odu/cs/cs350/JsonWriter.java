@@ -41,7 +41,7 @@ public class JsonWriter {
 		localImageCount=0;
 		
 		for(int i=0; i<=page.getMedia().size(); i++){
-			if(page.getMedia.get(i).getType().equals("Local Image")){
+			if(page.getMedia().get(i).getType().equals("Local Image")){
 				localImageCount++;
 			}
 		}
@@ -60,7 +60,7 @@ public class JsonWriter {
 		externalImageCount=0;
 		
 		for(int i=0; i<=page.getMedia().size(); i++){
-			if(page.getMedia.get(i).getType().equals("External Image")){
+			if(page.getMedia().get(i).getType().equals("External Image")){
 				externalImageCount++;
 			}
 		}
@@ -105,7 +105,7 @@ public class JsonWriter {
 		intraPageLinkCount=0;
 		
 		for(int i=0; i<=page.getLinks().size(); i++){
-			if(page.getLinks.get(i).getType().equals("Intra-Page")){
+			if(page.getLinks().get(i).getType().equals("Intra-Page")){
 				intraPageLinkCount++;
 			}
 		}
@@ -122,7 +122,7 @@ public class JsonWriter {
 		interSiteLinkCount=0;
 		
 		for(int i=0; i<=page.getLinks().size(); i++){
-			if(page.getLinks.get(i).getType().equals("Inter-Site")){
+			if(page.getLinks().get(i).getType().equals("Inter-Site")){
 				interSiteLinkCount++;
 			}
 		}
@@ -140,7 +140,7 @@ public class JsonWriter {
 		externalLinkCount=0;
 		
 		for(int i=0; i<=page.getLinks().size(); i++){
-			if(page.getLinks.get(i).getType().equals("External")){
+			if(page.getLinks().get(i).getType().equals("External")){
 				
 			}
 				externalLinkCount++;
@@ -206,7 +206,7 @@ public class JsonWriter {
 				if(pages.getWebpage(i).getMedia().get(j).getType().equals("Archive"))
 				{
 					json.put("File Size", pages.getWebpage(i).getMedia().get(j).getSize());
-					json.put("Path", pages.getWebpage(i).getLocalPath);
+					json.put("Path", pages.getWebpage(i).getLocalPath());
 				}
 			}
 			
@@ -215,7 +215,7 @@ public class JsonWriter {
 				if(pages.getWebpage(i).getMedia().get(j).getType().equals("Video"))
 				{
 					json.put("File Size", pages.getWebpage(i).getMedia().get(j).getSize());
-					json.put("Path", pages.getWebpage(i).getLocalPath);
+					json.put("Path", pages.getWebpage(i).getLocalPath());
 				}
 			}
 			
@@ -240,7 +240,7 @@ public class JsonWriter {
 		
 		try {
 			FileWriter file = new FileWriter("analysis.json");
-			file.write(json.toJSONString());
+			file.write(json.toString(1));
 			
 			file.close();
 		} 	
