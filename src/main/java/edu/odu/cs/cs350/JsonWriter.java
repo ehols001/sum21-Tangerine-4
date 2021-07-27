@@ -35,7 +35,7 @@ public class JsonWriter {
 		return json;
 	}
 	
-	void setLocalImageCount(HTMLDocument page) {
+	public void setLocalImageCount(HTMLDocument page) {
 		
 		//Sets the count of the number of local images by iterating through the list of all media and counting local images
 		localImageCount=0;
@@ -53,7 +53,7 @@ public class JsonWriter {
 		return localImageCount;
 	}
 	
-	void setExternalImageCount(HTMLDocument page) {
+	public void setExternalImageCount(HTMLDocument page) {
 		
 		//Sets the count of the number of external images by iterating through the list and counting external images
 		
@@ -72,7 +72,7 @@ public class JsonWriter {
 		return externalImageCount;
 	}
 	
-	void setScriptCount(HTMLDocument page) {
+	public void setScriptCount(HTMLDocument page) {
 		
 		//Sets the count of the number of scripts by iterating through the list and counting
 		scriptCount=page.getScripts().size();
@@ -84,7 +84,7 @@ public class JsonWriter {
 		return scriptCount;
 	}
 	
-	void setStylesheetCount(HTMLDocument page) {
+	public void setStylesheetCount(HTMLDocument page) {
 		
 		//Sets the count of the number of stylesheets
 		
@@ -152,7 +152,7 @@ public class JsonWriter {
 	}
 	
 	
-	void JSONFormatter(Website pages) {
+	public void JSONFormatter(Website pages) {
 		
 		//Loops through each page in the website
 		for(int i=0; i<pages.size(); i++) {
@@ -234,9 +234,18 @@ public class JsonWriter {
 			}
 		}
 		
-//		FileWriter file = new FileWriter("E:/output.json");
-//        	file.write(json.toString());
-//        	file.close();
+	public void createJSONFile(){
+		
+		try {
+			FileWriter file = new FileWriter("analysis.json");
+			file.write(json.toJSONString());
+			
+			file.close();
+		} 	
+		
+		catch (IOException e) {
+		// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-
 }
