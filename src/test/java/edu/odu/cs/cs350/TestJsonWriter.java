@@ -1,287 +1,160 @@
 package edu.odu.cs.cs350;
 
-import java.util.LinkedList;
+import java.util.*;
 
 import org.json.JSONObject;
+import org.json.JSONArray;
+
 import static org.junit.Assert.*;
-
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.Before;
 
-class TestJsonWriter {
 
+public class TestJsonWriter {
+
+		//Files to use in test cases
+		FileResource localImage;
+		FileResource externalImage;
+		FileResource script;
+		FileResource styleSheet;
+		Anchor intraPageLink; 
+		Anchor interSiteLink;
+		Anchor externalLink;
+		FileResource archive;
+		FileResource video;
+		FileResource audio;
+		FileResource misc;
+		
+		JsonWriter jsonWriterObject;
+		HTMLDocument HTML;
+		Website website;
+		
+	@Before 
+	public void websiteExample() {
+			
+		localImage= new FileResource(10, 1, "Local Image");
+		externalImage= new FileResource(20, 2, "External Image");
+		script= new FileResource(30, 3, "Script");
+		styleSheet= new FileResource(40, 4, "Stylesheet");
+		intraPageLink= new Anchor("http://intrapage.com", "Intra-Page");
+		interSiteLink= new Anchor("http://intersite.com", "Inter-Site");
+		externalLink= new Anchor("http://external.com", "External");
+		archive= new FileResource(50, 5, "Archive");
+		video= new FileResource(60, 6, "Video");
+		audio= new FileResource(70, 7, "Audio");
+		misc= new FileResource(80, 8, "Miscellaneous");
+			
+		//HTML Document to use in test cases
+		HTML= new HTMLDocument();
+		HTML.setLocalPath("/the/example/path");
+		HTML.setLinks(intraPageLink);
+		HTML.setLinks(interSiteLink);
+		HTML.setLinks(externalLink);
+		HTML.setMedia(archive);
+		HTML.setMedia(video);
+		HTML.setMedia(audio);
+		HTML.setMisc(misc);
+		HTML.setMedia(localImage);
+		HTML.setMedia(externalImage);
+		HTML.setScripts(script);
+		HTML.setStyleSheets(styleSheet);
+			
+		//Website to use in test cases
+		website= new Website();
+		website.addWebpage(HTML);
+		jsonWriterObject = new JsonWriter();
+	}
+		
+		
+	
 	@Test
 	public void TestSetLocalImageCount() {
 		
-		JsonWriter jsonWriterObject = new JsonWriter();
-		
-		HTMLDocument test= new HTMLDocument();
-		jsonWriterObject.setLocalImageCount(test);
-		assertEquals(test.getMedia().size(), jsonWriterObject.getLocalImageCount());
+		jsonWriterObject.setLocalImageCount(HTML);
+		assertEquals(1, jsonWriterObject.getLocalImageCount());
 	}
 	
 	@Test
 	public void TestSetExternalImageCount() {
 		
-		JsonWriter jsonWriterObject = new JsonWriter();
-		//int num= 15;
-		
-		HTMLDocument test= new HTMLDocument();
-		jsonWriterObject.setExternalImageCount(test);
-		assertEquals(test.getMedia().size(), jsonWriterObject.getExternalImageCount());
+		jsonWriterObject.setExternalImageCount(HTML);
+		assertEquals(1, jsonWriterObject.getExternalImageCount());
 	}
 	
 	@Test
 	public void TestSetScriptCount() {
 		
-		JsonWriter jsonWriterObject = new JsonWriter();
-		//int num= 15;
-		
-		HTMLDocument test= new HTMLDocument();
-		jsonWriterObject.setScriptCount(test);
-		assertEquals(test.getMedia().size(), jsonWriterObject.getScriptCount());
+		jsonWriterObject.setScriptCount(HTML);
+		assertEquals(1, jsonWriterObject.getScriptCount());
 	}
 	
 	@Test
 	public void TestSetStylesheetCount() {
 		
-		JsonWriter jsonWriterObject = new JsonWriter();
-		//int num=15;
-		
-		HTMLDocument test= new HTMLDocument();
-		jsonWriterObject.setStylesheetCount(test);
-		assertEquals(test.getMedia().size(), jsonWriterObject.getStylesheetCount());
+		jsonWriterObject.setStylesheetCount(HTML);
+		assertEquals(1, jsonWriterObject.getStylesheetCount());
 	}
 	
 	@Test
 	public void TestSetIntraPageLinkCount() {
-		JsonWriter jsonWriterObject = new JsonWriter();
-		//int num=15;
 		
-		HTMLDocument test= new HTMLDocument();
-		jsonWriterObject.setIntraPageLinkCount(test);
-		assertEquals(test.getMedia().size(), jsonWriterObject.getIntraPageLinkCount());
+		jsonWriterObject.setIntraPageLinkCount(HTML);
+		assertEquals(1, jsonWriterObject.getIntraPageLinkCount());
 	}
 	
 	@Test
-	public void setInterSiteLinkCount(int interSiteLinkCount) {
-		JsonWriter jsonWriterObject = new JsonWriter();
-		//int num=15;
-		
-		HTMLDocument test= new HTMLDocument();
-		jsonWriterObject.setInterSiteLinkCount(test);
-		assertEquals(test.getMedia().size(), jsonWriterObject.getInterSiteLinkCount());
+	public void TestSetInterSiteLinkCount() {
+	
+		jsonWriterObject.setInterSiteLinkCount(HTML);
+		assertEquals(1, jsonWriterObject.getInterSiteLinkCount());
 	}
 
 	@Test
-	public void setExternalLinkCount(int externalLinkCount) {
-		JsonWriter jsonWriterObject = new JsonWriter();
-		//int num=15;
+	public void TestSetExternalLinkCount() {
 		
-		HTMLDocument test= new HTMLDocument();
-		jsonWriterObject.setExternalLinkCount(test);
-		assertEquals(test.getMedia().size(), jsonWriterObject.getExternalLinkCount());
+		jsonWriterObject.setExternalLinkCount(HTML);
+		assertEquals(1, jsonWriterObject.getExternalLinkCount());
 	}
 	
-	/*@Test
-	public void TestSetScriptFiles() {
-		
-		JsonWriter jsonWriterObject = new JsonWriter();
-		LinkedList<String> list= new LinkedList();
-		
-		list.add("Test1");
-		list.add("Test2");
-		list.add("Test3");
-		list.add("Test4");
-		list.add("Test5");
-		
-		jsonWriterObject.setImageFiles(list);
-		
-		if(jsonWriterObject.getScriptFiles().size()==list.size()) { ///Checks for same size initially
-			for(int i=0; i<list.size(); i++) {
-				assertEquals(list.get(i), jsonWriterObject.getScriptFiles().get(i));
-			}
-		}
-	}
 	
 	@Test
-	public void TestSetStylesheetFiles() {
-		
-		JsonWriter jsonWriterObject = new JsonWriter();
-		LinkedList<String> list= new LinkedList();
-		
-		list.add("Test1");
-		list.add("Test2");
-		list.add("Test3");
-		list.add("Test4");
-		list.add("Test5");
-		
-		jsonWriterObject.setStylesheetFiles(list);
-		
-		if(jsonWriterObject.getScriptFiles().size()==list.size()) { ///Checks for same size initially
-			for(int i=0; i<list.size(); i++) {
-				assertEquals(list.get(i), jsonWriterObject.getStylesheetFiles().get(i));
-			}
-		}
-	}
-	
-	@Test
-	public void TestSetImageFiles() {
-		
-		JsonWriter jsonWriterObject = new JsonWriter();
-		LinkedList<String> list= new LinkedList();
-		
-		list.add("Test1");
-		list.add("Test2");
-		list.add("Test3");
-		list.add("Test4");
-		list.add("Test5");
-		
-		jsonWriterObject.setImageFiles(list);
-		
-		if(jsonWriterObject.getImageFiles().size()==list.size()) { ///Checks for same size initially
-			for(int i=0; i<list.size(); i++) {
-				assertEquals(list.get(i), jsonWriterObject.getImageFiles().get(i));
-			}
-		}
-	}
-
-	
-	@Test
-	public void TestSetArchiveFiles() {
-		
-		JsonWriter jsonWriterObject = new JsonWriter();
-		LinkedList<String> list= new LinkedList();
-		
-		list.add("Test1");
-		list.add("Test2");
-		list.add("Test3");
-		list.add("Test4");
-		list.add("Test5");
-		
-		jsonWriterObject.setArchiveFiles(list);
-		
-		if(jsonWriterObject.getArchiveFiles().size()==list.size()) { ///Checks for same size initially
-			for(int i=0; i<list.size(); i++) {
-				assertEquals(list.get(i), jsonWriterObject.getArchiveFiles().get(i));
-			}
-		}
-	}
-
-	@Test
-	public void TestSetVideoFiles() {
-		
-		JsonWriter jsonWriterObject = new JsonWriter();
-		LinkedList<String> list= new LinkedList();
-		
-		list.add("Test1");
-		list.add("Test2");
-		list.add("Test3");
-		list.add("Test4");
-		list.add("Test5");
-		
-		jsonWriterObject.setVideoFiles(list);
-		
-		if(jsonWriterObject.getVideoFiles().size()==list.size()) { ///Checks for same size initially
-			for(int i=0; i<list.size(); i++) {
-				assertEquals(list.get(i), jsonWriterObject.getVideoFiles().get(i));
-			}
-		}
-	}
-	
-	@Test
-	public void TestSetAudioFiles() {
-		
-		JsonWriter jsonWriterObject = new JsonWriter();
-		LinkedList<String> list= new LinkedList();
-		
-		list.add("Test1");
-		list.add("Test2");
-		list.add("Test3");
-		list.add("Test4");
-		list.add("Test5");
-		
-		jsonWriterObject.setAudioFiles(list);
-		
-		if(jsonWriterObject.getAudioFiles().size()==list.size()) { ///Checks for same size initially
-			for(int i=0; i<list.size(); i++) {
-				assertEquals(list.get(i), jsonWriterObject.getAudioFiles().get(i));
-			}
-		}
-	}
-	
-	@Test
-	public void TestSetUncategorizedFiles() {
-		
-		JsonWriter jsonWriterObject = new JsonWriter();
-		LinkedList<String> list= new LinkedList();
-		
-		list.add("Test1");
-		list.add("Test2");
-		list.add("Test3");
-		list.add("Test4");
-		list.add("Test5");
-		
-		jsonWriterObject.setUncategorizedFiles(list);
-		
-		if(jsonWriterObject.getUncategorizedFiles().size()==list.size()) { ///Checks for same size initially
-			for(int i=0; i<list.size(); i++) {
-				assertEquals(list.get(i), jsonWriterObject.getUncategorizedFiles().get(i));
-			}
-		}
-	}*/	
-	
-	/*@Test
 	public void TestJSONFormatter() {
 		
-		JsonWriter jsonWriterObject = new JsonWriter();
-		Website list= new Website();
+		jsonWriterObject.JSONFormatter(website);
 		
-		//int num=15;
+		//Determines if the information assigned by the mutators is equal to the
+		//information put into the JSONObject in the JSONFormatter function, which is the
+		//information that will be output into the JSON File
 		
-		HTMLDocument Test1= new HTMLDocument();
-		HTMLDocument Test2= new HTMLDocument();
-		HTMLDocument Test3= new HTMLDocument();
-		HTMLDocument Test4= new HTMLDocument();
-		HTMLDocument Test5= new HTMLDocument();
-				
-		list.addWebpage(Test1);
-		list.addWebpage(Test2);
-		list.addWebpage(Test3);
-		list.addWebpage(Test4);
-		list.addWebpage(Test5);
+			assertEquals(1, jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getInt("Local Image Count"));
+			assertEquals(1, jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getInt("External Image Count"));
+			assertEquals(1, jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getInt("Script Count"));
+			assertEquals(1, jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getInt("Stylesheet Count"));
+			assertEquals(1, jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getInt("Intra-Page Link Count"));
+			assertEquals(1, jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getInt("Inter-Site Link Count"));
+			assertEquals(1, jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getInt("External Link Count"));
+			
+			//assertEquals("Name", jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getJSONArray("Image List").getString(0));
+			//assertEquals("Name", jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getJSONArray("Images List").getString(1));
+			
+			//assertEquals("Name", jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getJSONArray("Script List").getString(0));
+			
+			//assertEquals("Name", jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getJSONArray("Stylesheet List").get(0));
+			
+			//assertEquals(1, jsonWriterObject.getJSONArray("Images").getJSONObject(0).getInt("Number of Pages");
+			//assertEquals(["/the/example/path"], jsonWriterObject.getJSONObject().getJSONArray(Images).getJSONObject(0).getJSONArray("Page List"));
+			
+			//assertEquals(2, jsonWriterObject.getJSONArray("Images").getJSONObject(1).getInt("Number of Pages");
+			//assertEquals(["/the/example/path"], jsonWriterObject.getJSONObject().getJSONArray(Images).getJSONObject(1).getJSONArray("Page List"));
 		
-		jsonWriterObject.setLocalImageCount(Test1);
-		jsonWriterObject.setExternalImageCount(Test2);
-		jsonWriterObject.setScriptCount(Test3);
-		jsonWriterObject.setStylesheetCount(Test4);
-		jsonWriterObject.setImageFiles(list);
-		jsonWriterObject.setVideoFiles(list);
-		jsonWriterObject.setAudioFiles(list);
-		jsonWriterObject.setArchiveFiles(list);
-		jsonWriterObject.setUncategorizedFiles(list);
-		
-		jsonWriterObject.JSONFormatter(list);
-		
-		Determines if the information assigned by the mutators is equal to the
-		information put into the JSONObject in the JSONFormatter function, which is the
-		information that will be output into the JSON File
-		for(int i=0; i<list.size(); i++) {
-			assertEquals(Test1.size(), jsonWriterObject.getJSONObject().get("Local Image Count"));
-			assertEquals(Test2.size(), jsonWriterObject.getJSONObject().get("External Image Count"));
-			assertEquals(Test3.size(), jsonWriterObject.getJSONObject().get("Script Count"));
-			assertEquals(Test4.size(), jsonWriterObject.getJSONObject().get("Stylesheets Count"));
-		
-			assertEquals(list.get(i).getMedia(), jsonWriterObject.getJSONObject().get("Image"));
-			assertEquals(list, jsonWriterObject.getJSONObject().get("Video Files"));
-			assertEquals(list, jsonWriterObject.getJSONObject().get("Audio Files"));
-			assertEquals(list, jsonWriterObject.getJSONObject().get("Archive Files"));
-			assertEquals(list, jsonWriterObject.getJSONObject().get("Uncategorized Files"));
-		
-			for(int j=0; j<list.get(i).getMedia().size(); j++) {
-				json.put("Image", pages.get(i).getMedia().get(j));
-				json.put("Number of Pages", pages.get(i).getMedia().get(j).getPages());
-			}
-		}
-	}*/
+			assertEquals(50 , jsonWriterObject.getJSONObject().getJSONArray("Archives").getJSONObject(0).getInt("File Size"));
+			assertEquals(60 , jsonWriterObject.getJSONObject().getJSONArray("Videos").getJSONObject(0).getInt("File Size"));
+			assertEquals(70 , jsonWriterObject.getJSONObject().getJSONArray("Audio").getJSONObject(0).getInt("File Size"));
+			assertEquals(80 , jsonWriterObject.getJSONObject().getJSONArray("Miscellaneous").getJSONObject(0).getInt("File Size"));
+			
+			assertEquals("/the/example/path" , jsonWriterObject.getJSONObject().getJSONArray("Archives").getJSONObject(0).getString("Path"));
+			assertEquals("/the/example/path" , jsonWriterObject.getJSONObject().getJSONArray("Videos").getJSONObject(0).getString("Path"));
+			assertEquals("/the/example/path" , jsonWriterObject.getJSONObject().getJSONArray("Audio").getJSONObject(0).getString("Path"));
+			assertEquals("/the/example/path" , jsonWriterObject.getJSONObject().getJSONArray("Miscellaneous").getJSONObject(0).getString("Path"));
+	}
 }
