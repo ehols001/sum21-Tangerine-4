@@ -32,17 +32,17 @@ public class TestJsonWriter {
 	@Before 
 	public void websiteExample() {
 			
-		localImage= new FileResource(10, 1, "Local Image");
-		externalImage= new FileResource(20, 2, "External Image");
-		script= new FileResource(30, 3, "Script");
-		styleSheet= new FileResource(40, 4, "Stylesheet");
+		localImage= new FileResource(10, 1, "Local Image", "/local/image.png");
+		externalImage= new FileResource(20, 2, "External Image", "www.google.com/image.png");
+		script= new FileResource(30, 3, "Script", "/local/script.js");
+		styleSheet= new FileResource(40, 4, "Stylesheet", "/local/style.css");
 		intraPageLink= new Anchor("http://intrapage.com", "Intra-Page");
 		interSiteLink= new Anchor("http://intersite.com", "Inter-Site");
 		externalLink= new Anchor("http://external.com", "External");
-		archive= new FileResource(50, 5, "Archive");
-		video= new FileResource(60, 6, "Video");
-		audio= new FileResource(70, 7, "Audio");
-		misc= new FileResource(80, 8, "Miscellaneous");
+		archive= new FileResource(50, 5, "Archive", "/local/archive.rar");
+		video= new FileResource(60, 6, "Video", "/local/video.mp4");
+		audio= new FileResource(70, 7, "Audio", "/local/audio.wav");
+		misc= new FileResource(80, 8, "Miscellaneous", "local/misc.jar");
 			
 		//HTML Document to use in test cases
 		HTML= new HTMLDocument();
