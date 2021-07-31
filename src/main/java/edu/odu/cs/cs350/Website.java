@@ -1,63 +1,60 @@
 package edu.odu.cs.cs350;
 
-public class Website {
-	/*
-	 * private DATASTRUCTURE<type> pageURLs;
-	 * private DATASTRUCTURE<type> pages;
-	 * (potentially combine the two, maybe using ?map?)
-	 */
+import java.util.*;
 
-	//Default constructor for initializing a new Website
+public class Website {
+
+	private ArrayList<HTMLDocument> webpages;
+
+	/**
+	 * Default constructor for initializing a new Website
+	 */
 	public Website()
 	{
-		
+		webpages = new ArrayList<HTMLDocument>();
 	}
 	
-	/*
-	 * Determine whether a page contains the type of 
-	 * HTML content we are looking for
+	/**
+	 * Add a webpage to a container of webpages
 	 */
-	static boolean containsHTMLContent(String page)
+	public void addWebpage(HTMLDocument hd)
 	{
-		if(/*page contains HTML content*/)
+		webpages.add(hd);
+	}
+	
+	/**
+	 * Search for a webpage within the webpages container
+	 * 
+	 * @param hd URL of the webpage
+	 * @return true if webpage exists
+	 */
+	public boolean contains(HTMLDocument hd)
+	{
+		if(webpages.contains(hd) == true)
 			return true;
 		else
 			return false;
 	}
 	
-	//Add a page URL to a Container of page URLs
-	public void addPageURL(String pageURL)
-	{
-		
-	}
-	
-	//Add a page to a Container of pages
-	public void addPage(String page)
-	{
-		
-	}
-	
-	/*
-	 * Search for a page
-	 * return true if that page exists
+	/**
+	 * Retrieves the size of the Website container for webpages
+	 * 
+	 * @return integer size of webpages
 	 */
-	public boolean contains(String page)
-	{
-		if(/*page exists*/)
-			return true;
-		else
-			return false;
-	}
-	
-	//Return the size of the Website Containers for Pages/PageURLs
 	public int size()
 	{
-		return 0; //placeholder
+		return webpages.size();
 	}
 	
-	//Main method for running the WebAnalysis tool
-	public static void main(String[] args)
+	/**
+	 * Retrieves the HTMLDocument at the given index
+	 * 
+	 * @param index Index of the desired HTMLDocument
+	 * @return HTMLDocument at the given index
+	 */
+	public HTMLDocument getWebpage(int index)
 	{
-		
+		return webpages.get(index);
 	}
+	
 }

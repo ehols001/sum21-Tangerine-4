@@ -1,6 +1,6 @@
 buildscript {
 	repositories {
-		jcenter()
+		mavenCentral()
 	}
 }
 
@@ -8,7 +8,7 @@ plugins {
 	id "java"
 	id "eclipse"
 
-	id "com.github.spotbugs" version "2.0.0"
+	id "com.github.spotbugs" version "4.7.2"
 	id "project-report"
 	id "jacoco"
 	id "pmd"
@@ -19,36 +19,36 @@ targetCompatibility = 1.8
 
 //location from which third party libraries will be downloaded
 repositories {
-	//jcenter()
 	mavenCentral()
 }
 
 //libraries that we want to uses
 dependencies {
-	testImplementation "org.junit.jupiter:junit-jupiter:5.7.0"
+	//testImplementation "org.junit.jupiter:junit-jupiter:5.7.0"
+	testImplementation "junit:junit:4.12"
 	testImplementation "org.hamcrest:hamcrest-library:1.3"
-	testImplementation "org.jsoup:jsoup:1.12.1"
-	testImplementation "org.apache.poi:poi:3.12+"
-	testImplementation "org.apache.poi:poi-ooxml:3.12+"
-	testImplementation "com.cedarsoftware:json-io:4.10.1"
+	
+	implementation "org.jsoup:jsoup:1.14.1"
+	implementation "org.apache.poi:poi:3.12+"
+	implementation "org.apache.poi:poi-ooxml:3.12+"
+	implementation "com.cedarsoftware:json-io:4.10.1" 
+	implementation "org.json:json:20210307"
+	
 }
 
 jar {
-	baseName = "WebAnalysis"
+	archiveBaseName = "WebAnalysis"
 
 	manifest {
 		attributes(
-			"Main-Class": "edu.odu.cs.cs350.Website"
+			"Main-Class": "edu.odu.cs.cs350.CommandLineInterface"
 		)
 	}
 }
 
 test {
-	
-	usejunitPlatform()
-
 	reports {
-		html.enabled = true
+		html.required = true 
 	}
 	ignoreFailures = true
 
@@ -56,8 +56,9 @@ test {
 		events "passed", "skipped", "failed", "standardOut", "standardError"
 	}
 
-	jacoco {
-	}
+	//jacoco {
+	//	
+	//}
 }
 
 javadoc {
@@ -77,6 +78,7 @@ jacocoTestReport {
 }
 
 // SpotBugs
+
 spotbugsMain {
 	ignoreFailures = true
 	effort = "max"
@@ -88,15 +90,17 @@ spotbugsMain {
 }
 
 spotbugsTest.enabled = false
+
 // End SpotBugs config
 
 pmd {
 	ignoreFailures = true
 	ruleSets = [
-		"category/java/bestPractices.xml",
+		"category/java/bestpractices.xml",
 		"category/java/codestyle.xml",
 		"category/java/design.xml",
 		"category/java/errorprone.xml",
 		"category/java/performance.xml"
 	]
 }
+
