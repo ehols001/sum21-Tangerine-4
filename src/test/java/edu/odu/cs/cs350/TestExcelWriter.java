@@ -42,14 +42,14 @@ public class TestExcelWriter {
 		html1 = new HTMLDocument();
 		html2 = new HTMLDocument();
 
-		image = new FileResource(6, 20, "image");
-		image2 = new FileResource(2, 13, "image");
+		image = new FileResource(6, 20, "image", "local/path.png");
+		image2 = new FileResource(2, 13, "image", "/local/secondpath.jpeg");
 
-		css = new FileResource(5, 11, "stylesheet");
-		css2 = new FileResource(7, 8, "stylesheet");
+		css = new FileResource(5, 11, "stylesheet", "/local/style.css");
+		css2 = new FileResource(7, 8, "stylesheet", "/local/style_2.css");
 
-		scripts = new FileResource(4, 8, "script");
-		scripts2 = new FileResource(6, 10, "script");
+		scripts = new FileResource(4, 8, "script", "/local/script.js");
+		scripts2 = new FileResource(6, 10, "script", "/local/script@2.js");
 
 		intraPage = new Anchor("#somelink", "intraPage");
 		intraPage2 = new Anchor("#somelink23", "intraPage");
