@@ -1,37 +1,34 @@
 package edu.odu.cs.cs350;
 
-//import static org.junit.jupiter.api.Assertions.*;
-//
-//import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
-
-import static org.junit.Assert.*;
-import org.junit.Test;
-import org.junit.Before;
-
+//import static org.junit.Assert.*;
+//import org.junit.Test;
+//import org.junit.Before;
+//import org.jsoup.Jsoup;
+//import org.jsoup.nodes.Document;
+//import org.jsoup.nodes.Element;
+//import org.jsoup.select.Elements;
 
 public class TestHTMLDocument {
 
-	private HTMLDocument html1;
+	/*private HTMLDocument html1;
 	private Anchor testLink;
-	private FileResource testImage;
-	private FileResource testVideo;
-	private FileResource testJavaScript;
-	private FileResource testCSS;
-	private FileResource testMisc;
+	private Element testImage;
+	private Element testVideo;
+	private Element testJavaScript;
+	private Element testCSS;
+	private Element testMisc;
 	
-	private String lfp;
-	
+	//private String lfp;
 	
 	@Before
 	public void setup() {
 		html1 = new HTMLDocument();
 		testLink = new Anchor("www.test.org", "external");
-		testImage = new FileResource(3, 1024, "image");
-		testVideo = new FileResource(900, 4000, "video");
-		testJavaScript = new FileResource(1, 2056, "script");
-		testCSS = new FileResource(1, 4096, "stylesheet");
-		testMisc = new FileResource(2, 40, "misc");
+		testImage = new Element(3, 1024, "image");
+		testVideo = new Element(900, 4000, "video");
+		testJavaScript = new Element(1, 2056, "script");
+		testCSS = new Element(1, 4096, "stylesheet");
+		testMisc = new Element(2, 40, "misc");
 		
 	}
 	
@@ -52,7 +49,7 @@ public class TestHTMLDocument {
 	@Test
 	public void testSetLinks() {
 		//fail("Not yet implemented");
-		html1.setLinks(testLink);
+		html1.setLink(testLink);
 		
 		assertEquals(html1.getLinks().size(), 1);
 		assertEquals(html1.getLinks().get(0), testLink);
@@ -77,7 +74,7 @@ public class TestHTMLDocument {
 	@Test
 	public void testSetScripts() {
 		//fail("Not yet implemented");
-		html1.setScripts(testJavaScript);
+		html1.setScript(testJavaScript);
 		
 		assertEquals(html1.getScripts().size(), 1);
 		assertEquals(html1.getScripts().get(0), testJavaScript);
@@ -87,7 +84,7 @@ public class TestHTMLDocument {
 	@Test
 	public void testSetStyleSheets() {
 		//fail("Not yet implemented");
-		html1.setStyleSheets(testCSS);
+		html1.setStyleSheet(testCSS);
 		
 		assertEquals(html1.getStyleSheets().size(), 1);
 		assertEquals(html1.getStyleSheets().get(0), testCSS);
@@ -110,5 +107,5 @@ public class TestHTMLDocument {
 		html1.setLocalPath("test/val");
 		assertEquals(html1.getLocalPath(), "test/val");
 	}
-
+*/
 }

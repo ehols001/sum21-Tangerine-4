@@ -11,7 +11,7 @@ import org.junit.Test;
 
 public class TestFileResource {
 
-	private FileResource file;
+	/*private FileResource file;
 
 	@Before
 	public void setUp() {
@@ -26,16 +26,18 @@ public class TestFileResource {
 		assertEquals(testFile.getPages(), 0);
 		assertEquals(testFile.getSize(), 0, 0.001);
 		assertEquals(testFile.getType(), "");
+		assertEquals(testFile.getLocalPath(), "");
 	}
 	
 	@Test
 	public void testNonDefaultConstructor() {
 		//fail("Not yet implemented");
-		FileResource test = new FileResource(1, 23, "CSS");
+		FileResource test = new FileResource(1, 23, "CSS", "/local/test.css");
 		
 		assertEquals(test.getPages(), 23);
 		assertEquals(test.getSize(), 1, 0.001);
 		assertEquals(test.getType(), "CSS");
+		assertEquals(test.getLocalPath(), "/local/test.css");
 	}
 
 	@Test
@@ -64,4 +66,12 @@ public class TestFileResource {
 		assertEquals(file.getType(), "JS");
 
 	}
+	
+	@Test
+	public void testSetLocalPath() {
+		//fail("Not yet implemented")
+		file.setLocalPath("/local/test.test");
+		
+		assertEquals(file.getLocalPath(), "/local/test.test");
+	}*/
 }

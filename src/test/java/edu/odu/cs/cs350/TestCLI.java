@@ -29,10 +29,4 @@ public class TestCLI {
 		assertTrue(CommandLineInterface.isLocalPathValid(testPath));
 		assertFalse(CommandLineInterface.isLocalPathValid(fakePath));
 	}
-	
-	@Test
-	public void testUrlToLocalPath() {
-		fail("Not yet implemented");
-	}
-
 }

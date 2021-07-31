@@ -1,14 +1,15 @@
 package edu.odu.cs.cs350;
 
-import org.json.JSONObject;
-import java.io.*;
-import java.util.*;
+//import org.json.JSONObject;
+//import java.io.*;
+//import java.util.*;
 
 //import javax.swing.text.html.HTMLDocument;
 
 
 public class JsonWriter {
 	
+	/*
 	private JSONObject json;
 	
 	public JsonWriter() { 
@@ -29,6 +30,8 @@ public class JsonWriter {
 	//Lists of the names of each type of file and the corresponding information for each file
 	//Number of pages it's on, names of pages it is on, etc. 
 	private ArrayList<HTMLDocument> pages = new ArrayList<HTMLDocument>();
+	*/
+	
 	/*private ArrayList<String> imageFiles = new ArrayList<String>();
 	private ArrayList<String> archiveFiles = new ArrayList<String>();
 	private ArrayList<String> videoFiles = new ArrayList<String>();
@@ -37,6 +40,8 @@ public class JsonWriter {
 	private ArrayList<String> stylesheetFiles = new ArrayList<String>();
 	private ArrayList<String> scriptFiles = new ArrayList<String>();
 	*/
+	
+	/*
 	public JSONObject getJSONObject() { //Accessor for the JSON object created in this class
 		return json;
 	}
@@ -135,6 +140,7 @@ public class JsonWriter {
 		
 		//Creates list of stylesheet files and their corresponding information
 	}
+	*/
 	
 	/*public LinkedList<String> getStylesheetFiles() {
 		
@@ -202,6 +208,7 @@ public class JsonWriter {
 	}	
 	*/
 	
+	/*
 	void JSONFormatter(Website pages) {
 		
 		//Loops through each page in the website
@@ -276,5 +283,6 @@ public class JsonWriter {
 //        	file.write(json.toString());
 //        	file.close();
 	}
+	*/
 
 }

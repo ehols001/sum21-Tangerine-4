@@ -5,6 +5,7 @@ import java.util.*;
 public class Website {
 
 	private ArrayList<HTMLDocument> webpages;
+	String root;
 
 	/**
 	 * Default constructor for initializing a new Website
@@ -12,14 +13,18 @@ public class Website {
 	public Website()
 	{
 		webpages = new ArrayList<HTMLDocument>();
+		root = new String();
 	}
 	
 	/**
-	 * Add a webpage to a container of webpages
+	 * Add a webpage to a container of webpages given a url
+	 * 
+	 * @param url local url
 	 */
-	public void addWebpage(HTMLDocument hd)
+	public void addWebpage(String url, String parentPath)
 	{
-		webpages.add(hd);
+		HTMLDocument htmldoc = new HTMLDocument(url, root, parentPath);
+		webpages.add(htmldoc);
 	}
 	
 	/**

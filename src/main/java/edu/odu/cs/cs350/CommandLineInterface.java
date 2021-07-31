@@ -49,38 +49,6 @@ public class CommandLineInterface {
 	}
 	
 	/**
-	 * Translates a URL to the local directory structure
-	 * of a local copy of a site
-	 * 
-	 * @param url URL to be translated
-	 * @param path Local path to be reflected
-	 * @return translatedURL url translated to its local path
-	 */
-	public static String urlToLocalPath(String url, String path)
-	{
-		String translatedURL = new String();                   // path = /home/tkennedy/cs350/sum21/
-		try
-		{
-			URL tempUrl = new URL(url);                        // tempUrl = https://www.cs.odu.edu/~tkennedy/cs350/sum21/Directory/outline/
-			String protocol = tempUrl.getProtocol() + ":/";    // protocol = https:/
-			String temp = url.replace(protocol, "");           // temp = /www.cs.odu.edu/~tkennedy/cs350/sum21/Directory/outline/
-			String stripRoot = temp.replace(path, "");         // stripRoot = Directory/outline/
-			Path tempPath = Paths.get(stripRoot);
-			//Path tempPath2 = tempPath.getFileName();
-			translatedURL = tempPath.toString();
-		}
-		catch (MalformedURLException mue)
-		{
-			System.err.println(mue);
-		}/*
-		catch (URISyntaxException use)
-		{
-			System.err.println(use);
-		}*/
-		return translatedURL;
-	}
-	
-	/**
 	 * Prints any relevant error messages for 
 	 * malformed URLs or non-existent and unreadable
 	 * directory paths
@@ -124,23 +92,22 @@ public class CommandLineInterface {
 		String path = args[0];
 		String url = args[1];
 
-		Website ws = new Website();
+		Website website = new Website();
 		HTMLDocument htmldoc = new HTMLDocument();
-		TxtWriter tw = new TxtWriter();
+		TxtWriter textWriter = new TxtWriter();
 		
 		if(isURLValid(url) && isLocalPathValid(path))
 		{
-			String localPath = urlToLocalPath(url, path);
-			System.out.println(localPath);
-			//htmldoc = parse(localPath);
-			ws.addWebpage(htmldoc);	
+			String strippedUrl = htmldoc.stripUrl(url);
+			website.root = strippedUrl.split("/")[0];
+			website.addWebpage(strippedUrl, path);	
 		}
 		else
 		{
 			printArgumentErrors(url, path);
 		}
 		
-		tw.writeToFile();
+		textWriter.writeToFile();
 		//Call to Json writer
 		//Call to Excel writer
 	}

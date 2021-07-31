@@ -1,12 +1,12 @@
 package edu.odu.cs.cs350;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-import org.junit.Before;
+//import static org.junit.Assert.*;
+//import org.junit.Test;
+//import org.junit.Before;
 
 public class TestTxtWriter 
 {
-	Website website;
+	/*Website website;
 	Website website2;
 	HTMLDocument htmldoc;
 	HTMLDocument htmldoc2;
@@ -73,5 +73,5 @@ public class TestTxtWriter
 	public void writeToFileTest()
 	{
 		writer2.writeToFile();
-	}
+	}*/
 }

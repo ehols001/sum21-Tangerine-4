@@ -55,7 +55,7 @@ public class TxtWriter {
 		for(int i = 0; i < website.size(); i++) 
 		{
 			cumulativeSize = 0;
-			
+			/*
 			for(int j = 0; j < website.getWebpage(i).getMedia().size(); j++)
 			{
 				if (website.getWebpage(i).getMedia().get(j).getType() == "image")
@@ -63,7 +63,7 @@ public class TxtWriter {
 					cumulativeSize = cumulativeSize + website.getWebpage(i).getMedia().get(j).getSize();
 				}
 				sizes.add(cumulativeSize);
-			}
+			}*/
 		}
 	}
 	

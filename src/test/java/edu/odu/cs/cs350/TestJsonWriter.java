@@ -10,7 +10,7 @@ import org.junit.Test;
 
 class TestJsonWriter {
 
-	@Test
+	/*@Test
 	public void TestSetLocalImageCount() {
 		
 		JsonWriter jsonWriterObject = new JsonWriter();
