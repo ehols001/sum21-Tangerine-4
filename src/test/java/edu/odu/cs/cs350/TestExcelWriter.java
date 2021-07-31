@@ -8,19 +8,28 @@ import java.lang.reflect.AccessibleObject;
 
 
 public class TestExcelWriter {
-	Website web1;
-	Website web2;
+	Website web;
 
 	HTMLDocument html1;
 	HTMLDocument html2;
 
 	FileResource image;
+	FileResource image2;
+
 	FileResource css;
+	FileResource css2;
+
 	FileResource scripts;
+	FileResource scripts2;
 
 	Anchor intraPage;
+	Anchor intraPage2;
+
 	Anchor internalLink;
+	Anchor internalLink2;
+
 	Anchor externalLink;
+	Anchor externalLink2;
 
 	ExcelWriter ew1;
 	ExcelWriter ew2;
@@ -28,19 +37,53 @@ public class TestExcelWriter {
 	@Before
 	public void setup()
 	{
-		web1 = new Website();
-		web2 = new Website();
+		web = new Website();
 
 		html1 = new HTMLDocument();
 		html2 = new HTMLDocument();
 
-		image = new FileResource(6, 10, "image");
+		image = new FileResource(6, 20, "image");
+		image2 = new FileResource(2, 13, "image");
+
 		css = new FileResource(5, 11, "stylesheet");
+		css2 = new FileResource(7, 8, "stylesheet");
+
 		scripts = new FileResource(4, 8, "script");
+		scripts2 = new FileResource(6, 10, "script");
 
 		intraPage = new Anchor("#somelink", "intraPage");
+		intraPage2 = new Anchor("#somelink23", "intraPage");
+
 		internalLink = new Anchor("/odu/cs", "internalLink");
+		internalLink2 = new Anchor("/odu/art", "internalLink");
+
 		externalLink = new Anchor("www.google.com", "externalLink");
+		externalLink2 = new Anchor("www.nsu.edu", "externalLink");
+
+		html1.setLocalPath("/cs/cs350/");
+		html1.setMedia(image);
+		html1.setMedia(image2);
+
+		html1.setStyleSheets(css);
+		html1.setStyleSheets(css2);
+
+		html1.setScripts(scripts);
+		html1.setScripts(scripts2);
+
+		html1.setLinks(intraPage);
+		html1.setLinks(intraPage2);
+
+		html1.setLinks(internalLink);
+		html1.setLinks(internalLink2);
+
+		html1.setLinks(externalLink);
+		html1.setLinks(externalLink2);
+
+
+		web.addWebpage(html1);
+
+		ew1 = new ExcelWriter();
+		ew2 = new ExcelWriter(web);
 
 
 	}
@@ -48,63 +91,102 @@ public class TestExcelWriter {
 	@Test
 	public void defaultConstructorTest()
 	{
-		String life = "life";
-		assertEquals(life, "life");
+		assertEquals(0, ew1.getPages().size());
+		assertEquals(0, ew1.getImages().size());
+		assertEquals(0, ew1.getCSS().size());
+		assertEquals(0, ew1.getScripts().size());
+		assertEquals(0, ew1.getIntraPage().size());
+		assertEquals(0, ew1.getInternalLinks().size());
+		assertEquals(0, ew1.getExternalLinks().size());
 
 	}
 	
 	@Test
 	public void parameterizedConstructorTest() {
-		fail("Incomplete");
+		assertEquals(html1.getLocalPath(), ew2.getPages().get(0));
 
-		//ExcelWriter writer2 = new ExcelWriter(website);
+		assertEquals(image.getPages(), ew2.getImages().get(0).intValue());
+		assertEquals(image2.getPages(), ew2.getImages().get(1).intValue());
+
+		assertEquals(css.getPages(), ew2.getCSS().get(0).intValue());
+		assertEquals(css2.getPages(), ew2.getCSS().get(1).intValue());
+
+		assertEquals(scripts.getPages(), ew2.getScripts().get(0).intValue());
+		assertEquals(scripts2.getPages(), ew2.getScripts().get(1).intValue());
+
+		assertEquals(intraPage.getURL(), ew2.getIntraPage().get(0));
+		assertEquals(intraPage2.getURL(), ew2.getIntraPage().get(1));
+
+		assertEquals(internalLink.getURL(), ew2.getInternalLinks().get(0));
+		assertEquals(internalLink2.getURL(), ew2.getInternalLinks().get(1));
+
+		assertEquals(externalLink.getURL(), ew2.getExternalLinks().get(0));
+		assertEquals(externalLink2.getURL(), ew2.getExternalLinks().get(1));
+
+
+		// assertEquals(image2.getPages(), ew2.getImages().get(0).intValue());
+
 	}
 
 	@Test
 	public void setPagesTest()
 	{
-		fail("Incomplete");
+		ew1.setPages(web);
+		assertEquals(html1.getLocalPath(), ew1.getPages().get(0));
 	}
-
+//
 	@Test
 	public void setImagesTest()
 	{
-		fail("Incomplete");
-	}
+		ew1.setImages(web);
 
+		assertEquals(image.getPages(), ew2.getImages().get(0).intValue());
+		assertEquals(image2.getPages(), ew2.getImages().get(1).intValue());
+	}
+//
 	@Test
 	public void setCSSTest()
 	{
-		fail("Incomplete");
+		ew1.setImages(web);
+		assertEquals(css.getPages(), ew2.getCSS().get(0).intValue());
+		assertEquals(css2.getPages(), ew2.getCSS().get(1).intValue());
 	}
-
+//
 	@Test
 	public void setScriptsTest()
 	{
-		fail("Incomplete");
+		ew1.setScripts(web);
+		assertEquals(scripts.getPages(), ew2.getScripts().get(0).intValue());
+		assertEquals(scripts2.getPages(), ew2.getScripts().get(1).intValue());
 	}
-
+//
 	@Test
 	public void setIntraLinkTest()
 	{
-		fail("Incomplete");
+		ew1.setIntraPage(web);
+		assertEquals(intraPage.getURL(), ew2.getIntraPage().get(0));
+		assertEquals(intraPage2.getURL(), ew2.getIntraPage().get(1));
 	}
 
 	@Test
 	public void setInternalLinkTest()
 	{
-		fail("Incomplete");
+		ew1.setInternalLinks(web);
+		assertEquals(internalLink.getURL(), ew2.getInternalLinks().get(0));
+		assertEquals(internalLink2.getURL(), ew2.getInternalLinks().get(1));
 	}
 
 	@Test
 	public void setExternalLinkTest()
 	{
-		fail("Incomplete");
+		ew1.setExternalLinks(web);
+		assertEquals(externalLink.getURL(), ew2.getExternalLinks().get(0));
+		assertEquals(externalLink2.getURL(), ew2.getExternalLinks().get(1));
 	}
 
-	@Test
-	public void writeToFileTest()
-	{
-		fail("Incomplete");
-	}
+//	@Test
+//	public void writeToFileTest()
+//	{
+//		fail("Incomplete");
+//	}
 }
