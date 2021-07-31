@@ -1,42 +1,57 @@
 package edu.odu.cs.cs350;
 
-import Website.java;
-import HTMLDocument.java;
-import java.util.*;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.util.Vector;
+
 
 public class ExcelWriter {
-  
-  private Vector<String> pages = new Vector<String>(); 
+
+  private Vector<String> pages = new Vector<String>();
   private Vector<Integer> images = new Vector<Integer>();
   private Vector<Integer> css = new Vector<Integer>();
   private Vector<Integer> scripts = new Vector<Integer>();
-  private Vector<Integer> intraLinks = new Vector<Integer>();
-  private Vector<Integer> internalLinks = new Vector<Integer();
-  private Vector<Integer> externalLinks = new Vector<Integer>();
+  private Vector<String> intraPage = new Vector<String>();
+  private Vector<String> internalLinks = new Vector<String>();
+  private Vector<String> externalLinks = new Vector<String>();
+
   
-  public class ExcelWriter(){
+  	public ExcelWriter(){
 	  
-  }
-  
-  public ExcelWriter(Website website) 
-	{	
+  	}
+
+  	public ExcelWriter(Website website)
+	{
 		setPages(website);
 		setImages(website);
-	  	setCSS(website);
-	  	setScripts(website);
-	  	setIntraLinks(website);
-	  	setInternalLinks(website);
-	  	setExternalLinks(website);
-	}
-	
+		setCSS(website);
+		setScripts(website);
+		setIntraPage(website);
+		setInternalLinks(website);
+		setExternalLinks(website);
+	};
+
 	public Vector<String> getPages()
 	{
 		return pages;
 	}
 	
-	void setPages(Website website)
+	public void setPages(Website website)
 	{
-		
+		pages.clear();
+
+		String temp = "";
+
+        for(int i = 0; i < website.size(); i++)
+        {
+            if(temp == "" || temp != website.getWebpage(i).getLocalPath())
+            {
+                pages.add(website.getWebpage(i).getLocalPath());
+                temp = website.getWebpage(i).getLocalPath();
+            }
+        }
 	}
 	
 	public Vector<Integer> getImages()
@@ -44,9 +59,17 @@ public class ExcelWriter {
 		return images;
 	}
 	
-	void setImages(Website website)
-	{	
-		
+	public void setImages(Website website)
+	{
+		images.clear();
+
+		for(int i = 0; i < website.size(); i++)
+		{
+			for(int x = 0; x < website.getWebpage(i).getMedia().size(); x++)
+			{
+				images.add(website.getWebpage(i).getMedia().get(x).getPages());
+			}
+		}
 	}
 	
 	public Vector<Integer> getCSS()
@@ -54,9 +77,19 @@ public class ExcelWriter {
 		return css;
 	}
 	
-	void setCSS (Website website)
+	public void setCSS (Website website)
 	{
-		
+		css.clear();
+		for(int i = 0; i < website.size(); i++)
+		{
+			for(int x = 0; x < website.getWebpage(i).getStyleSheets().size(); x++)
+			{
+				if(website.getWebpage(i).getStyleSheets().get(x).getType() == "stylesheet")
+				{
+					css.add(website.getWebpage(i).getStyleSheets().get(x).getPages());
+				}
+			}
+		}
 	}
 	
 	public Vector<Integer> getScripts()
@@ -64,45 +97,87 @@ public class ExcelWriter {
 		return scripts;
 	}
 	
-	void setScripts (Website website)
+	public void setScripts (Website website)
 	{
-		
+		scripts.clear();
+		for(int i = 0; i < website.size(); i++)
+		{
+			for(int x = 0; x < website.getWebpage(i).getScripts().size(); x++)
+			{
+				if(website.getWebpage(i).getScripts().get(x).getType() == "script")
+				{
+					scripts.add(website.getWebpage(i).getScripts().get(x).getPages());
+				}
+			}
+		}
+
 	}
 	
-	public Vector<Integer> getIntraLinks()
+	public Vector<String> getIntraPage()
 	{
-		return intraLinks;
+		return intraPage;
 	}
 	
-	void setIntraLinks (Website website)
+	public void setIntraPage (Website website)
 	{
-		
+		intraPage.clear();
+		for(int i = 0; i < website.size(); i++)
+		{
+			for(int x = 0; x < website.getWebpage(i).getLinks().size(); x++){
+				if(website.getWebpage(i).getLinks().get(0).getType() == "intraPage")
+				{
+					intraPage.add(website.getWebpage(i).getLinks().get(x).getURL());
+				}
+			}
+		}
 	}
 	
-	public Vector<Integer> getInternalLinks()
+	public Vector<String> getInternalLinks()
 	{
 		return internalLinks;
 	}
 	
 	void setInternalLinks (Website website)
 	{
-		
+		// internalLinks.clear();
+
+		for(int i = 0; i < website.size(); i++)
+		{
+			for(int x = 0; x < website.getWebpage(i).getLinks().size(); x++){
+				if(website.getWebpage(i).getLinks().get(x).getType() == "internalLink")
+				{
+					internalLinks.add(website.getWebpage(i).getLinks().get(x).getURL());
+				}
+			}
+		}
 	}
 	
-	public Vector<Integer> getExternalLinks()
-	}
+	public Vector<String> getExternalLinks()
+	{
 		return externalLinks;
 	}
 
-	void setExternalLinks (Website website)
-	}
-		
+	public void setExternalLinks (Website website)
 	{
+		// externalLinks.clear();
+		for(int i = 0; i < website.size(); i++)
+		{
+			for(int x = 0; x < website.getWebpage(i).getLinks().size(); x++){
+				if(website.getWebpage(i).getLinks().get(x).getType() == "externalLink")
+				{
+					externalLinks.add(website.getWebpage(i).getLinks().get(x).getURL());
+				}
+			}
+		}
+	}
 	
 	void writeToFile()
 	{
-		Workbook wb = new XSSFWorkbook();
-                Sheet sheet1 = wb.createSheet("summary");
+		XSSFWorkbook worksheet = new XSSFWorkbook();
+		XSSFSheet spreadsheet = worksheet.createSheet("summary");
+
+		XSSFRow row;
+
 	}
 
 }
