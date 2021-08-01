@@ -12,13 +12,12 @@ import java.io.IOException;
 import java.io.File;
 //import java.nio.file.Files;
 import java.nio.file.Path;
-//import java.nio.file.Paths;
 //import java.util.stream.Collectors;
 //import java.util.stream.Stream;
 
 public class HTMLDocument {
 	
-	private String websiteRoot;
+	private String websiteDomain;
 	private String localPath;
     private ArrayList<Anchor> links;
     private ArrayList<Element> media;
@@ -31,8 +30,8 @@ public class HTMLDocument {
      * containers empty
      */
 	public HTMLDocument() {
-		websiteRoot = new String();
-		setLocalPath("");
+		websiteDomain = new String();
+		setLocalPath("", "");
 		links = new ArrayList<Anchor>();
 		media = new ArrayList<Element>();
 		scripts = new ArrayList<Element>();
@@ -44,30 +43,34 @@ public class HTMLDocument {
 	 * Construct an new HTMLDocument from the given url
 	 * 
 	 * @param url page to generate an HTMLDocument from
+	 * @param parentPath parent path of current HTMLDocument
 	 * @param root domain of the website
 	 */
-	public HTMLDocument(String url, String root, String parentPath)
+	public HTMLDocument(String url, String domain, String parentPath)
 	{
-		websiteRoot = root;
-		setLocalPath(url);
-		generateHtml(url, parentPath);
+		websiteDomain = domain;
+		setLocalPath(url, parentPath);
+		links = new ArrayList<Anchor>();
+		media = new ArrayList<Element>();
+		scripts = new ArrayList<Element>();
+		misc = new ArrayList<Element>();
+		styleSheets = new ArrayList<Element>();
+		generateHtml(localPath);
 	}
 	
 	/**
 	 * Generate an HTMLDocument from the given url
 	 * 
-	 * @param url page to generate an HTMLDocument from
+	 * @param localPath full local path of current HTMLDocument
 	 */
-	public void generateHtml(String url, String parentPath)
+	public void generateHtml(String localPath)
 	{
 		try
 		{
-			
-			File content = new File(url);
-			System.out.println(content);
+			File content = new File(localPath);
 			Document doc = Jsoup.parse(content, "UTF-8");
 			extractLinks(doc);
-			extractMedia(doc);
+			//extractMedia(doc);
 			//extractScripts(doc);
 			//extractStyleSheets(doc);
 			//extractMisc(doc);
@@ -76,21 +79,14 @@ public class HTMLDocument {
 		{
 			e.printStackTrace();
 		}
-	}
-	
-	/**
-	 * Retrieve the full file path
-	 * @param url URL of file 
-	 * @param parentPath the parent path of the file
-	 * @return filePath the full local file path
-	 */
-	public String getFullPath(String url, String parentPath)
-	{
-		//String filePath = stripUrl(url);
-		Path path = Paths.get(url);
-		String fileName = path.getFileName().toString();
-		String filePath = parentPath + fileName;
-		return filePath;
+		
+		//test output to make sure it's grabbing/converting links correctly
+		for(int i = 0; i < links.size(); ++i)
+		{
+			System.out.print(links.get(i).getType());
+			System.out.print(", ");
+			System.out.println(links.get(i).getURL());
+		}
 	}
 	
 	/**
@@ -112,6 +108,7 @@ public class HTMLDocument {
 		catch (MalformedURLException mue)
 		{
 			System.err.println(mue);
+			System.out.println(url);
 		}
 		return fileName;
 	}
@@ -128,11 +125,16 @@ public class HTMLDocument {
 		
 		for(Element anchor : anchors) //for each link in the list
 		{
-			String url = stripUrl(anchor.attr("abs:href")); //get the full link path and strip the protocol from it (e.g. https://)
-			if(url.contains(websiteRoot)) //if stripped url domain matches website domain, it's internal and added to links
+			String url = anchor.attr("abs:href"); //get the full link path
+			Anchor link = new Anchor(url, type);
+			if(url.contains(websiteDomain)) //if url domain matches website domain, it's internal and added to links
 			{
-				type = "internal";
-				Anchor link = new Anchor(url, type);
+				link.setType("internal");
+				setLink(link);
+			}
+			else
+			{
+				link.setType("external");
 				setLink(link);
 			}
 		}
@@ -151,8 +153,8 @@ public class HTMLDocument {
 		{
 			if(src.normalName().equals("img")) //check if that src is an img
 			{
-				String url = stripUrl(src.attr("abs:src")); //get the full path of the media src and strip the protocol from it
-				if(url.contains(websiteRoot)) //if stripped url domain matches website domain, it's internal and added to media
+				String url = src.attr("abs:src"); //get the full path of the media src
+				if(url.contains(websiteDomain)) //if url domain matches website domain, it's internal and added to media
 				{
 					setMedia(src);
 				}
@@ -171,8 +173,8 @@ public class HTMLDocument {
 		
 		for(Element script : scripts) //for each script in the scripts list
 		{
-			String url = stripUrl(script.attr("abs:src")); //get the full path of the script src and strip the protocol from it
-			if(url.contains(websiteRoot)) //if stripped url domain matches website domain, it's internal and added to scripts
+			String url = script.attr("abs:src"); //get the full path of the script
+			if(url.contains(websiteDomain)) //if url domain matches website domain, it's internal and added to scripts
 			{
 				setScript(script);
 			}
@@ -190,8 +192,8 @@ public class HTMLDocument {
 		
 		for(Element stylesheet : stylesheets) //for each stylesheet in the stylesheets list
 		{
-			String url = stripUrl(stylesheet.attr("abs:src")); //get the full path of the stylesheet src and strip the protocol from it
-			if(url.contains(websiteRoot)) //if stripped url domain matches website domain, it's internal and added to stylesheets
+			String url = stylesheet.attr("abs:src"); //get the full path of the stylesheet src
+			if(url.contains(websiteDomain)) //if url domain matches website domain, it's internal and added to stylesheets
 			{
 				setStyleSheet(stylesheet);
 			}
@@ -291,10 +293,13 @@ public class HTMLDocument {
     /**
      * Set the HTMLDoc localpath
      *
-     * @param localPath new local path where this document was found
+     * @param url Url of this page
+     * @param parentPath parent path of current HTMLDocument
      */	
-	public void setLocalPath(String localPath) {
-		this.localPath = localPath;
+	public void setLocalPath(String url, String parentPath) {
+		Path path = Paths.get(url);
+		String fileName = path.getFileName().toString();
+		this.localPath = parentPath + fileName;
 	}
 	
 	

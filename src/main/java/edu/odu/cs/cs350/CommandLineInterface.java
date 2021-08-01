@@ -99,7 +99,8 @@ public class CommandLineInterface {
 		if(isURLValid(url) && isLocalPathValid(path))
 		{
 			String strippedUrl = htmldoc.stripUrl(url);
-			website.root = strippedUrl.split("/")[0];
+			website.setWebsiteRoot(path);
+			website.setWebsiteDomain(strippedUrl.split("/")[0]);
 			website.addWebpage(strippedUrl, path);	
 		}
 		else
