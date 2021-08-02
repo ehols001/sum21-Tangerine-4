@@ -47,23 +47,30 @@ public class CommandLineInterface {
 
 		String path = args[0];
 		String url = args[1];
-
-		Website website = new Website(path, url);
 		
 		if(UrlHandler.isURLValid(url) && UrlHandler.isLocalPathValid(path))
 		{
+			Website website = new Website(path, url);
 			String strippedUrl = UrlHandler.stripProtocol(url);
-			String newUrl = strippedUrl + "index.html";
-			website.addWebpage(newUrl);	
+			String newUrl = strippedUrl + "/index.html";
+			HTMLDocument htmldoc = new HTMLDocument(newUrl);
+			website.addWebpage(htmldoc);
+			for(int i = 0; i < htmldoc.getLinks().size(); ++i)
+			{
+				String nextUrl = Website.getRootUrl() + "/" + htmldoc.getLinks().get(i).getURL();
+				String nextStrippedUrl = UrlHandler.stripProtocol(nextUrl);
+				HTMLDocument nextHtmldoc = new HTMLDocument(nextStrippedUrl);
+				website.addWebpage(nextHtmldoc);
+			}
+			
+			TxtWriter textWriter = new TxtWriter(website);
+			textWriter.writeToFile();
+			//Call to Json writer
+			//Call to Excel writer
 		}
 		else
 		{
 			printArgumentErrors(url, path);
 		}
-
-		TxtWriter textWriter = new TxtWriter(website);
-		textWriter.writeToFile();
-		//Call to Json writer
-		//Call to Excel writer
 	}
 }

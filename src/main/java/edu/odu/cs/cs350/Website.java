@@ -32,13 +32,13 @@ public class Website {
 	}
 	
 	/**
-	 * Add webpages to a container of webpages given a url
+	 * Add a webpage to a container of webpages
 	 * 
-	 * @param url local url
+	 * @param htmldoc HTMLDocument to add to the list of webpages
 	 */
-	public void addWebpage(String url)
+	public void addWebpage(HTMLDocument htmldoc)
 	{
-		HTMLDocument htmldoc = new HTMLDocument(url);
+		//HTMLDocument htmldoc = new HTMLDocument(url);
 		webpages.add(htmldoc);
 	}
 	

@@ -7,11 +7,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.io.File;
-//import java.nio.file.Files;
-//import java.nio.file.Path;
-//import java.nio.file.Paths;
-//import java.util.stream.Collectors;
-//import java.util.stream.Stream;
 
 public class HTMLDocument {
 	
@@ -96,10 +91,10 @@ public class HTMLDocument {
 			String url = anchor.attr("abs:href");
 			Anchor link = new Anchor(url, type);
 			String strippedRoot = UrlHandler.stripProtocol(Website.getRootUrl());
+			String strippedUrl = UrlHandler.stripProtocol(url);
+			String convertedUrl = UrlHandler.urlToLocal(strippedUrl, strippedRoot);
 			if(url.contains(strippedRoot))
 			{
-				String strippedUrl = UrlHandler.stripProtocol(url);
-				String convertedUrl = UrlHandler.urlToLocal(strippedUrl, strippedRoot);
 				if(convertedUrl == this.localPath)
 				{
 					link.setType("Intra-page");
