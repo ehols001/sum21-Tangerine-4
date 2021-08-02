@@ -38,7 +38,6 @@ public class Website {
 	 */
 	public void addWebpage(HTMLDocument htmldoc)
 	{
-		//HTMLDocument htmldoc = new HTMLDocument(url);
 		webpages.add(htmldoc);
 	}
 	

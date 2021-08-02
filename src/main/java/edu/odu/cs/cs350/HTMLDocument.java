@@ -69,11 +69,13 @@ public class HTMLDocument {
 			e.printStackTrace();
 		}
 		
+		/*
 		//test output to make sure it's grabbing/converting links correctly
 		for(int i = 0; i < links.size(); ++i)
 		{
 			System.out.println(links.get(i).getType() + ", " + links.get(i).getURL());
 		}
+		*/
 	}
 	
 	/**
@@ -123,13 +125,13 @@ public class HTMLDocument {
 	 */
 	public void extractMedia(Document doc)
 	{
-		Elements media = doc.select("[src]"); //collect a list of all media-like tags containing src on the page
+		Elements media = doc.select("[src]");
 		
-		for(Element src : media) //for each src in the media list
+		for(Element src : media)
 		{
-			if(src.normalName().equals("img")) //check if that src is an img
+			if(src.normalName().equals("img"))
 			{
-				String url = src.attr("abs:src"); //get the full path of the media src
+				String url = src.attr("abs:src");
 				String strippedRoot = UrlHandler.stripProtocol(Website.getRootUrl());
 				if(url.contains(strippedRoot))
 				{
@@ -146,11 +148,11 @@ public class HTMLDocument {
 	 */
 	public void extractScripts(Document doc)
 	{
-		Elements scripts = doc.select("script[src]"); //collect a list of all script tags containing src on the page
+		Elements scripts = doc.select("script[src]");
 		
-		for(Element script : scripts) //for each script in the scripts list
+		for(Element script : scripts)
 		{
-			String url = script.attr("abs:src"); //get the full path of the script
+			String url = script.attr("abs:src");
 			String strippedRoot = UrlHandler.stripProtocol(Website.getRootUrl());
 			if(url.contains(strippedRoot))
 			{
@@ -166,11 +168,11 @@ public class HTMLDocument {
 	 */
 	public void extractStyleSheets(Document doc)
 	{
-		Elements stylesheets = doc.select("[style]"); //collect a list of all tags containing style on the page
+		Elements stylesheets = doc.select("[style]");
 		
-		for(Element stylesheet : stylesheets) //for each stylesheet in the stylesheets list
+		for(Element stylesheet : stylesheets)
 		{
-			String url = stylesheet.attr("abs:src"); //get the full path of the stylesheet src
+			String url = stylesheet.attr("abs:src");
 			String strippedRoot = UrlHandler.stripProtocol(Website.getRootUrl());
 			if(url.contains(strippedRoot))
 			{

@@ -39,16 +39,13 @@ public class TestWebsite {
 
 	@Test
 	public void testAddWebpage() { 
-		/*
-		String strippedUrl = UrlHandler.stripProtocol(testUrl);
-		ws1.addWebpage(strippedUrl);
+		ws1.addWebpage(hd);
 		assertEquals(1, ws1.size());
 		assertTrue(ws1.contains(hd));
 		assertFalse(ws1.contains(hd2));
 		assertNotEquals(ws1, new Website());
-		ws2.addWebpage(strippedUrl);
+		ws2.addWebpage(hd);
 		assertEquals(ws2.size(), ws1.size());
-		*/
 	}
 
 }
