@@ -106,10 +106,15 @@ public class WebsiteParser {
 		{
 			if (src.normalName().equals("img")) {
 				
-			
+			/**
+			 * This should return the abs path of the media file but it returns ""
+			 */
 			//String url = src.attr("abs:src"); //get the full path of the media src
-//			String url = src.absUrl("src");
-			String url = src.baseUri();
+			
+			String url = src.baseUri(); //this is not ideal either
+			
+			//Add URL handling class stuff here
+			
 			String imageType = new String(src.normalName());
 			File file = new File(src.attr("src"));
 			try {
@@ -125,10 +130,10 @@ public class WebsiteParser {
 //				if(url.contains(websiteDomain)) //if url domain matches website domain, it's internal and added to media
 //				{
 					//String convertedURL = stripUrl(url);
-					File mediaFile = new File(url);
-					long fileSize = file.length();
+					long size = (file.length() / 1048576); //convert Byte to MiB
+					double fileSize = (double) size;
 					String lfp = src.attr("src");
-					String name = src.normalName();
+					String name = file.getName();
 					//numPages??
 					FileResource newMedia = new FileResource(fileSize, 0, imageType, lfp, name);
 					htmlDoc.setMedia(newMedia);

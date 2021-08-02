@@ -69,12 +69,15 @@ public class TestWebsiteParser {
 	@Test
 	public void testMediaExtract() {
 		//fail("Not yet implemented");
-		WebsiteParser parser = new WebsiteParser();
+//		WebsiteParser parser = new WebsiteParser();
+//		
+//		parser.generateHtml("src/test/java/edu/odu/cs/cs350/Resources/TestWebsite/www.cs.odu.edu/_tkennedy/cs350/latest/index.html");
+//		
+//		assertEquals(parser.getHTML().getMedia().get(0).getLocalPath(), "./index_files/text-kind.png");
 		
-		parser.generateHtml("src/test/java/edu/odu/cs/cs350/Resources/TestWebsite/www.cs.odu.edu/_tkennedy/cs350/latest/index.html");
-		
-		assertEquals(parser.getHTML().getMedia().get(0).getLocalPath(), "./index_files/text-kind.png");
-		//assertEquals(parser.getHTML().getMedia().get(0).getSize(), 1554371, 0.001);
+		WebsiteParser newParse = new WebsiteParser();
+		newParse.generateHtml("/home/slowmobro/git/sum21-Tangerine-4/src/test/java/edu/odu/cs/cs350/testHTML.html");
+		assertEquals(newParse.getHTML().getMedia().get(0).getSize(), 1554371, 0.001);
 		//size in bytes 1,554,371 
 	}
 
