@@ -1,52 +1,8 @@
 package edu.odu.cs.cs350;
 
 import java.io.*;
-import java.nio.file.*;
-import java.net.*;
 
 public class CommandLineInterface {
-	
-	/**
-	 * Determines whether a URL is valid or not
-	 * 
-	 * @param url URL to be examined
-	 * @return true if url is a valid url
-	 */
-	public static boolean isURLValid(String url)
-	{
-		try
-		{
-			new URL(url).toURI();
-			return true;
-		}
-		catch (MalformedURLException mue)
-		{
-			return false;
-		}
-		catch (URISyntaxException use)
-		{
-			return false;
-		}
-	}
-	
-	/**
-	 * Determines whether a readable local path exists
-	 * 
-	 * @param path local path to be examined
-	 * @return true if path is readable and exists
-	 */
-	public static boolean isLocalPathValid(String path)
-	{
-		Path localPath = Paths.get(path);
-		if(Files.isReadable(localPath) && Files.isDirectory(localPath))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
 	
 	/**
 	 * Prints any relevant error messages for 
@@ -59,13 +15,13 @@ public class CommandLineInterface {
 	 */
 	public static void printArgumentErrors(String url, String path)
 	{
-		if(!isURLValid(url) && !isLocalPathValid(path))
+		if(!UrlHandler.isURLValid(url) && !UrlHandler.isLocalPathValid(path))
 		{
 			System.err.println("The URL provided is malformed.");
 			System.err.println("The path provided is either non-existent or "
 					+ "an unreadable directory.");
 		}
-		else if(!isLocalPathValid(path))
+		else if(!UrlHandler.isLocalPathValid(path))
 		{
 			System.err.println("The path provided is either non-existent or "
 					+ "an unreadable directory.");
@@ -92,22 +48,20 @@ public class CommandLineInterface {
 		String path = args[0];
 		String url = args[1];
 
-		Website website = new Website();
-		HTMLDocument htmldoc = new HTMLDocument();
-		TxtWriter textWriter = new TxtWriter();
+		Website website = new Website(path, url);
 		
-		if(isURLValid(url) && isLocalPathValid(path))
+		if(UrlHandler.isURLValid(url) && UrlHandler.isLocalPathValid(path))
 		{
-			String strippedUrl = htmldoc.stripUrl(url);
-			website.setWebsiteRoot(path);
-			website.setWebsiteDomain(strippedUrl.split("/")[0]);
-			website.addWebpage(strippedUrl, path);	
+			String strippedUrl = UrlHandler.stripProtocol(url);
+			String newUrl = strippedUrl + "index.html";
+			website.addWebpage(newUrl);	
 		}
 		else
 		{
 			printArgumentErrors(url, path);
 		}
-		
+
+		TxtWriter textWriter = new TxtWriter(website);
 		textWriter.writeToFile();
 		//Call to Json writer
 		//Call to Excel writer

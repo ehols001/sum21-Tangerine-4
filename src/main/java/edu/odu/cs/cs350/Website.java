@@ -5,8 +5,8 @@ import java.util.*;
 public class Website {
 
 	private ArrayList<HTMLDocument> webpages;
-	private String root;
-	private String domain;
+	private static String localRoot;
+	private static String rootUrl;
 
 	/**
 	 * Default constructor for initializing a new Website
@@ -14,19 +14,31 @@ public class Website {
 	public Website()
 	{
 		webpages = new ArrayList<HTMLDocument>();
-		root = new String();
-		domain = new String();
+		localRoot = new String();
+		rootUrl = new String();
 	}
 	
 	/**
-	 * Add a webpage to a container of webpages given a url
+	 * Website constructor that takes in two parameters
+	 * 
+	 * @param path the local root directory of the website
+	 * @param url the root url of the website
+	 */
+	public Website(String path, String url)
+	{
+		webpages = new ArrayList<HTMLDocument>();
+		localRoot = path;
+		rootUrl = url;
+	}
+	
+	/**
+	 * Add webpages to a container of webpages given a url
 	 * 
 	 * @param url local url
-	 * @param parentPath parent path of HTMLDocument being created
 	 */
-	public void addWebpage(String url, String parentPath)
+	public void addWebpage(String url)
 	{
-		HTMLDocument htmldoc = new HTMLDocument(url, domain, parentPath);
+		HTMLDocument htmldoc = new HTMLDocument(url);
 		webpages.add(htmldoc);
 	}
 	
@@ -66,42 +78,23 @@ public class Website {
 	}
 	
 	/**
-	 * Retrieves the root path of the website
+	 * Retrieves the root url of the website
 	 * 
-	 * @return root the root path of the website
+	 * @return rootUrl the root url of the website
 	 */
-	public String getWebsiteRoot()
+	public static String getRootUrl()
 	{
-		return root;
+		return rootUrl;
 	}
 	
 	/**
-	 * Sets the root path of the website
+	 * Retrieves the local root directory of the website
 	 * 
-	 * @param path the root path of the website
+	 * @return localRoot the local root directory of the website
 	 */
-	public void setWebsiteRoot(String path)
+	public static String getLocalRoot()
 	{
-		root = path;
+		return localRoot;
 	}
 	
-	/**
-	 * Retrieves the domain of the website
-	 * 
-	 * @return domain the domain of the website
-	 */
-	public String getWebsiteDomain()
-	{
-		return domain;
-	}
-	
-	/**
-	 * Sets the domain of the website
-	 * 
-	 * @param domain the domain of the website
-	 */
-	public void setWebsiteDomain(String url)
-	{
-		domain = url;
-	}
 }

@@ -1,8 +1,5 @@
 package edu.odu.cs.cs350;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -11,13 +8,13 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.io.File;
 //import java.nio.file.Files;
-import java.nio.file.Path;
+//import java.nio.file.Path;
+//import java.nio.file.Paths;
 //import java.util.stream.Collectors;
 //import java.util.stream.Stream;
 
 public class HTMLDocument {
 	
-	private String websiteDomain;
 	private String localPath;
     private ArrayList<Anchor> links;
     private ArrayList<Element> media;
@@ -30,7 +27,6 @@ public class HTMLDocument {
      * containers empty
      */
 	public HTMLDocument() {
-		websiteDomain = new String();
 		setLocalPath("", "");
 		links = new ArrayList<Anchor>();
 		media = new ArrayList<Element>();
@@ -43,13 +39,10 @@ public class HTMLDocument {
 	 * Construct an new HTMLDocument from the given url
 	 * 
 	 * @param url page to generate an HTMLDocument from
-	 * @param parentPath parent path of current HTMLDocument
-	 * @param root domain of the website
 	 */
-	public HTMLDocument(String url, String domain, String parentPath)
+	public HTMLDocument(String url)
 	{
-		websiteDomain = domain;
-		setLocalPath(url, parentPath);
+		setLocalPath(url, Website.getRootUrl());
 		links = new ArrayList<Anchor>();
 		media = new ArrayList<Element>();
 		scripts = new ArrayList<Element>();
@@ -67,7 +60,8 @@ public class HTMLDocument {
 	{
 		try
 		{
-			File content = new File(localPath);
+			String fullPath = Website.getLocalRoot() + localPath;
+			File content = new File(fullPath);
 			Document doc = Jsoup.parse(content, "UTF-8");
 			extractLinks(doc);
 			//extractMedia(doc);
@@ -83,34 +77,8 @@ public class HTMLDocument {
 		//test output to make sure it's grabbing/converting links correctly
 		for(int i = 0; i < links.size(); ++i)
 		{
-			System.out.print(links.get(i).getType());
-			System.out.print(", ");
-			System.out.println(links.get(i).getURL());
+			System.out.println(links.get(i).getType() + ", " + links.get(i).getURL());
 		}
-	}
-	
-	/**
-	 * Translates a URL to the local directory structure
-	 * of a local copy of a site
-	 * 
-	 * @param url URL to be stripped of protocol
-	 * @return filePath url translated to its local file path
-	 */
-	public String stripUrl(String url)
-	{
-		String fileName = new String();
-		try
-		{
-			URL tempUrl = new URL(url);
-			String protocol = tempUrl.getProtocol() + "://";
-			fileName = url.replace(protocol, "");
-		}
-		catch (MalformedURLException mue)
-		{
-			System.err.println(mue);
-			System.out.println(url);
-		}
-		return fileName;
 	}
 	
 	/**
@@ -121,20 +89,33 @@ public class HTMLDocument {
 	public void extractLinks(Document doc)
 	{
 		String type = new String();
-		Elements anchors = doc.select("a[href]"); //collect a list of all link tags on the page
+		Elements anchors = doc.select("a[href]");
 		
-		for(Element anchor : anchors) //for each link in the list
+		for(Element anchor : anchors)
 		{
-			String url = anchor.attr("abs:href"); //get the full link path
+			String url = anchor.attr("abs:href");
 			Anchor link = new Anchor(url, type);
-			if(url.contains(websiteDomain)) //if url domain matches website domain, it's internal and added to links
+			String strippedRoot = UrlHandler.stripProtocol(Website.getRootUrl());
+			if(url.contains(strippedRoot))
 			{
-				link.setType("internal");
-				setLink(link);
+				String strippedUrl = UrlHandler.stripProtocol(url);
+				String convertedUrl = UrlHandler.urlToLocal(strippedUrl, strippedRoot);
+				if(convertedUrl == this.localPath)
+				{
+					link.setType("Intra-page");
+					link.setURL(convertedUrl);
+					setLink(link);
+				}
+				else
+				{
+					link.setType("Intra-site");
+					link.setURL(convertedUrl);
+					setLink(link);
+				}
 			}
 			else
 			{
-				link.setType("external");
+				link.setType("External");
 				setLink(link);
 			}
 		}
@@ -154,7 +135,8 @@ public class HTMLDocument {
 			if(src.normalName().equals("img")) //check if that src is an img
 			{
 				String url = src.attr("abs:src"); //get the full path of the media src
-				if(url.contains(websiteDomain)) //if url domain matches website domain, it's internal and added to media
+				String strippedRoot = UrlHandler.stripProtocol(Website.getRootUrl());
+				if(url.contains(strippedRoot))
 				{
 					setMedia(src);
 				}
@@ -174,7 +156,8 @@ public class HTMLDocument {
 		for(Element script : scripts) //for each script in the scripts list
 		{
 			String url = script.attr("abs:src"); //get the full path of the script
-			if(url.contains(websiteDomain)) //if url domain matches website domain, it's internal and added to scripts
+			String strippedRoot = UrlHandler.stripProtocol(Website.getRootUrl());
+			if(url.contains(strippedRoot))
 			{
 				setScript(script);
 			}
@@ -193,7 +176,8 @@ public class HTMLDocument {
 		for(Element stylesheet : stylesheets) //for each stylesheet in the stylesheets list
 		{
 			String url = stylesheet.attr("abs:src"); //get the full path of the stylesheet src
-			if(url.contains(websiteDomain)) //if url domain matches website domain, it's internal and added to stylesheets
+			String strippedRoot = UrlHandler.stripProtocol(Website.getRootUrl());
+			if(url.contains(strippedRoot))
 			{
 				setStyleSheet(stylesheet);
 			}
@@ -293,13 +277,13 @@ public class HTMLDocument {
     /**
      * Set the HTMLDoc localpath
      *
-     * @param url Url of this page
-     * @param parentPath parent path of current HTMLDocument
+     * @param url Url of the current page
+     * @param rootUrl the root url of the website
      */	
-	public void setLocalPath(String url, String parentPath) {
-		Path path = Paths.get(url);
-		String fileName = path.getFileName().toString();
-		this.localPath = parentPath + fileName;
+	public void setLocalPath(String url, String rootUrl) {
+		String strippedRoot = UrlHandler.stripProtocol(rootUrl);
+		String filePath = UrlHandler.urlToLocal(url, strippedRoot);
+		this.localPath = filePath;
 	}
 	
 	
