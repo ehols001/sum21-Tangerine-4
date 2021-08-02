@@ -57,4 +57,21 @@ public class Website {
 		return webpages.get(index);
 	}
 	
+//	public void countPages() {
+//		int count = 0;
+//			for (int i = 0; i < size(); i++){
+//				double checkSize = getWebpage(i).getMedia().get(i).getSize();
+//				String fileName = getWebpage(i).getMedia().get(i).getName();
+//				for (int j = i + 1; j < size(); j++) {
+//					double currentSize = getWebpage(j).getMedia().get(j).getSize();
+//					String currentName = getWebpage(j).getMedia().get(j).getName();
+//					if (j != i && checkSize == currentSize && fileName == currentName){
+//						count++;
+//						getWebpage(i).getMedia().get(i).setPages(count);
+//					}
+//				}
+//				
+//			}
+//	}
+
 }
