@@ -32,7 +32,7 @@ public class TestFileResource {
 	@Test
 	public void testNonDefaultConstructor() {
 		//fail("Not yet implemented");
-		FileResource test = new FileResource(1, 23, "CSS", "/local/test.css");
+		FileResource test = new FileResource(1, 23, "CSS", "/local/test.css", "name");
 		
 		assertEquals(test.getPages(), 23);
 		assertEquals(test.getSize(), 1, 0.001);

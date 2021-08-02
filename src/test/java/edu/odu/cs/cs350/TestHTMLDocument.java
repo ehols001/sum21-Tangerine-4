@@ -27,11 +27,11 @@ public class TestHTMLDocument {
 	public void setup() {
 		html1 = new HTMLDocument();
 		testLink = new Anchor("www.test.org", "external");
-		testImage = new FileResource(3, 1024, "image", "/local/testImage.png");
-		testVideo = new FileResource(900, 4000, "video", "/local/testVideo.mp4");
-		testJavaScript = new FileResource(1, 2056, "script", "/local/testJS.js");
-		testCSS = new FileResource(1, 4096, "stylesheet", "/local/testCSS.css");
-		testMisc = new FileResource(2, 40, "misc", "/local/testMisc.zip");
+		testImage = new FileResource(3, 1024, "image", "/local/testImage.png", "name");
+		testVideo = new FileResource(900, 4000, "video", "/local/testVideo.mp4", "name");
+		testJavaScript = new FileResource(1, 2056, "script", "/local/testJS.js", "name");
+		testCSS = new FileResource(1, 4096, "stylesheet", "/local/testCSS.css", "name");
+		testMisc = new FileResource(2, 40, "misc", "/local/testMisc.zip", "name");
 		
 	}
 	
