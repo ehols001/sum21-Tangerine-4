@@ -7,6 +7,7 @@ import org.junit.Test;
 
 public class TestWebsiteParser {
 
+<<<<<<< HEAD
 	private Website website;
 	private HTMLDocument html1;
 	private Anchor testLink;
@@ -21,8 +22,17 @@ public class TestWebsiteParser {
 	
 	private String lfp;
 	
+=======
+	String path = "/home/example/www.test.org";
+	String root = "https://www.test.org/";
+	String url = "www.test.org/test/example/";
+	WebsiteParser parser = new WebsiteParser();
+	Website website = new Website(path, root);
+	HTMLDocument htmldoc = new HTMLDocument(url);
+>>>>>>> branch 'main' of git@github.com:ehols001/sum21-Tangerine-4.git
 	
 	@Before
+<<<<<<< HEAD
 	public void setup() {
 		website = new Website();
 		html1 = new HTMLDocument();
@@ -51,9 +61,31 @@ public class TestWebsiteParser {
 		
 //		parser.generateHtml("/home/slowmobro/git/sum21-Tangerine-4/src/test/java/edu/odu/cs/cs350/testHTML.html");
 		
+=======
+	public void setUp() {
+		htmldoc.setLocalPath(url, root);
+	}
+
+	//I'm not sure how to test for extractions without a real htmldoc 
+	@Test
+	public void testGenerateHtml() {
+		parser.generateHtml(htmldoc.getLocalPath(), htmldoc);
+		//assertFalse(htmldoc.getLinks().isEmpty());
+		//assertFalse(htmldoc.getMedia().isEmpty());
+		//assertFalse(htmldoc.getScripts().isEmpty());
+		//assertFalse(htmldoc.getStyleSheets().isEmpty());
+		//assertFalse(htmldoc.getMisc().isEmpty());
+	}
+
+	//Going along with the comment for testGenerateHtml
+	@Test
+	public void testExtractLinks() {
+		//fail("Not yet implemented");
+>>>>>>> branch 'main' of git@github.com:ehols001/sum21-Tangerine-4.git
 	}
 
 	@Test
+<<<<<<< HEAD
 	public void testLinkExtract() {
 		//fail("Not yet implemented");
 		WebsiteParser parser = new WebsiteParser();
@@ -64,9 +96,14 @@ public class TestWebsiteParser {
 //		assertEquals(parser.getHTML().getLinks().get(2).getURL(), "https://www.test.com");
 		
 		
+=======
+	public void testExtractMedia() {
+		//fail("Not yet implemented");
+>>>>>>> branch 'main' of git@github.com:ehols001/sum21-Tangerine-4.git
 	}
 
 	@Test
+<<<<<<< HEAD
 	public void testMediaExtract() {
 		//fail("Not yet implemented");
 //		WebsiteParser parser = new WebsiteParser();
@@ -79,26 +116,20 @@ public class TestWebsiteParser {
 		newParse.generateHtml("/home/slowmobro/git/sum21-Tangerine-4/src/test/java/edu/odu/cs/cs350/testHTML.html");
 		assertEquals(newParse.getHTML().getMedia().get(0).getSize(), 1554371, 0.001);
 		//size in bytes 1,554,371 
+=======
+	public void testExtractScripts() {
+		//fail("Not yet implemented");
+>>>>>>> branch 'main' of git@github.com:ehols001/sum21-Tangerine-4.git
 	}
 
 	@Test
-	public void testScriptExtract() {
-		fail("Not yet implemented");
+	public void testExtractStyleSheets() {
+		//fail("Not yet implemented");
 	}
-
+	
 	@Test
-	public void testStyleExtract() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testMiscExtract() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testPathExtract() {
-		fail("Not yet implemented");
+	public void testExtractMisc() {
+		//fail("Not yet implemented");
 	}
 
 }

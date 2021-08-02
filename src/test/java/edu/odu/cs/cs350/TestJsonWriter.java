@@ -46,7 +46,7 @@ public class TestJsonWriter {
 			
 		//HTML Document to use in test cases
 		HTML= new HTMLDocument();
-		HTML.setLocalPath("/the/example/path");
+		HTML.setLocalPath("www.test.com/the/example/path", "https://www.test.com");
 		HTML.setLinks(intraPageLink);
 		HTML.setLinks(interSiteLink);
 		HTML.setLinks(externalLink);

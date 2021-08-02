@@ -1,62 +1,8 @@
 package edu.odu.cs.cs350;
 
 import java.io.*;
-import java.nio.file.*;
-import java.net.*;
 
 public class CommandLineInterface {
-	
-	/**
-	 * Determines whether a URL is valid or not
-	 * 
-	 * @param url URL to be examined
-	 * @return true if url is a valid url
-	 */
-	public static boolean isURLValid(String url)
-	{
-		try
-		{
-			new URL(url).toURI();
-			return true;
-		}
-		catch (Exception exc)
-		{
-			return false;
-		}
-	}
-	
-	/**
-	 * Determines whether a readable local path exists
-	 * 
-	 * @param path local path to be examined
-	 * @return true if path is readable and exists
-	 */
-	public static boolean isLocalPathValid(String path)
-	{
-		Path localPath = Paths.get(path);
-		if(Files.isReadable(localPath) && Files.isDirectory(localPath))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
-	/**
-	 * Translates a URL to the local directory structure
-	 * of a local copy of a site
-	 * 
-	 * @param url URL to be translated
-	 * @return translatedURL url translated to its local path
-	 */
-	public static String urlToLocalPath(String url)
-	{
-		String translatedURL = new String();
-		//Translate URL to reflect the local copy site's directory structure
-		return translatedURL;
-	}
 	
 	/**
 	 * Prints any relevant error messages for 
@@ -69,16 +15,16 @@ public class CommandLineInterface {
 	 */
 	public static void printArgumentErrors(String url, String path)
 	{
-		if(!isURLValid(url) && !isLocalPathValid(path))
+		if(!UrlHandler.isURLValid(url) && !UrlHandler.isLocalPathValid(path))
 		{
 			System.err.println("The URL provided is malformed.");
 			System.err.println("The path provided is either non-existent or "
-					+ "is an unreadable directory.");
+					+ "an unreadable directory.");
 		}
-		else if(!isLocalPathValid(path))
+		else if(!UrlHandler.isLocalPathValid(path))
 		{
 			System.err.println("The path provided is either non-existent or "
-					+ "is an unreadable directory.");
+					+ "an unreadable directory.");
 		}
 		else
 		{
@@ -91,22 +37,57 @@ public class CommandLineInterface {
 	 */
 	public static void main(String[] args) throws IOException
 	{
-		if(args.length == 0)
+		if(args.length < 1)
 		{
-			System.err.println("\nNo command line arugments provided.\n");
+			System.err.println("usage: localPath url\n"
+					+ "   localPath: the path to a local copy of the site\n"
+					+ "   url: one or more URLs separated by spaces");
 			System.exit(0);
 		}
+
 		String path = args[0];
 		String url = args[1];
 		
-		Website ws = new Website();
-		HTMLDocument hd = new HTMLDocument();
-		
-		if(isURLValid(url) && isLocalPathValid(path))
+		if(UrlHandler.isURLValid(url) && UrlHandler.isLocalPathValid(path))
 		{
-			String translatedUrl = urlToLocalPath(url);
-			//hd = parse(translatedUrl);
-			ws.addWebpage(hd);	
+			Website website = new Website(path, url);
+			String strippedUrl = UrlHandler.stripProtocol(url);
+			String newUrl = strippedUrl + "/index.html";
+			HTMLDocument htmldoc = new HTMLDocument(newUrl);
+			WebsiteParser parser = new WebsiteParser();
+			parser.generateHtml(htmldoc.getLocalPath(), htmldoc);
+			
+			/*
+			//test output to make sure it's grabbing/converting links correctly
+			for(int i = 0; i < htmldoc.getLinks().size(); ++i)
+			{
+				System.out.println(htmldoc.getLinks().get(i).getType() + ", " + htmldoc.getLinks().get(i).getURL());
+			}
+			*/
+			
+			website.addWebpage(htmldoc);
+			
+			for(int i = 0; i < htmldoc.getLinks().size(); ++i)
+			{
+				String nextUrl = Website.getRootUrl() + "/" + htmldoc.getLinks().get(i).getURL();
+				String nextStrippedUrl = UrlHandler.stripProtocol(nextUrl);
+				HTMLDocument nextHtmldoc = new HTMLDocument(nextStrippedUrl);
+				parser.generateHtml(nextHtmldoc.getLocalPath(), nextHtmldoc);
+				
+				/*
+				//test output to make sure it's grabbing/converting links correctly
+				for(int j = 0; j < nextHtmldoc.getLinks().size(); ++j)
+				{
+					System.out.println(nextHtmldoc.getLinks().get(j).getType() + ", " + nextHtmldoc.getLinks().get(j).getURL());
+				}
+				*/
+				
+				website.addWebpage(nextHtmldoc);
+			}
+			TxtWriter textWriter = new TxtWriter(website);
+			textWriter.writeToFile();
+			//Call to Json writer
+			//Call to Excel writer
 		}
 		else
 		{

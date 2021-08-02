@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Before;
 
-import java.lang.reflect.AccessibleObject;
+//import java.lang.reflect.AccessibleObject;
 
 
 public class TestExcelWriter {
@@ -60,7 +60,7 @@ public class TestExcelWriter {
 		externalLink = new Anchor("www.google.com", "externalLink");
 		externalLink2 = new Anchor("www.nsu.edu", "externalLink");
 
-		html1.setLocalPath("/cs/cs350/");
+		html1.setLocalPath("www.cs.odu.edu/cs/cs350/", "https://www.cs.odu.edu");
 		html1.setMedia(image);
 		html1.setMedia(image2);
 

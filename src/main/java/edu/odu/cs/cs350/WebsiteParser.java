@@ -1,172 +1,151 @@
 package edu.odu.cs.cs350;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.file.Paths;
+import java.io.File;
+import java.io.IOException;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import java.io.IOException;
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 
 public class WebsiteParser {
 	
-	private String websiteDomain;
-	private Document webPage;
-	private String localPath;
-	private String rootPath;
-	private HTMLDocument htmlDoc;
-	
-	public WebsiteParser() {
-		this.websiteDomain = new String("");
-		this.rootPath = new String("");
-		this.localPath = new String("");
-		htmlDoc = new HTMLDocument();
-	}
-	
-	public void generateHtml(String localPath)
+	/**
+	 * Generate an HTMLDocument from the given url
+	 * 
+	 * @param localPath the local path of the current HTMLDocument
+	 * @param htmldoc the HTMLDocument to be parsed
+	 */
+	public void generateHtml(String localPath, HTMLDocument htmldoc)
 	{
 		try
 		{
-			File content = new File(localPath);
+			String fullPath = Website.getLocalRoot() + localPath;
+			File content = new File(fullPath);
 			Document doc = Jsoup.parse(content, "UTF-8");
-			extractLinks(doc);
-			mediaExtract(doc);
-			//extractScripts(doc);
-			//extractStyleSheets(doc);
-			//extractMisc(doc);
+			extractLinks(doc, htmldoc);
+			//extractMedia(doc, htmldoc);
+			//extractScripts(doc, htmldoc);
+			//extractStyleSheets(doc, htmldoc);
+			//extractMisc(doc, htmldoc);
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
 		}
-		
-		//test output to make sure it's grabbing/converting links correctly
-//		for(int i = 0; i < htmlDoc.getLinks().size(); ++i)
-//		{
-//			System.out.print(htmlDoc.getLinks().get(i).getType());
-//			System.out.print(", ");
-//			System.out.println(htmlDoc.getLinks().get(i).getURL());
-//		}
 	}
 	
-	public void extractLinks(Document doc) {
+	/**
+	 * Find and retrieve all links from a given HTMLDocument
+	 * 
+	 * @param doc to retrieve all links from
+	 * @param htmldoc the HTMLDocument object being stored to
+	 */
+	public void extractLinks(Document doc, HTMLDocument htmldoc)
+	{
 		String type = new String();
-		Elements anchors = doc.select("a[href]"); //collect a list of all link tags on the page
+		Elements anchors = doc.select("a[href]");
 		
-		for(Element anchor : anchors) //for each link in the list
+		for(Element anchor : anchors)
 		{
-			String url = anchor.attr("abs:href"); //get the full link path
+			String url = anchor.attr("abs:href");
 			Anchor link = new Anchor(url, type);
-			if(url.contains(websiteDomain)) //if url domain matches website domain, it's internal and added to links
+			String strippedRoot = UrlHandler.stripProtocol(Website.getRootUrl());
+			String strippedUrl = UrlHandler.stripProtocol(url);
+			String convertedUrl = UrlHandler.urlToLocal(strippedUrl, strippedRoot);
+			if(url.contains(strippedRoot))
 			{
-				link.setType("internal");
-				htmlDoc.setLinks(link);
+				if(convertedUrl == htmldoc.getLocalPath())
+				{
+					link.setType("Intra-page");
+					link.setURL(convertedUrl);
+					htmldoc.setLinks(link);
+				}
+				else
+				{
+					link.setType("Intra-site");
+					link.setURL(convertedUrl);
+					htmldoc.setLinks(link);
+				}
 			}
 			else
 			{
-				link.setType("external");
-				htmlDoc.setLinks(link);
+				link.setType("External");
+				htmldoc.setLinks(link);
 			}
 		}
 	}
 	
 	/**
-	 * Translates a URL to the local directory structure
-	 * of a local copy of a site
+	 * Find and retrieve all media from a given HTMLDocument
 	 * 
-	 * @param url URL to be stripped of protocol
-	 * @return filePath url translated to its local file path
+	 * @param doc to retrieve all media from
+	 * @param htmldoc the HTMLDocument object being stored to
 	 */
-	public String stripUrl(String url)
+	public void extractMedia(Document doc, HTMLDocument htmldoc)
 	{
-		String fileName = new String();
-		try
-		{
-			URL tempUrl = new URL(url);
-			String protocol = tempUrl.getProtocol() + "://";
-			fileName = url.replace(protocol, "");
-		}
-		catch (MalformedURLException mue)
-		{
-			System.err.println(mue);
-			System.out.println(url);
-		}
-		return fileName;
-	}
-	
-	public void mediaExtract(Document webPage) {
-		Elements media = webPage.select("[src]"); //collect a list of all media-like tags containing src on the page
+		/*
+		Elements media = doc.select("[src]");
 		
-		for(Element src : media) //for each src in the media list
+		for(Element src : media)
 		{
-			if (src.normalName().equals("img")) {
-				
-			/**
-			 * This should return the abs path of the media file but it returns ""
-			 */
-			//String url = src.attr("abs:src"); //get the full path of the media src
-			
-			String url = src.baseUri(); //this is not ideal either
-			
-			//Add URL handling class stuff here
-			
-			String imageType = new String(src.normalName());
-			File file = new File(src.attr("src"));
-			try {
-				imageType = Files.probeContentType(file.toPath());
-			} catch (IOException e) {
-				System.out.print("File type not detected");
-				e.printStackTrace();
-			}
-			
-//			if(imageType == "img") //check if that src is an img
-//			{
-				
-//				if(url.contains(websiteDomain)) //if url domain matches website domain, it's internal and added to media
-//				{
-					//String convertedURL = stripUrl(url);
-					long size = (file.length() / 1048576); //convert Byte to MiB
-					double fileSize = (double) size;
-					String lfp = src.attr("src");
-					String name = file.getName();
-					//numPages??
-					FileResource newMedia = new FileResource(fileSize, 0, imageType, lfp, name);
-					htmlDoc.setMedia(newMedia);
-//				}
-//			}
+			if(src.normalName().equals("img"))
+			{
+				String url = src.attr("abs:src");
+				String strippedRoot = UrlHandler.stripProtocol(Website.getRootUrl());
+				if(url.contains(strippedRoot))
+				{
+					htmldoc.setMedia(src);
+				}
 			}
 		}
+		*/
 	}
 	
-	public void scriptExtract() {
+	/**
+	 * Find and retrieve all scripts from a given HTMLDocument
+	 * 
+	 * @param doc to retrieve all scripts from
+	 * @param htmldoc the HTMLDocument object being stored to
+	 */
+	public void extractScripts(Document doc, HTMLDocument htmldoc)
+	{
+		/*
+		Elements scripts = doc.select("script[src]");
 		
+		for(Element script : scripts)
+		{
+			String url = script.attr("abs:src");
+			String strippedRoot = UrlHandler.stripProtocol(Website.getRootUrl());
+			if(url.contains(strippedRoot))
+			{
+				htmldoc.setScripts(script);
+			}
+		}
+		*/
 	}
 	
-	public void styleExtract() {
+	/**
+	 * Find and retrieve all sytlesheets from a given HTMLDocument
+	 * 
+	 * @param doc to retrieve all sytlesheets from
+	 * @param htmldoc the HTMLDocument object being stored to
+	 */
+	public void extractStyleSheets(Document doc, HTMLDocument htmldoc)
+	{
+		/*
+		Elements stylesheets = doc.select("[style]");
 		
+		for(Element stylesheet : stylesheets)
+		{
+			String url = stylesheet.attr("abs:src");
+			String strippedRoot = UrlHandler.stripProtocol(Website.getRootUrl());
+			if(url.contains(strippedRoot))
+			{
+				htmldoc.setStyleSheets(stylesheet);
+			}
+		}
+		*/
 	}
-	
-	public void miscExtract() {
-		
-	}
-	
-	public void pathExtract() {
-		
-	}
-	
-	public void setHTML(HTMLDocument html) {
-		this.htmlDoc = html;
-	}
-	
-	public HTMLDocument getHTML() {
-		return this.htmlDoc;
-	}
-	
-	
 	
 }
