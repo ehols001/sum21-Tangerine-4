@@ -1,0 +1,264 @@
+
+<!-- saved from url=(0078)https://www.cs.odu.edu/~tkennedy/cs350/latest/Public/communications/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="./index_files/md-scroll.css" media="screen, projection, print" rel="stylesheet" type="text/css"><link href="./index_files/md-scroll-ext.css" media="screen, projection, print" rel="stylesheet" type="text/css"><meta content="width=device-width, initial-scale=1" name="viewport"><link href="./index_files/googlecode.css" rel="stylesheet"><script src="./index_files/highlight.pack.js.download"> </script><script>hljs.initHighlightingOnLoad();</script><script src="./index_files/md-scroll.js.download" type="text/javascript"> </script><script src="./index_files/md-scroll-ext.js.download" type="text/javascript"> </script><script src="./index_files/rawdeflate.js.download" type="text/javascript"> </script><script src="./index_files/plantuml.js.download" type="text/javascript"> </script><script src="./index_files/mermaid.min.js.download" type="text/javascript"> </script><script type="text/javascript">
+             window.MathJax = {
+               tex2jax: {
+               inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+               processEscapes: true
+             }
+           };
+           </script><script src="./index_files/MathJax.js.download" type="text/javascript"> </script><title>Communications</title><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head><body><div id="MathJax_Message" style="display: none;"></div><script>sshowControl0 = { counter: 1,
+             showNumber: 0, max: 1};
+             window.onhashchange = hashHasChanged;</script><div class="navHeader" id="slideshowControlA0"><table class="navHeader"><tbody><tr class="slideshowcontrol"><td class="slideshowcontrolLeft"></td><td class="slideshowcontrolMiddle">
+<a class="imgLink" href="https://www.cs.odu.edu/~tkennedy/cs350/latest/Directory/outline/index.html" title="Course home/outline"><img src="./index_files/home.png"></a>
+<a href="mailto:tkennedy@cs.odu.edu?subject=CS350%2C%20Communications"><img src="./index_files/email.png" title="Email to instructor"></a><span style="margin: 0 32px;"></span></td><td class="slideshowcontrolRight"></td></tr></tbody></table></div><div class="mainBody"><div class="titleblock"><h1 class="title">Communications</h1><h2 class="author">Steven Zeil</h2><div class="date">Last modified: Dec 21, 2019</div></div><div class="toc">Contents:<div class="toc-h1"><a href="https://www.cs.odu.edu/~tkennedy/cs350/latest/Public/communications/index.html#so-many-options">1 So many options</a></div><div class="toc-h1"><a href="https://www.cs.odu.edu/~tkennedy/cs350/latest/Public/communications/index.html#general-rules-for-on-line-communications">2 General Rules for On-line Communications</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~tkennedy/cs350/latest/Public/communications/index.html#public-and-private-communications">2.1 Public and Private Communications</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~tkennedy/cs350/latest/Public/communications/index.html#etiquette-in-email-and-other-written-communications">2.2 Etiquette in Email and Other Written Communications</a></div><div class="toc-h1"><a href="https://www.cs.odu.edu/~tkennedy/cs350/latest/Public/communications/index.html#asking-good-questions">3 Asking Good Questions</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~tkennedy/cs350/latest/Public/communications/index.html#identification">3.1 Identification</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~tkennedy/cs350/latest/Public/communications/index.html#you-have-to-give-information-to-get-information">3.2 You Have to Give Information to Get Information</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~tkennedy/cs350/latest/Public/communications/index.html#thou-shalt-not-paraphrase">3.3 Thou Shalt Not Paraphrase</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~tkennedy/cs350/latest/Public/communications/index.html#copy-and-paste-is-your-friend-">3.4 “Copy and Paste” is Your Friend!</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~tkennedy/cs350/latest/Public/communications/index.html#if-i-ask-you-a-question-answer-it">3.5 If I Ask You a Question, Answer It</a></div></div><a id="somanyoptions"><h1 id="so-many-options">1 So many options</h1><p>Communication is a major concern in any course. Web courses make this a little trickier by reducing the options for face-to-face discussion.</p>
+    <p>Options for communications in this course include:</p>
+    </a><ul><a id="somanyoptions">
+  <li>
+    <p>Email</p>
+    
+    <ul>
+      <li>
+        <p>to instructor</p>
+    
+        <ul>
+          <li>I generally try to answer all course-related email within 24  hours, sometimes dropping to 48 on weekends and holidays. I  generally average better than that.</li>
+          <li>You can increase your odds of a speedy reply by making sure  that “CS350” appears somewhere in the subject line of your email.</li>
+        </ul>
+      </li>
+      <li>
+      <p>on group assignments, to members of your group</p>
+    </li>
+      <li>Email to the entire class should generally be avoided.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Discussion Board</p>
+    
+    <ul>
+      <li>Posts to Discussions will be visible to the instructor and the entire class.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Announcements</p>
+    
+    <ul>
+      <li>
+      <p>Only the instructor can send announcements.</p>
+    </li>
+    </ul>
+  </li>
+  <li>
+    <p>Network Conferencing</p>
+    
+    <p>Early in the semester, you’ll be learning how to use Google Meet as a network conferencing system. You can use this to meet the instructor during office hours or to set up meetings with team members during group assignments.</p>
+    
+  </li>
+  </a><li><a id="somanyoptions">
+    <p>Office Hours</p>
+    
+    <p>Yes, given that this is a Distance Course, many of you can’t come to campus to see me face-to-face. But I also offer options of meeting by telephone or via network conferencing (Google Meet).</p>
+    
+    </a><ul><a id="somanyoptions">
+      </a><li><a id="somanyoptions">You can find my office hours </a><a class="doc" href="https://www.cs.odu.edu/~tkennedy/cs350/latest/Public/officeHours/index.html" target="CS350_Public">here</a>.</li>
+    </ul>
+  </li>
+</ul><a id="generalrulesforonlinecommunications"><h1 id="general-rules-for-on-line-communications">2 General Rules for On-line Communications</h1></a><a id="publicandprivatecommunications"><h2 id="public-and-private-communications">2.1 Public and Private Communications</h2><p>Choose a communications option that is appropriate to the nature of the discussion.</p>
+    <p>Some of the communications options that you have will open your discussion up to the entire class. Others will limit your discussion to the instructor or to your team on a group assignment.</p>
+    </a><blockquote><a id="publicandprivatecommunications">
+  </a><p><a id="publicandprivatecommunications">In general, any conversation in which you discuss all or part of your solution to an individual assignment, even if you are only speculating on possible solutions, should be limited to you and the instructor. Sharing such information with other students is a violation of the course’s policy on </a><a class="doc" href="https://www.cs.odu.edu/~tkennedy/cs350/latest/Public/syllabus/index.html#academic-honesty" target="CS350_Public">Academic Honesty</a>.</p>
+    
+</blockquote><p>Use email or office hours for those kinds of questions.</p>
+    <ul>
+  <li>
+  <p>Similarly, questions about your own grade on an assignment should be  limited to a private communication with the instructor. In fact, if  you were to try to ask such a question in the public Discussion  area, ODU privacy policies would prohibit the instructor from replying.</p>
+    </li>
+  <li>
+  <p>For group assignments, of course, you can consider opening up the  conversation to include your team members. But you should not  discuss specifics of solutions to group assignments with other teams.</p>
+    </li>
+</ul><blockquote>
+  <p>On the other hand, questions about the course subject matter or purely clarification questions about an assignment may be useful subjects for the entire class. These are good subjects for the Discussions area.</p>
+    
+  <p>The instructor may, if he feels it is appropriate, copy an e-mailed question to the Discussions area so that the answer becomes available to everyone.</p>
+    
+</blockquote><a id="etiquetteinemailandotherwrittencommunications"><h2 id="etiquette-in-email-and-other-written-communications">2.2 Etiquette in Email and Other Written Communications</h2></a><ul><a id="etiquetteinemailandotherwrittencommunications">
+  <li>
+  <p>Students posting in the Discussions area or sending email to the instructor or to classmates are expected to conform to the norms for civility and respect for ones’ classmates and instructors that are common to all on-campus speech and writing.</p>
+    </li>
+  </a><li><a id="etiquetteinemailandotherwrittencommunications">
+    </a><p><a id="etiquetteinemailandotherwrittencommunications">Students are also expected to conform to the norms of “netiquette”, for example, </a><a href="http://tools.ietf.org/html/rfc1855">RFC 1855: Netiquette Guidelines</a> . In particular:</p>
+    
+    <ul>
+      <li>
+        <p>Emotions are often hard to convey and easy to misunderstand in written text. Smileys and other emoticons can help (but don’t assume that attaching a :-) to an insult will make everything OK with the people reading your post.).</p>
+    
+        <p>DON’T WRITE IN ALL CAPITALS or <strong>in all bold</strong> or, even worse, <strong>IN ALL BOLD CAPITALS</strong>. This is considered to be shouting, and most people don’t like to be shouted at, whether in real life or on-line.</p>
+    
+      </li>
+      <li>
+        <p>“Shooting the messenger” is seldom a good idea. In general, assume that people who take the time to reply to your posts are honestly trying to help. Getting mad at them and “flaming” back is counter-productive if you really want people to help you.</p>
+    
+        <p>Replies to posts will often be short and to the point simply because the responder has limited time. Don’t mistake terseness for rudeness.</p>
+    
+        <p>Many people who post questions and requests for help may have made very basic mistakes. If you omit the details of everything you thought of and checked before making your post, don’t be insulted if someone replies with a very basic suggestion or a link to something that you have already read.</p>
+    
+      </li>
+      <li>
+        <p>Don’t “hijack” existing Discussions (threads) to talk about a topic different from the original poster’s topic. Start your own thread instead.</p>
+    
+        <p>In an ordinary conversation, no one appreciates the person who barges in and insists on changing the topic of discussion. And if two groups of people actually insist on trying to simultaneously carry on a discussion on two distinct topics within the same conversation, the result is usually confusing to everyone.</p>
+    
+      </li>
+    </ul>
+  </li>
+</ul><a id="askinggoodquestions"><h1 id="asking-good-questions">3 Asking Good Questions</h1><p>Whether posted in Discussions or sent via email, a question is the <em>beginning</em> of a dialog. A well-prepared question will get you an informative answer quickly. A poorly-prepared one may get you irrelevant answers or may require several rounds of back-and-forth dialog, delaying your eventual answer by many hours or even days.</p>
+    <blockquote>
+  <p>So it’s <em>in your own self-interest</em> to ask your question in a way that gets you the answer you need as quickly as possible.</p>
+    
+</blockquote><h2 id="identification">3.1 Identification</h2><p><strong>Who are you?</strong> : If you are sending me email, make sure your course  login name or your real name appears somewhere in the message. I  hate getting mail from <code>partyAnimal@hotmail.com</code> saying “Why did I  get such a low grade on question 5?” when I have no idea who this  person is!</p>
+    <p><strong>What course is this?</strong> : Again, if you are sending me a question via  email, please remember to state which course you are asking about. I  teach multiple courses most semesters.</p>
+    <p>For email, please put the course number (CS350) in the subject  line. I configure my email reader to flag such messages for priority  handling, giving you less chance of being lost amid the daily flood  of spam.</p>
+    <p><strong>Use a clear and precise subject header.</strong>: In Discussions, your  subject header helps people decide if your post is worth reading.  It also helps people find prior discussions that may have been relevant  to later posts.</p>
+    <p>In e-mail, the subject line shares much the same purpose. Empty and  short subject lines are also more likely to get tossed by autoamtic  spam filters.</p>
+    </a><a id="youhavetogiveinformationtogetinformation"><h2 id="you-have-to-give-information-to-get-information">3.2 You Have to Give Information to Get Information</h2><p>When you ask a question, you usually want an appropriate answer that will let you get past whatever difficulty you are having. So that answer needs to be relevant to your particular difficulty and tailored to your understanding of the course material.</p>
+    <p>I’m not psychic.</p>
+    <p>If you send me an email consisting of nothing more than “I’m stuck on this assignment.”, there’s really no way I can give you the kind of answer you are hoping for. You need to tell me:</p>
+    <ul>
+  <li>
+  <p>What part of the assignment are you stuck on?</p>
+    </li>
+  <li>
+  <p>What have you tried so far? (Be specific. If you’ve tried lots of  things, tell me about your best attempt so far.)</p>
+    </li>
+  <li>
+  <p>What happened when you tried it?</p>
+    </li>
+</ul><p>If you don’t tell me those things, I’m just going to have to ask for that information, delaying the process of getting you the answer you want.</p>
+    <p>If you have an issue with a webpage, \emphasis{tell me the URL}. If a link is broken, \emphasis{tell me the URL of the page containing the link} and describe the location of the link. Don’t just tell me “the link to assignment 2 is broken”. I probably have a dozen different links to that assignment in different pages.</p>
+    </a><a id="thoushaltnotparaphrase"><h2 id="thou-shalt-not-paraphrase">3.3 Thou Shalt Not Paraphrase</h2><p>There’s nothing more frustrating than getting a question like</p>
+    <p>“When I try to compile my solution to the first assignment, I get  an error message. What’s wrong?”</p>
+    <p>Grrr. What was the (exact) text of the error message? Was this on a Linux or Windows machine? What compiler were you using? What compiler options did you set? What did the code look like that was flagged by the message?</p>
+    <p>No, I’m not kidding. I get messages like this all the time. And it wastes my time as a question answerer to have to prompt for all the necessary information. It also means a significant delay to the student in getting an answer, because we have to go through multiple exchanges of messages before I even understand the question.</p>
+    <p>The single most important thing you can do to speed answers to your questions is to be specific. I’m not psychic. I can only respond to the information you provide to me.</p>
+    <blockquote>
+  <ul>
+    <li><span class="emph">Never, ever paraphrase</span> an error message (“I got a message that  said something about a bad type.”)</li>
+    <li><span class="emph">Never, ever paraphrase</span> a command that you typed in that gave  unexpected results (“I tried lots of different compilation options  but none of them worked.”, or, my personal favorite, “I tried  everything.”)</li>
+    <li><span class="emph">Never, ever paraphrase</span> your source code (“I tried adding a loop,  but it didn’t help.”)</li>
+    <li><span class="emph">Never, ever paraphrase</span> your test data (“My program works perfectly  when I run it.”)</li>
+  </ul>
+</blockquote><p>All of the above are real quotes. And they are not at all rare.</p>
+    <p>The problem with all of these is that they omit the details that would let me diagnose the problem.</p>
+    </a><a id="copyandpasteisyourfriend"><h2 id="copy-and-paste-is-your-friend-">3.4 “Copy and Paste” is Your Friend!</h2><div class="noFloat">&nbsp;</div><div class="sidebar pct50">
+<p>To copy text from PuTTY or from a Linux or OS/X terminal, just left-click and drag your mouse across text to select it. Your selected text is automatically copied to the clipboard, and you can paste it into an e-mail message or Forum post.</p>
+    
+</div><p>And it’s not all that hard to provide those details. Error messages can be copied and pasted into your message. The commands you typed and the responses you received can be copied-and-pasted from your ssh/xterm session into your message. Your source code can be copied-and-pasted or attached to the message.</p>
+    <p>Note that this information is almost always plain text. Unless you <em>really</em> need to show me graphics, please <strong>don’t send me screen shots</strong>. They are often hard to read and often do not allow me to make the fine distinctions I need to tell what is going on. Keep in mind that raster graphics formats (gif, jpg, png, etc.) often look very different when rendered on screens with different resolutions.</p>
+    </a><a id="ifiaskyouaquestionanswerit"><h2 id="if-i-ask-you-a-question-answer-it">3.5 If I Ask You a Question, Answer It</h2><p>I often respond to a student’s question with further questions of my own.</p>
+    <blockquote>
+  <p>Teachers since Socrates have always done this, and students have always been annoyed at it. But who are we to argue with history?</p>
+    
+</blockquote><p>Sometimes I do this to get more info I need, sometimes to guide the student towards an answer I think they should be able to find for themselves.</p>
+    <p>It’s surprising how often students ignore my questions and either never respond at all, respond as if my questions were rhetorical, or, if I have asked 2 or 3 questions, pick the one that’s easiest to answer and ignore the rest.</p>
+    <p>This pretty much guarantees that the dialog will grind to a halt as I wind up repeating myself, asking the same questions as before, and some students go right on ignoring my questions, …</p>
+    </a></div><script>sshowControl0 = { counter: 1,
+             showNumber: 0, max: 1};
+             window.onhashchange = hashHasChanged;</script><div class="navFooter" id="slideshowControl0"><table class="navFooter"><tbody><tr class="slideshowcontrol"><td class="slideshowcontrolLeft"></td><td class="slideshowcontrolMiddle">
+<a class="imgLink" href="https://www.cs.odu.edu/~tkennedy/cs350/latest/Directory/outline/index.html" title="Course home/outline"><img src="./index_files/home.png"></a>
+<a href="mailto:tkennedy@cs.odu.edu?subject=CS350%2C%20Communications"><img src="./index_files/email.png" title="Email to instructor"></a><span style="margin: 0 32px;"></span></td><td class="slideshowcontrolRight"></td></tr></tbody></table></div><div class="copyright"><a id="ifiaskyouaquestionanswerit">© 2015-2021, Old Dominion Univ.</a></div><a id="ifiaskyouaquestionanswerit">
+</a></body></html>

@@ -1,0 +1,292 @@
+
+<!-- saved from url=(0069)https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="./index_files/md-scroll.css" media="screen, projection, print" rel="stylesheet" type="text/css"><link href="./index_files/md-scroll-ext.css" media="screen, projection, print" rel="stylesheet" type="text/css"><meta content="width=device-width, initial-scale=1" name="viewport"><link href="./index_files/googlecode.css" rel="stylesheet"><script src="./index_files/highlight.pack.js.download"> </script><script>hljs.initHighlightingOnLoad();</script><script src="./index_files/md-scroll.js.download" type="text/javascript"> </script><script src="./index_files/md-scroll-ext.js.download" type="text/javascript"> </script><script src="./index_files/rawdeflate.js.download" type="text/javascript"> </script><script src="./index_files/plantuml.js.download" type="text/javascript"> </script><script src="./index_files/mermaid.min.js.download" type="text/javascript"> </script><script type="text/javascript">
+             window.MathJax = {
+               tex2jax: {
+               inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+               processEscapes: true
+             }
+           };
+           </script><script src="./index_files/MathJax.js.download" type="text/javascript"> </script><title>Logging In to Remote Linux Machines</title><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head><body><div id="MathJax_Message" style="display: none;"></div><script>sshowControl0 = { counter: 1,
+             showNumber: 0, max: 1};
+             window.onhashchange = hashHasChanged;</script><div class="navHeader" id="slideshowControlA0"><table class="navHeader"><tbody><tr class="slideshowcontrol"><td class="slideshowcontrolLeft"></td><td class="slideshowcontrolMiddle">
+<a class="imgLink" href="https://www.cs.odu.edu/~zeil/cs252/latest/Directory/outline/index.html" title="Course home/outline"><img src="./index_files/home.png"></a>
+<a href="mailto:zeil@cs.odu.edu?subject=CS252%2C%20Logging%20In%20to%20Remote%20Linux%20Machines"><img src="./index_files/email.png" title="Email to instructor"></a><span style="margin: 0 32px;"></span></td><td class="slideshowcontrolRight"></td></tr></tbody></table></div><div class="mainBody"><div class="titleblock"><h1 class="title">Logging In to Remote Linux Machines</h1><h2 class="author">Steven Zeil</h2><div class="date">Last modified: Jul 26, 2021</div></div><div class="toc">Contents:<div class="toc-h1"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#the-ssh-protocol">1 The SSH Protocol</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#clients-servers">1.1 Clients &amp; Servers</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#login-accounts">1.2 Login Accounts</a></div><div class="toc-h1"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#the-cs-vpn">2 The CS VPN</a></div><div class="toc-h1"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#starting-a-remote-session-on-a-linux-server">3 Starting a Remote Session on a Linux Server…</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#from-a-windows-machine">3.1 … from a Windows Machine</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#from-a-chromebook">3.2 … from a Chromebook</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#from-a-linux-or-macos-machine">3.3 … from a Linux or MacOS Machine</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#the-ssh-command">3.4 The ssh Command</a></div><div class="toc-h1"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#logging-in">4 Logging In</a></div><div class="toc-h1"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#setting-your-terminal-type">5 Setting Your Terminal Type</a></div><div class="toc-h1"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#changing-your-password">6 Changing Your Password</a></div><div class="toc-h1"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#logging-out">7 Logging Out</a></div></div><p>In a <a class="doc" href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/networks/index.html" target="CS252_Public">previous reading</a>, you learned that traffic over networks is organized by <em>protocols</em> and that many protocols are designed to allow <em>client</em> software one one machine to request services from <em>server</em> software on other machines. </p>
+    <p>Now we are going to build on that idea to use your PC to log into and issue commands to remote Linux machines.</p>
+    <a id="thesshprotocol"><h1 id="the-ssh-protocol">1 The SSH Protocol</h1><p>We will be accessing the remote machines via SSH (Secure SHell), an Internet protocol for issuing text-mode commands to remote machines.</p>
+    <p>There is an older text-based protocol for giving commands to Unix called “telnet”. Telnet is still used for a variety of purposes, but has fallen out of favor because it sends everything (including your login name and password) in plain-text format, leaving you vulnerable to someone else on your network eavesdropping via “packet sniffers”.</p>
+    <p>By contrast, ssh encrypts all your communications, so you are safe even if someone is eavesdropping.</p>
+    <p>“<code>SSH</code>” allows a person connected to the Internet to log into other machines on the Internet and to issue commands to those machines.</p>
+    </a><a id="clientsservers"><h2 id="clients-servers">1.1 Clients &amp; Servers</h2><p>Like many network protocols, SSH is based on the idea of <em>servers</em> on a variety of different machines that wait for <em>clients</em> to connect to them and request a service (in this case, an SSH connection).</p>
+    <blockquote>
+  <p>To use ssh, you must </p>
+    
+  <ol>
+    <li>have an <span class="firstterm">ssh client</span> program on the machine where you are seated, and</li>
+    <li>you must know the name (or the IP address) of a machine elsewhere that is running a <span class="firstterm">ssh server</span>, the program that accepts logins and subsequent commands from the client, and</li>
+    <li>you must have <span class="firstterm">credentials</span> (login name and password) allowing you access on that server.</li>
+  </ol>
+</blockquote></a><a id="choosingyoursshserver"><h3 id="choosing-your-ssh-server">1.1.1 Choosing Your SSH Server</h3></a><p><a id="choosingyoursshserver">A list of the available CS Linux servers is </a><a href="https://systems.cs.odu.edu/Unix_and_Linux_Services">here</a>. </p>
+    <p>As of July 2021, the CS Dept. provides a single general purpose Linux server, <code>linux.cs.odu.edu</code>.</p>
+    <p>In the past, the Department has provided multiple servers, and it may do so again in the near future. Watch this page or <a href="https://systems.cs.odu.edu/Remote_Resources">this one</a> for possible changes.</p>
+    <div class="noFloat">&nbsp;</div><div class="sidebar pct30">
+<p>Use the machine name, e.g., <em>linux.cs.odu.edu</em>, rather than the  numeric IP address. Although the IP address is, in a sense, the true  identifier of a machine on the Internet, if a machine that provides  a useful service breaks down or needs to be upgraded, it may be  replaced by a machine that has a different IP address. That IP  address will, however, then be assigned the familiar name that  people have been using to connect to that service, so the  substitution of machines will be invisible to people using the  server name.</p>
+    
+</div><a id="loginaccounts"><h2 id="login-accounts">1.2 Login Accounts</h2></a><p><a id="loginaccounts">You will, of course, only be able to connect to machines where you actually have a login account. If you are a student registered for a CS course at ODU, and have never had a Unix account on the CS Dept system, you will need to </a><a class="doc" href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/unixAccountSetup/index.html" target="CS252_Public">create an account</a>. </p>
+    <p>If you have had an account in the recent past, it should be regenerated for you in any semester when you are registered for a CS course. Otherwise, you will need to contact your instructor or the CS systems staff to get your account.</p>
+    <a id="thecsvpn"><h1 id="the-cs-vpn">2 The CS VPN</h1></a><p><a id="thecsvpn">The CS Department Linux servers are hidden behind a </a><a class="doc" href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/networks/index.html#virtual-private-networks-vpns-" target="CS252_Public">VPN</a>. Before you can connect to those servers, you will need to connect to that VPN.</p>
+    <p>Find the instructions to install and run the VPN on the <a class="doc" href="https://www.cs.odu.edu/~zeil/cs252/latest/Directory/library/index.html" target="CS252_Directory">Library page</a>.</p>
+    <blockquote>
+  <p>Connections to the VPN will time out!</p>
+    
+  <p>You will usually need to bring up the VPN program and reconnect once ot twice a day.</p>
+    
+  <ul>
+    <li>You do this by clicking on the Global Protect icon in the notification area  of the Windows task bar or the macOS menu bar.</li>
+  </ul>
+  <p>If you get messages indicating that a CS server cannot be found on the Internet, check to see if you are still connected to the VPN before reporting problems to the instructor or to the systems staff.</p>
+    
+</blockquote><a id="startingaremotesessiononalinuxserver"><h1 id="starting-a-remote-session-on-a-linux-server">3 Starting a Remote Session on a Linux Server…</h1><p>OK, you’ve selected your server, know your login name and password, and are ready to connect. What you do next depends on the operating system of your local PC and what software you have on there.</p>
+    </a><a id="fromawindowsmachine"><h2 id="from-a-windows-machine">3.1 … from a Windows Machine</h2><p>On a Windows PC, you will need an ssh client program.</p>
+    <p>If you are on your own PC, you can choose the client program to install and run. If you are on a lab PC, at work, or for some other reason using someone else’s machine, you either need to use whatever they have installed or bring your own client program, probably on a USB flash drive.</p>
+    </a><a id="nativeopenssh"><h3 id="native-openssh">3.1.1 Native OpenSSH</h3><p>Windows 10 builds from the Fall of 2018 and later have a native implementation of “OpenSSH”.</p>
+    <p>This is the recommended client for most Windows 10 users.</p>
+    <p>Before you can use this, , it must be activated.</p>
+    <ol>
+  <li>Open <code>Settings</code>.</li>
+  <li>Go to <code>Apps</code>, then <code>Apps and Feature</code>, then <code>Optional Features</code>.</li>
+  <li>Find the entry for <code>OpenSSH Client</code> (<code>Client</code>, not <code>Server</code>!),  click on it, and then click <code>Install</code>.
+    <p>Follow the on-screen instructions to complete the installation.</p>
+    
+  </li>
+</ol></a><p><a id="nativeopenssh">To run this, open a <code>CMD</code> window (type “cmd” into the search bar). Then follow </a><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#the-ssh-command">these instructions</a> to issue the appropriate <code>ssh</code> command.</p>
+    <a id="ifyoucantrunwindows10openssh"><h3 id="if-you-cant-run-windows-10-openssh">3.1.2 If You Can’t Run Windows 10 OpenSSH…</h3><p>…because your Windows PC is too old.</p>
+    <p><code>CygWin</code> is a Unix emulation (technically, POSIX) layer that has been used by many programmers since Windows 95. When installed, CygWin allows you to open a terminal session using a Unix-style command shell, from which you can run many of the basic commands associated with the Unix systems.</p>
+    </a><p><a id="ifyoucantrunwindows10openssh"></a><a class="doc" href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/cygwin.mmd.html" target="CS252_Public">Install CygWin</a>, including the optional <code>openssh</code> package. You will now have a <code>CygWin Terminal</code> entry in your Start menu. Running that will open up a terminal session from which you can issue most of the Linux commands that you will be learning in this course.</p>
+    <p>Open a CygWin Terminal and <a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#the-ssh-command">issue an <code>ssh</code> command</a> to connect to a remote machine.</p>
+    <a id="fromachromebook"><h2 id="from-a-chromebook">3.2 … from a Chromebook</h2></a><p><a id="fromachromebook">First, open up a </a><a class="doc" href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/cli/index.html#chromebook" target="CS252_Public">Linux Terminal</a>.</p>
+    <p>You are now running Linux, so follow the instructions below for launching a remote session from a Linux machine.</p>
+    <p>Follow <a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#the-ssh-command">these instructions</a> to issue the appropriate <code>ssh</code> command.</p>
+    <a id="fromalinuxormacosmachine"><h2 id="from-a-linux-or-macos-machine">3.3 … from a Linux or MacOS Machine</h2><p>All Linux and MacOS machines should include the ssh client program, <code>ssh</code>. </p>
+    </a><p><a id="fromalinuxormacosmachine">First, you will need to </a><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#macos">open a terminal</a> on your machine.</p>
+    <p>Then…</p>
+    <a id="thesshcommand"><h2 id="the-ssh-command">3.4 The ssh Command</h2><p>Within your local session, give the command</p>
+    <p><code>ssh <i>yourLoginName</i>@<i>sshHostName</i></code></p>
+    </a><p><a id="thesshcommand">filling in your CS Unix login name and the name of the ssh server machine you chose </a><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#choosing-your-ssh-server">earlier</a> (including the <code>.cs.odu.edu</code> ending). </p>
+    <p>So, to get a randomly selected Linux server from the CS Dept, you would use</p>
+    <p><code>ssh <i>yourLoginName</i>@linux.cs.odu.edu</code></p>
+    <p>If you prefer to select a specific server instead of accepting the random  selection, modify the <code>ssh</code> command with a <code>-p</code> option as shown <a href="https://systems.cs.odu.edu/Unix_and_Linux_Services">here</a>.</p>
+    <p>The first time you connect to any machine, you will get a rather intimidating warning such as “The authenticity of host … can’t be established” followed by a lot of details that uniquely identify the machine you are connecting to. This is a way ssh tries to protect you against people trying to capture your login info by “spoofing” or impersonating a legitimate machine. In practice, you’re not likely to know whether this info is correct or not, so reply “yes” to proceed with the connection.</p>
+    <p>If you get a similar message later when reconnecting to a machine you have previously used, that might be suspicious or, more likely, it may just mean that the original machine crashed and has been replaced by a different one that was given the same name on the network.</p>
+    <p>You should now be prompted for your password. You are ready to <a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#loggingin">log in</a>.</p>
+    <a id="loggingin"><h1 id="logging-in">4 Logging In</h1><p>If you are prompted for your login name, enter it.</p>
+    <ul>
+  <li>Don’t prepend a “CS" or ”CS/". That’s a Windows-specific convention.</li>
+</ul><p>At the“<code>password:</code>” prompt, enter your password.</p>
+    <ul>
+  <li>Note that as you are typing your password, <strong>nothing</strong> will happen  on your screen. Unix does not echo your password back to you. Most  programs and operating systems will not do that with passwords, as a  basic security precaution against someone snooping your password  from over your shoulder or even electronically.
+    <p>What you may find unusual, however, is that Unix will not even echo back blank characters or *s to show how many characters you have typed. This seems to disturb some people, but it’s a further security precaution. Just knowing how many characters are in your password would be valuable information to someone trying to crack your account.</p>
+    
+  </li>
+</ul></a><p><a id="loggingin">After a few moments, you should receive a command prompt. You are now ready to start issuing commands. For example, the </a><a href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program">“Hello World”</a> of the Unix community might be:</p>
+    <pre><code class="sh hljs ">who am i
+</code></pre><a id="settingyourterminaltype"><h1 id="setting-your-terminal-type">5 Setting Your Terminal Type</h1></a><p><a id="settingyourterminaltype">Remember that Unix evolved in a time when many manufacturers made many different models of </a><a class="doc" href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/whyunix/index.html#terminals" target="CS252_Public">computer terminals</a>, each with its own set of command codes for clearing the screen, moving the cursor to different screen positions, setting bold face, underline and other text characteristics, and so on. A typical Unix installation will be equipped to communicate with any of a few hundred different types of terminals.</p>
+    <p>Now, you’re not using a terminal, but your ssh client program actually works by simulating an “old-fashioned” computer terminal. The authors of your client program chose one or more kinds of terminal that they would simulate. For Unix to manipulate your screen appropriately, it most know what kind of terminal command codes your ssh client program is prepared to accept.</p>
+    <blockquote>
+  <p>Most of the time, the Linux system will recognize the type of terminal that your ssh client is running. If, however, you find that some commands seem to be showing garbled text, in particular if text seems to jump around to odd locations in your window, then read on.</p>
+    
+  <p>If that’s not happening to you, you can skip the rest of this section.</p>
+    
+</blockquote><p>Find out the kind of terminal being emulated by your telnet program. You may need to consult the program documentation or help files for this. You may also be able to deduce this information from the program’s “<code>Options</code>” or “<code>Preferences</code>” menus.</p>
+    <p>Here are some common choices:</p>
+    <table>
+  <thead>
+    <tr>
+      <th>SSH client program </th>
+      <th>TERM type </th>
+      <th>Comments </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PuTTY </td>
+      <td>xterm </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>OpenSSH </td>
+      <td>xterm </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Command-line SSH, basic form, Linux or MacOS </td>
+      <td>xterm or Linux </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Command-line SSH, basic form, CygWin </td>
+      <td>xterm or rxvt </td>
+      <td>Depends on what type of window you type the command in. </td>
+    </tr>
+    <tr>
+      <td>Command-line SSH, <code>xterm</code> variant </td>
+      <td>xterm </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table><p>Look at the messages that you received after logging in. If it includes a line saying something like “<code>Terminal type is</code>…” <em>and</em> the terminal type that it names makes sense for your ssh client program, you’re all set and don’t need to change it. </p>
+    <blockquote>
+  <p>Luckily, most ssh clients these days default to some variation of xterm and Linux more or less expects that as a default.</p>
+    
+  <p>That means that you rarely need to worry about the terminal type. </p>
+    
+  <p>If, however, you find that command output appears to be formatted strangely, with results popping up in random lines or columns or with strange graphics characters appearing in the middle of the output, you may have a clash between the terminal type provided by your ssh client and what Linux thinks it is talking to. In that case, read on…</p>
+    
+</blockquote><p>You can also check the terminal type by giving the command</p>
+    <pre><code class=" hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-variable">$TERM</span>
+</code></pre><p>If the terminal type seems wrong, or you see a message indicating that you are on a “dumb terminal”<a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#2"><sup>2</sup></a><a id="ret-2"> , you need to tell the Unix system what kind of terminal you are <em>really</em> emulating. The command to do so is</a></p><a id="ret-2">
+    <pre><code class=" hljs bash"><span class="hljs-keyword">export</span> TERM=xxxx
+</code></pre><p>where <em>xxxx</em> is the kind of terminal (e.g, <code>export TERM=vt100</code>).</p>
+    <p>Most “dumb” terminals provide for 24 lines of text. Your ssh client may have defaulted to this, but most Unix systems will allow their terminals to provide a larger text area. If you choose to use a larger text area (i.e., resize the window showing your terminal session), your ssh client may take care of notifying the remote machine of the change. If, however, you see evidence that it did not do so (e.g., it only scrolls 24 lines even when you are showing more), you can tell Unix how many lines you are using by giving the command</p>
+    <pre><code class="sh hljs ">stty rows nn
+</code></pre><p>where <em>nn</em> is the number of rows/lines.</p>
+    </a><a id="changingyourpassword"><h1 id="changing-your-password">6 Changing Your Password</h1><p>Whether we like it or not, we need to worry about the security of our computing environment. There are people who would take advantage of this computer system if they had any, or more complete, access to it. This could range from the use of computer resources they have no right to, to the willful destruction and/or appropriation of the information we all have online. In order to maintain the level of security in our computing environment that we need, there are some things we all have to take responsibility for. Even though you may not feel like you personally have much to lose if someone had access to your account or files, you have to realize that as soon as someone gains ANY access to our system, it’s 100 times easier for them to gain access to ALL of it. So when you are lax with your own account, you are endangering the work and research of everyone else working here.</p>
+    <p>Your password is the fundamental element of security not only for your personal account, but for the whole UNIX system that we share. Without an account and password a person has NO access to our system. If someone discovers (or you tell someone) your password, not only will they have access to your personal files, but they will have a much better chance to launch attacks against the security of the entire system.</p>
+    <p>Your account password is the key to accessing and modifying all of your files. If another user discovers your password, he or she can delete all your files, modify important data, read your private correspondence, and send mail out in your name. You can lose much time and effort recovering from such an attack. If you practice the following suggestions, you can minimize the risk.</p>
+    <ol>
+  <li>
+  <p><strong>NEVER</strong> give another user your password. There is no reason to do this. You can change permissions and have groups set up if you need to share access with other individuals. Your account should be yours alone.</p>
+    </li>
+  <li>
+  <p>Never write down your password. Another person can read it from your blotter, calendar, etc. as easily as you can.</p>
+    </li>
+  <li>
+    <p>Never use passwords that can be easily guessed. Personal information about you (birth date, etc.) may be known to the attacker or may be recorded in on-line databases that the attacker has already obtained.</p>
+    
+    <p>Passwords should not be single words (in any language) because on-line dictionaries are widely available for use in spelling checkers. A common approach to cracking passwords is to compile a set of such words and to run a program that tries each one on each account on the machine. Consider inserting punctuation and other “odd” characters into your password to foil such attacks.</p>
+    
+    <ul>
+      <li>Note, however, that so-called L33T substitutions, such as using “3”  in place of “E”, do not improve your security. These are so widely  known that password crackers routinely apply them to their word lists  when trying to guess your password.</li>
+    </ul>
+    <p>A person with local knowledge can also try your spouse’s name, pets’ names, etc. Your account is vulnerable to this type of cracking unless you choose your password carefully.</p>
+    
+  </li>
+  <li>
+  <p>Change your password the very first time you log in, and every few months thereafter. Security problems are often traceable to stale passwords and accounts. These are accounts that have become inactive for one reason or another or the password has not changed for a long time. In our particular environment we have had break-ins via such stale accounts. A password that remains the same for a long time provides an intruder the opportunity to run much more advanced and longer running programs to break such passwords.</p>
+    </li>
+  <li>
+  <p>Vary the system by which you choose a password. For example, don’t repeatedly use combinations like BLUEgreen and REDyellow. If an intruder discovers your pattern, he or she can guess future passwords.</p>
+    </li>
+</ol></a><p><a id="changingyourpassword">To change your password on the CS network, </a><a href="https://vcportal.cs.odu.edu/">log in to the VCPortal</a>, select one of the VCLab machines, &nbsp;and then follow <a href="https://systems.cs.odu.edu/Account_Password">these directions</a>.</p>
+    <a id="loggingout"><h1 id="logging-out">7 Logging Out</h1><p>To leave our Unix systems, type</p>
+    <pre><code class="sh hljs bash"><span class="hljs-keyword">exit</span>
+</code></pre><p>(not <code>logout</code>, as indicated in some books.)</p>
+    <blockquote>
+  <p><strong>Important:</strong> Do not leave your SSH sessions by simply closing the window in which it was running. This may leave you still connected to the remote machine or it may leave programs still running there. Over time, such bad behavior by multiple people will overload the server. </p>
+    
+  <p>Late in the semester, it’s very common to see our servers straining under the accumulated weight of abandoned programs from CS252 students (particularly because we usually have more than 250 students per semester in CS252). This, of course, becomes critical right when many students are frantically trying to complete their assignments in CS252 and other courses.</p>
+    
+  <p>Make it a habit to shut down via the <code>exit</code> command.</p>
+    
+</blockquote><hr></a><p><a id="loggingout"></a><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/loggingin/index.html#ret-1">1</a><a id="1">: A dumb terminal is one that displays lines of text but has no command codes for moving things to specific locations on the screen or doing other basic operations. Many Unix applications, such as text editors, will not work with dumb terminals.</a></p><a id="1">
+    </a></div><script>sshowControl0 = { counter: 1,
+             showNumber: 0, max: 1};
+             window.onhashchange = hashHasChanged;</script><div class="navFooter" id="slideshowControl0"><table class="navFooter"><tbody><tr class="slideshowcontrol"><td class="slideshowcontrolLeft"></td><td class="slideshowcontrolMiddle">
+<a class="imgLink" href="https://www.cs.odu.edu/~zeil/cs252/latest/Directory/outline/index.html" title="Course home/outline"><img src="./index_files/home.png"></a>
+<a href="mailto:zeil@cs.odu.edu?subject=CS252%2C%20Logging%20In%20to%20Remote%20Linux%20Machines"><img src="./index_files/email.png" title="Email to instructor"></a><span style="margin: 0 32px;"></span></td><td class="slideshowcontrolRight"></td></tr></tbody></table></div><div class="copyright"><a id="1">© 2015-2021, Old Dominion Univ.</a></div><a id="1">
+</a></body></html>

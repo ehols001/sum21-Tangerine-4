@@ -1,0 +1,351 @@
+
+<!-- saved from url=(0060)https://www.cs.odu.edu/~zeil/cs252/latest/Public/protection/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="./index_files/md-scroll.css" media="screen, projection, print" rel="stylesheet" type="text/css"><link href="./index_files/md-scroll-ext.css" media="screen, projection, print" rel="stylesheet" type="text/css"><meta content="width=device-width, initial-scale=1" name="viewport"><link href="./index_files/googlecode.css" rel="stylesheet"><script src="./index_files/highlight.pack.js.download"> </script><script>hljs.initHighlightingOnLoad();</script><script src="./index_files/md-scroll.js.download" type="text/javascript"> </script><script src="./index_files/md-scroll-ext.js.download" type="text/javascript"> </script><script src="./index_files/rawdeflate.js.download" type="text/javascript"> </script><script src="./index_files/plantuml.js.download" type="text/javascript"> </script><script src="./index_files/mermaid.min.js.download" type="text/javascript"> </script><script type="text/javascript">
+             window.MathJax = {
+               tex2jax: {
+               inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+               processEscapes: true
+             }
+           };
+           </script><script src="./index_files/MathJax.js.download" type="text/javascript"> </script><title>File Protection</title><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax:focus, body :focus .MathJax {display: inline-table}
+.MathJax.MathJax_FullWidth {text-align: center; display: table-cell!important; width: 10000em!important}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax_LineBox {display: table!important}
+.MathJax_LineBox span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff?V=2.7.2') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf?V=2.7.2') format('opentype')}
+@font-face {font-family: MathJax_Main-bold; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff?V=2.7.2') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf?V=2.7.2') format('opentype')}
+@font-face {font-family: MathJax_Main-italic; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff?V=2.7.2') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf?V=2.7.2') format('opentype')}
+@font-face {font-family: MathJax_Math-italic; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff?V=2.7.2') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf?V=2.7.2') format('opentype')}
+@font-face {font-family: MathJax_Caligraphic; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff?V=2.7.2') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf?V=2.7.2') format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff?V=2.7.2') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf?V=2.7.2') format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff?V=2.7.2') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf?V=2.7.2') format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff?V=2.7.2') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf?V=2.7.2') format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?V=2.7.2') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?V=2.7.2') format('opentype')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head><body><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div><script>sshowControl0 = { counter: 1,
+             showNumber: 0, max: 1};
+             window.onhashchange = hashHasChanged;</script><div class="navHeader" id="slideshowControlA0"><table class="navHeader"><tbody><tr class="slideshowcontrol"><td class="slideshowcontrolLeft"></td><td class="slideshowcontrolMiddle">
+<a class="imgLink" href="https://www.cs.odu.edu/~zeil/cs252/latest/Directory/outline/index.html" title="Course home/outline"><img src="./index_files/home.png"></a>
+<a href="mailto:zeil@cs.odu.edu?subject=CS252%2C%20File%20Protection"><img src="./index_files/email.png" title="Email to instructor"></a><span style="margin: 0 32px;"></span></td><td class="slideshowcontrolRight"></td></tr></tbody></table></div><div class="mainBody"><div class="titleblock"><h1 class="title">File Protection</h1><h2 class="author">Steven Zeil</h2><div class="date">Last modified: Jun 4, 2021</div></div><div class="toc">Contents:<div class="toc-h1"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/protection/#protection-and-permissions">1 Protection and Permissions</a></div><div class="toc-h1"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/protection/#chmod">2 chmod</a></div><div class="toc-h1"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/protection/#beware-the-umask-">3 Beware the umask!</a></div><div class="toc-h1"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/protection/#planning-for-protection">4 Planning for Protection</a></div></div><a id="protectionandpermissions"><h1 id="protection-and-permissions">1 Protection and Permissions</h1><p>Not every file on the system should be readable by everyone. Likewise, some files that everyone needs (such as the executables for commands like <code>cp</code>, <code>mv</code>, etc.) should not be subject to accidental deletion or alteration by ordinary users. This is where file <span class="emph">permissions</span> come into play.</p>
+    <p>Unix allows three forms of access to any file: read, write, and execute. For an ordinary file, if you have read (r) permission, you can use that file as input to any command/program. If you have write (w) permission, you can make changes to that file. If you have execute (x) permission, you can ask the shell to run that file as a program.</p>
+    <p>The owner of a file can decide to give any, all, or none of these permissions to each of three classes of people: </p>
+    <ul>
+  <li>
+  <p>To the owner of the file him/herself</p>
+    </li>
+  <li>
+  <p>To members of a designated “group” established by the systems staff. Groups are generally set up for people who will be working together on a project and need to share files among the group members.</p>
+    </li>
+  <li>
+  <p>To anyone else in the world.</p>
+    </li>
+</ul><p>These three classes are abbreviated “u”, “g”, and “o”, respectively. The “u” is for “<strong>u</strong>ser”, “g” for “<strong>g</strong>roup”, and “o” is for “<strong>o</strong>thers”. Until you actually join a project that needs its own group, you will mainly be concerned with “u” and “o” classes.</p>
+    <p>The <code>ls -l</code> command will show the permissions granted to each class. For example, if you said </p>
+    <pre><code class="sh hljs bash">ls <span class="hljs-operator">-l</span> ~/playing
+</code></pre><p>you might see the response</p>
+    <pre><code class="sh hljs diff"><span class="hljs-deletion">-rwxrwx---  1 johndoe    student   311296 Jul 21 09:17 a.out </span>
+<span class="hljs-deletion">-rw-rw----  1 johndoe    student       82 Jul 21 09:12 hello.c </span>
+<span class="hljs-deletion">-rw-rw----  1 johndoe    student       92 Jul 21 09:13 hello.cpp </span>
+<span class="hljs-deletion">-rw-rw----  1 johndoe    student       85 Jul 20 15:27 hello.wc </span>
+</code></pre><div class="noFloat">&nbsp;</div><div class="sidebar pct40">
+<p>To see what groups you yourself are a member of, give the command </p>
+    
+<pre><code class="sh hljs ">groups
+</code></pre>
+<p>If you are a member of more than one group, you can assign your files to any one of those groups. The Unix command <code>chgrp</code> (“change group”) is used for this purpose.</p>
+    
+</div><p>On the far right, you see the actual file names. In front of that you are shown the date and time on which that file was last modified. In front of the date is the size of the file (in bytes). The two columns near the middle that contain names indicating the owner of the file (in this case, the owner has login name <code>johndoe</code>) and the group to which that file is assigned (in this case, the group <code>student</code>). Some typical groups are “wheel”, “faculty”, “gradstud”, and “student”. “Wheel” has no members, but groups like “student” and “gradstud” have very broad membership, as their names imply.</p>
+    <p>Finally, look at the pattern of hyphens and letters at the far left of the <code>ls</code> output. The first character will be a “d” if the file is a directory, “-” if it is not. Obviously, none of these are directories. The next 3 positions indicate the owner’s (u) permissions. By default, you get read and write permission for your own files, so each file has an “r” and a “w”. <code>a.out</code> is an executable program, so the compiler makes sure that you get execute (x) permission on it. The other files can’t be executed, so they get no “x”. This way the shell will not even try to let you use <code>hello.c</code> or any of the other source code files as a program.</p>
+    <p>The next three character positions indicate the group permissions. In this case, the group permissions are the same as the student owner’s permissions - all members of the <code>student</code> group can read or write these files and can execute the <code>a.out</code> program.</p>
+    <p>The final three character positions indicate the permissions given to the world (others). Note that in this case, people other than the owner or members of the same group cannot read, write, or execute any of these files.</p>
+    <p>Directories also can get the same <code>rwx</code> permissions, though the meaning is slightly different. If you have read permission on a directory, you can see the list of files in the directory via <code>ls</code> or other commands. If you have execute permission on a directory, then you can use that directory as one component of a path (e.g., <code>~yourName/directory-with-x-permission/foo.txt</code>) to get at the files it contains. So, if you have execute permission but not read permission on a directory, you can use those files in the directory whose names you already know, but you cannot look to see what other files are in there. If you have write permission on a directory, you can change the contents of that directory (i.e., you can add or delete files).</p>
+    <h1 id="chmod">2 chmod</h1><p>The <code>chmod</code> command changes the permissions on files. The general pattern is </p>
+    <pre><code class="sh hljs ruby">chmod <i><span class="hljs-class"><span class="hljs-keyword">class</span></span></i><span class="hljs-class">+</span><i><span class="hljs-class"><span class="hljs-title">permissions</span></span></i><span class="hljs-class"> </span><i><span class="hljs-class"><span class="hljs-title">files</span></span></i>
+</code></pre><p>or </p>
+    <pre><code class="sh hljs ruby">chmod <i><span class="hljs-class"><span class="hljs-keyword">class</span></span></i><span class="hljs-class">-</span><i><span class="hljs-class"><span class="hljs-title">permissions</span></span></i><span class="hljs-class"> </span><i><span class="hljs-class"><span class="hljs-title">files</span></span></i>
+</code></pre><p>Use “<code>+</code>” to add a permission, “<code>-</code>” to remove it. For example, <code>chmod o+x a.out</code> gives everyone permission to execute <code>a.out</code>. <code>chmod g-rwx hello.*</code> denies members of your group permission to do anything at all with the “hello” program source code files.</p>
+    <p>You can also add a <code>-R</code> option to <code>chmod</code> to make it “recursive” (i.e., when applied to any directories, it also applies to all files in the directory (and if any of those are directories, to the files inside them, and if…). For example, if I discovered that I really did not want the group to have permission to write or execute my files in <code>~/playing</code>, I could say:</p>
+    <pre><code class="sh hljs perl"><span class="hljs-keyword">chmod</span> -R g-wx ~<span class="hljs-regexp">/playing
+</span></code></pre></a><p><a id="protectionandpermissions">An alternate way of setting and removing permissions is to specify all 9 of the permissions (user, group and world - read write and execute) at once by giving them as a three-digit number. Each digit must be in the range 0-7</a><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/protection/#1"><sup>1</sup></a><a id="ret-1"> and the digits give the permissions for the owner, group and world, in that order. The digits are computed as binary numbers with read permission in the 4’s position, write permission in the 2’s position, and execute permission in the 1’s position. Each bit in this number is 1 if permission is granted and zero if permission is denied. So, for example, if we wanted to give the owner read and write permission but not execute permission, the digit would be computed as:</a></p><a id="ret-1">
+    <p><span class="MathJax_Preview" style="color: inherit; display: none;"></span><div class="MathJax_Display" style="text-align: center;"><span class="MathJax" id="MathJax-Element-1-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;&gt;&lt;mstyle displaystyle=&quot;false&quot; scriptlevel=&quot;0&quot;&gt;&lt;mtext&gt;owner&lt;/mtext&gt;&lt;/mstyle&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;4&lt;/mn&gt;&lt;mo&gt;&amp;#x2217;&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mo&gt;&amp;#x2217;&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;6&lt;/mn&gt;&lt;/math&gt;" role="presentation" style="text-align: center; position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-1" style="width: 13.353em; display: inline-block;"><span style="display: inline-block; position: relative; width: 12.928em; height: 0px; font-size: 103%;"><span style="position: absolute; clip: rect(1.277em, 1012.87em, 2.37em, -999.997em); top: -2.121em; left: 0em;"><span class="mrow" id="MathJax-Span-2"><span class="mstyle" id="MathJax-Span-3"><span class="mrow" id="MathJax-Span-4"><span class="mtext" id="MathJax-Span-5" style="font-family: MathJax_Main;">owner</span></span></span><span class="mo" id="MathJax-Span-6" style="font-family: MathJax_Main; padding-left: 0.306em;">=</span><span class="mn" id="MathJax-Span-7" style="font-family: MathJax_Main; padding-left: 0.306em;">4</span><span class="mo" id="MathJax-Span-8" style="font-family: MathJax_Main; padding-left: 0.246em;">∗</span><span class="mn" id="MathJax-Span-9" style="font-family: MathJax_Main; padding-left: 0.246em;">1</span><span class="mo" id="MathJax-Span-10" style="font-family: MathJax_Main; padding-left: 0.246em;">+</span><span class="mn" id="MathJax-Span-11" style="font-family: MathJax_Main; padding-left: 0.246em;">2</span><span class="mo" id="MathJax-Span-12" style="font-family: MathJax_Main; padding-left: 0.246em;">∗</span><span class="mn" id="MathJax-Span-13" style="font-family: MathJax_Main; padding-left: 0.246em;">1</span><span class="mo" id="MathJax-Span-14" style="font-family: MathJax_Main; padding-left: 0.246em;">+</span><span class="mn" id="MathJax-Span-15" style="font-family: MathJax_Main; padding-left: 0.246em;">0</span><span class="mo" id="MathJax-Span-16" style="font-family: MathJax_Main; padding-left: 0.306em;">=</span><span class="mn" id="MathJax-Span-17" style="font-family: MathJax_Main; padding-left: 0.306em;">6</span></span><span style="display: inline-block; width: 0px; height: 2.127em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.122em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mstyle displaystyle="false" scriptlevel="0"><mtext>owner</mtext></mstyle><mo>=</mo><mn>4</mn><mo>∗</mo><mn>1</mn><mo>+</mo><mn>2</mn><mo>∗</mo><mn>1</mn><mo>+</mo><mn>0</mn><mo>=</mo><mn>6</mn></math></span></span></div><script type="math/tex; mode=display" id="MathJax-Element-1"> \mbox{owner} = 4 * 1 + 2 * 1 + 0 = 6 </script></p>
+    <p>If we wanted to give the group read permission only, the digit would be computed as:</p>
+    <p><span class="MathJax_Preview" style="color: inherit; display: none;"></span><div class="MathJax_Display" style="text-align: center;"><span class="MathJax" id="MathJax-Element-2-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;&gt;&lt;mstyle displaystyle=&quot;false&quot; scriptlevel=&quot;0&quot;&gt;&lt;mtext&gt;group&lt;/mtext&gt;&lt;/mstyle&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;4&lt;/mn&gt;&lt;mo&gt;&amp;#x2217;&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mo&gt;&amp;#x2217;&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;4&lt;/mn&gt;&lt;/math&gt;" role="presentation" style="text-align: center; position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-18" style="width: 13.231em; display: inline-block;"><span style="display: inline-block; position: relative; width: 12.806em; height: 0px; font-size: 103%;"><span style="position: absolute; clip: rect(1.277em, 1012.81em, 2.491em, -999.997em); top: -2.121em; left: 0em;"><span class="mrow" id="MathJax-Span-19"><span class="mstyle" id="MathJax-Span-20"><span class="mrow" id="MathJax-Span-21"><span class="mtext" id="MathJax-Span-22" style="font-family: MathJax_Main;">group</span></span></span><span class="mo" id="MathJax-Span-23" style="font-family: MathJax_Main; padding-left: 0.306em;">=</span><span class="mn" id="MathJax-Span-24" style="font-family: MathJax_Main; padding-left: 0.306em;">4</span><span class="mo" id="MathJax-Span-25" style="font-family: MathJax_Main; padding-left: 0.246em;">∗</span><span class="mn" id="MathJax-Span-26" style="font-family: MathJax_Main; padding-left: 0.246em;">1</span><span class="mo" id="MathJax-Span-27" style="font-family: MathJax_Main; padding-left: 0.246em;">+</span><span class="mn" id="MathJax-Span-28" style="font-family: MathJax_Main; padding-left: 0.246em;">2</span><span class="mo" id="MathJax-Span-29" style="font-family: MathJax_Main; padding-left: 0.246em;">∗</span><span class="mn" id="MathJax-Span-30" style="font-family: MathJax_Main; padding-left: 0.246em;">0</span><span class="mo" id="MathJax-Span-31" style="font-family: MathJax_Main; padding-left: 0.246em;">+</span><span class="mn" id="MathJax-Span-32" style="font-family: MathJax_Main; padding-left: 0.246em;">0</span><span class="mo" id="MathJax-Span-33" style="font-family: MathJax_Main; padding-left: 0.306em;">=</span><span class="mn" id="MathJax-Span-34" style="font-family: MathJax_Main; padding-left: 0.306em;">4</span></span><span style="display: inline-block; width: 0px; height: 2.127em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.247em; border-left: 0px solid; width: 0px; height: 1.066em;"></span></span></nobr><span class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mstyle displaystyle="false" scriptlevel="0"><mtext>group</mtext></mstyle><mo>=</mo><mn>4</mn><mo>∗</mo><mn>1</mn><mo>+</mo><mn>2</mn><mo>∗</mo><mn>0</mn><mo>+</mo><mn>0</mn><mo>=</mo><mn>4</mn></math></span></span></div><script type="math/tex; mode=display" id="MathJax-Element-2"> \mbox{group} = 4 * 1 + 2 * 0 + 0 = 4 </script></p>
+    <p>and if we wanted to give no permissions at all to the world,</p>
+    <p><span class="MathJax_Preview" style="color: inherit; display: none;"></span><div class="MathJax_Display" style="text-align: center;"><span class="MathJax" id="MathJax-Element-3-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;&gt;&lt;mstyle displaystyle=&quot;false&quot; scriptlevel=&quot;0&quot;&gt;&lt;mtext&gt;world&lt;/mtext&gt;&lt;/mstyle&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;4&lt;/mn&gt;&lt;mo&gt;&amp;#x2217;&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mo&gt;&amp;#x2217;&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;/math&gt;" role="presentation" style="text-align: center; position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-35" style="width: 13.171em; display: inline-block;"><span style="display: inline-block; position: relative; width: 12.746em; height: 0px; font-size: 103%;"><span style="position: absolute; clip: rect(1.277em, 1012.68em, 2.37em, -999.997em); top: -2.121em; left: 0em;"><span class="mrow" id="MathJax-Span-36"><span class="mstyle" id="MathJax-Span-37"><span class="mrow" id="MathJax-Span-38"><span class="mtext" id="MathJax-Span-39" style="font-family: MathJax_Main;">world</span></span></span><span class="mo" id="MathJax-Span-40" style="font-family: MathJax_Main; padding-left: 0.306em;">=</span><span class="mn" id="MathJax-Span-41" style="font-family: MathJax_Main; padding-left: 0.306em;">4</span><span class="mo" id="MathJax-Span-42" style="font-family: MathJax_Main; padding-left: 0.246em;">∗</span><span class="mn" id="MathJax-Span-43" style="font-family: MathJax_Main; padding-left: 0.246em;">0</span><span class="mo" id="MathJax-Span-44" style="font-family: MathJax_Main; padding-left: 0.246em;">+</span><span class="mn" id="MathJax-Span-45" style="font-family: MathJax_Main; padding-left: 0.246em;">2</span><span class="mo" id="MathJax-Span-46" style="font-family: MathJax_Main; padding-left: 0.246em;">∗</span><span class="mn" id="MathJax-Span-47" style="font-family: MathJax_Main; padding-left: 0.246em;">0</span><span class="mo" id="MathJax-Span-48" style="font-family: MathJax_Main; padding-left: 0.246em;">+</span><span class="mn" id="MathJax-Span-49" style="font-family: MathJax_Main; padding-left: 0.246em;">0</span><span class="mo" id="MathJax-Span-50" style="font-family: MathJax_Main; padding-left: 0.306em;">=</span><span class="mn" id="MathJax-Span-51" style="font-family: MathJax_Main; padding-left: 0.306em;">0</span></span><span style="display: inline-block; width: 0px; height: 2.127em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.122em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mstyle displaystyle="false" scriptlevel="0"><mtext>world</mtext></mstyle><mo>=</mo><mn>4</mn><mo>∗</mo><mn>0</mn><mo>+</mo><mn>2</mn><mo>∗</mo><mn>0</mn><mo>+</mo><mn>0</mn><mo>=</mo><mn>0</mn></math></span></span></div><script type="math/tex; mode=display" id="MathJax-Element-3"> \mbox{world} = 4 * 0 + 2 * 0 + 0 = 0 </script></p>
+    <p>We would then set the permissions for the file by giving these three digits in the <code>chmod</code> command:</p>
+    <pre><code class="sh hljs perl"><span class="hljs-keyword">chmod</span> <span class="hljs-number">640</span> hello.c
+</code></pre></a><blockquote class="example" id="example1"><a id="ret-1"><div class="exampleTitle">Example 1: Try This: Setting Permissions on a File</div>
+<p>Start by copying a file into your directory to work with.</p>
+    
+<pre><code class=" hljs bash"><span class="hljs-built_in">cd</span> ~/playing
+cp ~cs252/Assignments/textFiles/hello.sh .
+ls <span class="hljs-operator">-l</span> hello.sh
+cat hello.sh
+./hello.sh
+<span class="hljs-built_in">echo</span> <span class="hljs-string">'#comment'</span> &gt;&gt; hello.sh
+cat hello.sh
+</code></pre>
+<p>All of the above commands should succeed.</p>
+    
+</a><ul><a id="ret-1">
+  </a><li><a id="ret-1">The <code>&gt;&gt;</code> part of the <code>echo</code> command above uses a technique called  redirection that we will study  </a><a class="doc" href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/redirection/index.html" target="CS252_Public">later</a>. In this case, it allows us to add lines to the end  of a text file.
+    <p>You should see the change we have made in the second <code>cat</code> output. </p>
+    
+  </li>
+</ul>
+<p>Now let’s take away all permissions and try those things again.</p>
+    
+<pre><code class=" hljs bash">chmod <span class="hljs-number">000</span> hello.sh
+ls <span class="hljs-operator">-l</span> hello.sh
+cat hello.sh
+./hello.sh
+<span class="hljs-built_in">echo</span> <span class="hljs-string">'#comment'</span> &gt;&gt; hello.sh
+</code></pre>
+<p>With these permission settings, we can’t do anything at all with that file.</p>
+    
+<p>Let’s add read permission:</p>
+    
+<pre><code class=" hljs bash">chmod <span class="hljs-number">400</span> hello.sh
+ls <span class="hljs-operator">-l</span> hello.sh
+cat hello.sh
+./hello.sh
+<span class="hljs-built_in">echo</span> <span class="hljs-string">'#comment'</span> &gt;&gt; hello.sh
+cat hello.sh
+</code></pre>
+<p>Let’s add execute permission:</p>
+    
+<pre><code class=" hljs bash">chmod <span class="hljs-number">700</span> hello.sh
+ls <span class="hljs-operator">-l</span> hello.sh
+cat hello.sh
+./hello.sh
+<span class="hljs-built_in">echo</span> <span class="hljs-string">'#comment'</span> &gt;&gt; hello.sh
+cat hello.sh
+</code></pre>
+<ul>
+  <li>We could also have written the <code>chmod</code> command as <code>chmod 700 hello.sh</code></li>
+</ul>
+<p>It’s more difficult to demonstrate the effect of group and world permissions, because they affect how <em>other people</em> see your files, but we can do it using a file that does not belong to us.</p>
+    
+<pre><code class=" hljs bash">ls <span class="hljs-operator">-l</span> ~cs252/Assignments/textFiles/text1.txt
+ls <span class="hljs-operator">-l</span> ~cs252/Assignments/textFiles/text2.txt
+</code></pre>
+<p>Because you are neither the owner of those files, nor in the group they belong to, the “world” permissions control your attempts to use those files. See if you can predict, from the permissions you see, what the results of the next two commands will be before you execute them:</p>
+    
+<pre><code class=" hljs ">cat ~cs252/Assignments/textFiles/text1.txt
+cat ~cs252/Assignments/textFiles/text2.txt
+</code></pre>
+</blockquote><blockquote class="example" id="example2"><div class="exampleTitle">Example 2: Try This: Setting Permissions on a Directory</div>
+<pre><code class=" hljs bash"><span class="hljs-built_in">cd</span> ~
+chmod <span class="hljs-number">700</span> ~/playing/hello.sh
+ls -ld playing
+</code></pre>
+<p>The <code>d</code> option for ls asks it to show us the info on the directory itself instead of, as it sould usually do, the info on the files inside the directory. </p>
+    
+<p>Right now, everything should be good:</p>
+    
+<pre><code class=" hljs ">ls playing
+cat playing/hello.sh
+cp playing/hello.sh playing/hello1.sh
+</code></pre>
+<p>Let’s take away our permissions <em>on the directory</em>.</p>
+    
+<pre><code class=" hljs bash">chmod <span class="hljs-number">000</span> playing
+ls <span class="hljs-operator">-d</span> playing
+</code></pre>
+<p>Take note of which commands work and which ones don’t.</p>
+    
+<pre><code class=" hljs ">ls playing
+cat playing/hello.sh
+cp playing/hello.sh playing/hello1.sh
+</code></pre>
+<p>Now, let’s give ourselves read permission on the directory:</p>
+    
+<pre><code class=" hljs bash">chmod <span class="hljs-number">400</span> playing
+ls <span class="hljs-operator">-d</span> playing
+ls playing
+cat playing/hello.sh
+cp playing/hello.sh playing/hello1.sh
+</code></pre>
+<p>Now, let’s change that to execute permission:</p>
+    
+<pre><code class=" hljs bash">chmod <span class="hljs-number">100</span> playing
+ls <span class="hljs-operator">-d</span> playing
+ls playing
+cat playing/hello.sh
+cp playing/hello.sh playing/hello1.sh
+</code></pre>
+<p>Finally, let’s give ourselves read, write, and execute permission:</p>
+    
+<pre><code class=" hljs bash">chmod <span class="hljs-number">700</span> playing
+ls <span class="hljs-operator">-d</span> playing
+ls playing
+cat playing/hello.sh
+cp playing/hello.sh playing/hello1.sh
+ls playing
+</code></pre>
+</blockquote><a id="bewaretheumask"><h1 id="beware-the-umask-">3 Beware the umask!</h1></a><a id="umask"><p>Suppose you never use the <code>chmod</code> command. What would be the protection levels on any files you created?</p>
+    <p>The answer depends upon the value of <code>umask</code>. Look in your <code>~/.bashrc</code> file for a command by that name, and note the number that follows it. If you don’t have one, just give the command</p>
+    <pre><code class="sh hljs perl"><span class="hljs-keyword">umask</span>
+</code></pre><p>and note the number that it prints.</p>
+    <p>The umask number is a 3 digit (base 8) number, similar to the numeric form of the permissions in the <code>chmod</code> command. The first digit describes the default permissions for the owner (you), the second digit describes the default permissions for the group, and the final digit describes the default permissions for others. Each of these three numbers is, in turn, formed as a 3-digit binary number where the first digit is the read permission, the second is the write permission, and the third digit is the execute permission.</p>
+    <p>Unlike the <code>chmod</code> command, however, in each binary digit of the umask, a 0 indicates that the permission is given, a 1 that the permission is denied.</p>
+    <p>So if my umask is <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-4-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mn&gt;027&lt;/mn&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-52" style="width: 1.581em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.52em; height: 0px; font-size: 103%;"><span style="position: absolute; clip: rect(1.277em, 1001.52em, 2.309em, -999.997em); top: -2.121em; left: 0em;"><span class="mrow" id="MathJax-Span-53"><span class="mn" id="MathJax-Span-54" style="font-family: MathJax_Main;">027</span></span><span style="display: inline-block; width: 0px; height: 2.127em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.878em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>027</mn></math></span></span><script type="math/tex" id="MathJax-Element-4">027</script>, that means that </p>
+    <ul>
+  <li>
+  <p>I (the owner) have <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-5-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mn&gt;000&lt;/mn&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-55" style="width: 1.581em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.52em; height: 0px; font-size: 103%;"><span style="position: absolute; clip: rect(1.277em, 1001.46em, 2.309em, -999.997em); top: -2.121em; left: 0em;"><span class="mrow" id="MathJax-Span-56"><span class="mn" id="MathJax-Span-57" style="font-family: MathJax_Main;">000</span></span><span style="display: inline-block; width: 0px; height: 2.127em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.816em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>000</mn></math></span></span><script type="math/tex" id="MathJax-Element-5">000</script> — permission to read, write and execute my own files.</p>
+    </li>
+  <li>
+  <p>The group to which a file belongs has <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-6-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mn&gt;010&lt;/mn&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-58" style="width: 1.581em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.52em; height: 0px; font-size: 103%;"><span style="position: absolute; clip: rect(1.277em, 1001.46em, 2.309em, -999.997em); top: -2.121em; left: 0em;"><span class="mrow" id="MathJax-Span-59"><span class="mn" id="MathJax-Span-60" style="font-family: MathJax_Main;">010</span></span><span style="display: inline-block; width: 0px; height: 2.127em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.816em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>010</mn></math></span></span><script type="math/tex" id="MathJax-Element-6">010</script>, permission to read, no permission to write, and permission to execute that file.</p>
+    </li>
+  <li>
+  <p>The rest of the world has <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-7-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mn&gt;111&lt;/mn&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-61" style="width: 1.581em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.52em; height: 0px; font-size: 103%;"><span style="position: absolute; clip: rect(1.277em, 1001.46em, 2.309em, -999.997em); top: -2.121em; left: 0em;"><span class="mrow" id="MathJax-Span-62"><span class="mn" id="MathJax-Span-63" style="font-family: MathJax_Main;">111</span></span><span style="display: inline-block; width: 0px; height: 2.127em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.816em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>111</mn></math></span></span><script type="math/tex" id="MathJax-Element-7">111</script>, no permission to read, write or execute.</p>
+    </li>
+</ul><p>Of course, these permissions can be changed for individual files via the <code>chmod</code> command. The umask only sets the default permissions for cases where you don’t say <code>chmod</code>.</p>
+    <p>If you want to change your default permissions, you do it via the <code>umask</code> command by giving it the appropriate 3-digit octal number for the new default permissions. Some common forms are:</p>
+    <dl>
+  <dt><code>umask 022</code></dt>
+  <dd>Owner has all permissions. Everyone else can read and execute, but not write.</dd>
+</dl><dl>
+  <dt><code>umask 077</code></dt>
+  <dd>Owner has all permissions. Everyone else is prohibited from reading, writing, or executing.</dd>
+</dl></a><p><a id="umask">Since the point of the <code>umask</code> command is to establish the default behavior for all your files, this command is normally placed within your </a><a class="doc" href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/custom/index.html" target="CS252_Public"><code>.bashrc</code> file</a>.</p>
+    <a id="planningforprotection"><h1 id="planning-for-protection">4 Planning for Protection</h1><p>At the very least, you will want to make sure that files that you are preparing to turn in for class assignments are protected from prying eyes. You need to do a little bit of planning to prepare for this. There are two plausible approaches: </p>
+    <ul>
+  <li>
+    <p>Use a stringent enough umask (e.g., <code>umask 077</code>) so that everything is protected by default.</p>
+    
+    <ul>
+      <li>
+      <p>The only disadvantage is that files that you <span class="emph">want</span> to share (e.g., the files that make up your personal Web page) must be explicitly made world-readable (<code>chmod go+r <i>files</i></code>).</p>
+    </li>
+    </ul>
+  </li>
+  <li>
+  <p>Use a more relaxed umask (e.g., <code>umask 022</code>) so that your files are readable by default, but establish certain directories in which you carry out all your private work and protect those directories so that no one can access the files within them. For example, you might do </p>
+    </li>
+</ul><pre><code class="sh hljs perl">cd ~
+<span class="hljs-keyword">mkdir</span> Assignments
+<span class="hljs-keyword">chmod</span> go-rwx Assignments
+</code></pre><p>Now you can put anything you want inside <code>~/Assignments</code>, including subdirectories for specific courses, specific projects, etc. Even if the files inside <code>~/Assignments</code> are themselves unprotected, other people will be unable to get into <code>~/Assignments</code> to get at those files. </p>
+    <ul>
+  <li>The one disadvantage to this approach is that it calls for discipline on your part. If you forget, and place your private files in another directory outside of <code>~/Assignments</code>, then the relaxed umask means that those files will be readable by everyone!</li>
+</ul><hr></a><p><a id="planningforprotection"></a><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/protection/#ret-1">1</a><a id="1">: Technically, we are giving a 3-digit Octal (base 8) number.</a></p><a id="1">
+    </a></div><script>sshowControl0 = { counter: 1,
+             showNumber: 0, max: 1};
+             window.onhashchange = hashHasChanged;</script><div class="navFooter" id="slideshowControl0"><table class="navFooter"><tbody><tr class="slideshowcontrol"><td class="slideshowcontrolLeft"></td><td class="slideshowcontrolMiddle">
+<a class="imgLink" href="https://www.cs.odu.edu/~zeil/cs252/latest/Directory/outline/index.html" title="Course home/outline"><img src="./index_files/home.png"></a>
+<a href="mailto:zeil@cs.odu.edu?subject=CS252%2C%20File%20Protection"><img src="./index_files/email.png" title="Email to instructor"></a><span style="margin: 0 32px;"></span></td><td class="slideshowcontrolRight"></td></tr></tbody></table></div><div class="copyright"><a id="1">© 2015-2021, Old Dominion Univ.</a></div><a id="1">
+</a><div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: MathJax_Main, sans-serif;"></div></div></body></html>
