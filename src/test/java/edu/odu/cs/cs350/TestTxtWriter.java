@@ -22,8 +22,8 @@ public class TestTxtWriter
 		website2 = new Website();
 		htmldoc = new HTMLDocument();
 		htmldoc2 = new HTMLDocument();
-		image = new FileResource(10, 10, "image", "/local/image.jpeg");
-		image2 = new FileResource(20, 10, "image", "/test/image.png");
+		image = new FileResource(10, 10, "image", "/local/image.jpeg", "name");
+		image2 = new FileResource(20, 10, "image", "/test/image.png", "name");
 		
 		htmldoc.setLocalPath("/enter/night/");
 		htmldoc2.setLocalPath("/exit/light/");

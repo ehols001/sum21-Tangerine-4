@@ -1,10 +1,11 @@
 package edu.odu.cs.cs350;
 
 public class FileResource{
-	private double fileSize;
+	private long fileSize;
 	private int numPages;
 	private String fileType;
 	private String localPath;
+	private String fileName;
   
 	
 	/**
@@ -16,6 +17,7 @@ public class FileResource{
 		this.numPages = 0;
 		this.fileType = "";
 		this.localPath = "";
+		this.fileName = "";
 	}
 
 	/**
@@ -24,11 +26,20 @@ public class FileResource{
 	 * @param number number of pages file is on
 	 * @param type type of file
 	 */
-	public FileResource(int size, int number, String type, String lfp) {
+	public FileResource(long size, int number, String type, String lfp, String name) {
 		this.fileSize = size;
 		this.numPages = number;
 		this.fileType = type;
 		this.localPath = lfp;
+		this.fileName = name;
+	}
+	
+	public void setName(String name) {
+		this.fileName = name;
+	}
+	
+	public String getName() {
+		return this.fileName;
 	}
 	
 	/**
@@ -76,7 +87,7 @@ public class FileResource{
 	 * Retrieve the file size
 	 * @return size of the file
 	 */
-	public double getSize() {
+	public long getSize() {
 		return this.fileSize;
 	}
 	
