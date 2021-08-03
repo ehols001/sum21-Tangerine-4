@@ -6,6 +6,7 @@ public class FileResource{
 	private String fileType;
 	private String localPath;
 	private String fileName;
+	private String fileRelation;
   
 	
 	/**
@@ -18,6 +19,7 @@ public class FileResource{
 		this.fileType = "";
 		this.localPath = "";
 		this.fileName = "";
+		this.fileRelation = "";
 	}
 
 	/**
@@ -26,12 +28,21 @@ public class FileResource{
 	 * @param number number of pages file is on
 	 * @param type type of file
 	 */
-	public FileResource(double size, int number, String type, String lfp, String name) {
+	public FileResource(double size, int number, String type, String lfp, String name, String relation) {
 		this.fileSize = size;
 		this.numPages = number;
 		this.fileType = type;
 		this.localPath = lfp;
 		this.fileName = name;
+		this.fileRelation = relation;
+	}
+	
+	public void setFileRelation(String relation) {
+		this.fileRelation = relation;
+	}
+	
+	public String getFileRelation() {
+		return this.fileRelation;
 	}
 	
 	public void setName(String name) {
