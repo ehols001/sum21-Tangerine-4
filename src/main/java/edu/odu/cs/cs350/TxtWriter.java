@@ -101,20 +101,24 @@ public class TxtWriter {
 	{	
 		pages.clear();
 		
-		String temp = "";
+		//String temp = "";
 		
 		for(int i = 0; i < website.size(); i++) 
 		{
+			pages.add(website.getWebpage(i).getLocalPath());
+			/*
 			if(temp == "" || temp != website.getWebpage(i).getLocalPath())
 			{
 				pages.add(website.getWebpage(i).getLocalPath());
 				temp = website.getWebpage(i).getLocalPath();
-			}
+			}*/
 		}
 	}
 	
 	/**
 	 * Writes formated Vector<Double> sizes and Vector<String> pages to YYYYMMDD-hhmmss-summary.txt file
+	 * 
+	 * @param website Website to retrieve pages from
 	 */
 	void writeToFile(Website website)
 	{
@@ -131,6 +135,7 @@ public class TxtWriter {
 			for (int i = 0; i < website.size(); i++)
 			{
 				txtWriter.write(twoDP.format(countPageSize(website)) + "M   " + pages.get(i));
+				txtWriter.write(System.getProperty("line.separator"));
 			}
 			
 			txtWriter.close();
