@@ -35,6 +35,7 @@ public class JsonWriter {
 	private JSONArray videoFiles= new JSONArray();
 	private JSONArray audioFiles= new JSONArray();
 	private JSONArray miscFiles= new JSONArray();
+	private JSONArray imagePages= new JSONArray();
 	
 		
 	/**
@@ -52,7 +53,6 @@ public class JsonWriter {
 	 */
 	public void setLocalImageCount(HTMLDocument page) {
 		
-		//
 		localImageCount=0;
 		
 		for(int i=0; i<page.getMedia().size(); i++){
@@ -256,50 +256,60 @@ public class JsonWriter {
 			
 			
 			//Outputs the list of images on the current page
-			/*for(int j=0; j<website.getWebpage(i).getMedia().size(); j++) {
+			for(int j=0; j<website.getWebpage(i).getMedia().size(); j++) {
+				
+				JSONObject imagePage= new JSONObject();
+				
 				if(website.getWebpage(i).getMedia().get(j).getType().equals("External Image") || website.getWebpage(i).getMedia().get(j).getType().equals("Local Image"))
-				{
-					imageList.put(website.getWebpage(i).getMedia().get(j).getName());
+				{	
+					imageList.put(website.getWebpage(i).getMedia().get(j).getLocalPath());
+					imagePages.put(website.getWebpage(i).getLocalPath());
 				}
 			}
-				
 			singlePage.put("Image List", imageList);
-			*/
+			//singlePage.put("Page List", imagePagesList);
 			
 			//Outputs the list of scripts on the current page
-			/*for(int j=0; j<website.getWebpage(i).getScripts().size(); j++) {
-				scriptList.put(website.getWebpage(i).getScripts().get(j).getName());
+			for(int j=0; j<website.getWebpage(i).getScripts().size(); j++) {
+				scriptList.put(website.getWebpage(i).getScripts().get(j).getLocalPath());
 			}
 			
 			singlePage.put("Script List", scriptList);
-			*/
 			
 			//Outputs the list of stylesheets on the current page
-			/*for(int j=0; j<website.getWebpage(i).getStyleSheets().size(); j++) {
-				stylesheetList.put(website.getWebpage(i).getStyleSheets().get(j).getName());
+			for(int j=0; j<website.getWebpage(i).getStyleSheets().size(); j++) {
+				stylesheetList.put(website.getWebpage(i).getStyleSheets().get(j).getLocalPath());
 			}
 			
 			
 			singlePage.put("Stylesheet List", stylesheetList);
-			*/
 			
 			pages.put(singlePage);
 			
-			/*for(int j=0; j<website.getWebpage(i).getMedia().size(); j++) {
+			for(int j=0; j<website.getWebpage(i).getMedia().size(); j++) {
 				
 				JSONObject singleImage = new JSONObject();
 				
 				if(website.getWebpage(i).getMedia().get(j).getType().equals("External Image") || website.getWebpage(i).getMedia().get(j).getType().equals("Local Image"))
 				{
-					JSONArray pageList= new JSONArray();
-					
+					JSONArray singleImagePageList= new JSONArray();
+				
 					singleImage.put("Number of Pages", website.getWebpage(i).getMedia().get(j).getPages());
-					singleImage.put("Page List", pageList);
 					
-					imageFiles.add(singleImage);
+					for(int h=0; h<imagePages.length(); h++) {
+						if(website.getWebpage(i).getMedia().get(j).getLocalPath().equals(imageList.getString(h))){
+							singleImagePageList.put(imagePages.getString(h));
+						}
+					}
+					
+					singleImage.put("Page List", singleImagePageList);
+					
+					imageFiles.put(singleImage);
 				}
+				
+				
+				
 			}
-			*/
 			
 			
 			//Outputs the file size and path of each archive file in the website into the json object
@@ -360,7 +370,7 @@ public class JsonWriter {
 			
 		}
 		
-		//output.put("Images", imageFiles)
+		output.put("Images", imageFiles);
 		output.put("Pages", pages);
 		output.put("Archives", archiveFiles);
 		output.put("Videos", videoFiles);
