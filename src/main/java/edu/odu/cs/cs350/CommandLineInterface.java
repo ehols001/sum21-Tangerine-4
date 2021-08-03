@@ -85,7 +85,7 @@ public class CommandLineInterface {
 				website.addWebpage(nextHtmldoc);
 			}
 			TxtWriter textWriter = new TxtWriter(website);
-			textWriter.writeToFile(website);
+			textWriter.writeToFile();
 			//Call to Json writer
 			//Call to Excel writer
 		}

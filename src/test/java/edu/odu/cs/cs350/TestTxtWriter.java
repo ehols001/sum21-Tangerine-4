@@ -72,6 +72,6 @@ public class TestTxtWriter
 	@Test
 	public void writeToFileTest()
 	{
-		writer2.writeToFile(website);
+		writer2.writeToFile();
 	}
 }

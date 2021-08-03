@@ -87,17 +87,12 @@ public class TxtWriter {
 	{	
 		pages.clear();
 		
-		//String temp = "";
-		
 		for(int i = 0; i < website.size(); i++) 
 		{
-			pages.add(website.getWebpage(i).getLocalPath());
-			/*
-			if(temp == "" || temp != website.getWebpage(i).getLocalPath())
+			if(!pages.contains(website.getWebpage(i).getLocalPath()) /*|| website.getWebpage(i).getLinks().get(i).getType() != "External"*/)
 			{
 				pages.add(website.getWebpage(i).getLocalPath());
-				temp = website.getWebpage(i).getLocalPath();
-			}*/
+			}
 		}
 	}
 	
@@ -106,7 +101,7 @@ public class TxtWriter {
 	 * 
 	 * @param website Website to retrieve pages from
 	 */
-	void writeToFile(Website website)
+	void writeToFile()
 	{
 		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
 		LocalDateTime fileCreationDateTime = LocalDateTime.now();
@@ -118,7 +113,7 @@ public class TxtWriter {
 			
 			DecimalFormat twoDP = new DecimalFormat("#.00");
 			
-			for (int i = 0; i < website.size(); i++)
+			for (int i = 0; i < pages.size(); i++)
 			{
 				txtWriter.write(twoDP.format(sizes.get(i)) + "M   " + pages.get(i));
 				txtWriter.write(System.getProperty("line.separator"));
