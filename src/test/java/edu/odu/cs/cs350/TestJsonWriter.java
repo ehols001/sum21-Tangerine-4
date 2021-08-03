@@ -32,17 +32,17 @@ public class TestJsonWriter {
 	@Before 
 	public void websiteExample() {
 			
-		localImage= new FileResource(10, 1, "Local Image");
-		externalImage= new FileResource(20, 2, "External Image");
-		script= new FileResource(30, 3, "Script");
-		styleSheet= new FileResource(40, 4, "Stylesheet");
+		localImage= new FileResource(10, 1, "Local Image", "/local/image.png");
+		externalImage= new FileResource(20, 2, "External Image", "www.google.com/image.png");
+		script= new FileResource(30, 3, "Script", "/local/script.js");
+		styleSheet= new FileResource(40, 4, "Stylesheet", "/local/style.css");
 		intraPageLink= new Anchor("http://intrapage.com", "Intra-Page");
 		interSiteLink= new Anchor("http://intersite.com", "Inter-Site");
 		externalLink= new Anchor("http://external.com", "External");
-		archive= new FileResource(50, 5, "Archive");
-		video= new FileResource(60, 6, "Video");
-		audio= new FileResource(70, 7, "Audio");
-		misc= new FileResource(80, 8, "Miscellaneous");
+		archive= new FileResource(50, 5, "Archive", "/local/archive.rar");
+		video= new FileResource(60, 6, "Video", "/local/video.mp4");
+		audio= new FileResource(70, 7, "Audio", "/local/audio.wav");
+		misc= new FileResource(80, 8, "Miscellaneous", "local/misc.jar");
 			
 		//HTML Document to use in test cases
 		HTML= new HTMLDocument();
@@ -134,18 +134,18 @@ public class TestJsonWriter {
 			assertEquals(1, jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getInt("Inter-Site Link Count"));
 			assertEquals(1, jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getInt("External Link Count"));
 			
-			//assertEquals("Name", jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getJSONArray("Image List").getString(0));
-			//assertEquals("Name", jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getJSONArray("Images List").getString(1));
+			assertEquals("/local/image.png", jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getJSONArray("Image List").getString(0));
+			assertEquals("www.google.com/image.png", jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getJSONArray("Image List").getString(1));
 			
-			//assertEquals("Name", jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getJSONArray("Script List").getString(0));
+			assertEquals("/local/script.js", jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getJSONArray("Script List").getString(0));
 			
-			//assertEquals("Name", jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getJSONArray("Stylesheet List").get(0));
+			assertEquals("/local/style.css", jsonWriterObject.getJSONObject().getJSONArray("Pages").getJSONObject(0).getJSONArray("Stylesheet List").getString(0));
 			
-			//assertEquals(1, jsonWriterObject.getJSONArray("Images").getJSONObject(0).getInt("Number of Pages");
-			//assertEquals(["/the/example/path"], jsonWriterObject.getJSONObject().getJSONArray(Images).getJSONObject(0).getJSONArray("Page List"));
+			assertEquals(1, jsonWriterObject.getJSONObject().getJSONArray("Images").getJSONObject(0).getInt("Number of Pages"));
+			assertEquals("/the/example/path", jsonWriterObject.getJSONObject().getJSONArray("Images").getJSONObject(0).getJSONArray("Page List").getString(0));
 			
-			//assertEquals(2, jsonWriterObject.getJSONArray("Images").getJSONObject(1).getInt("Number of Pages");
-			//assertEquals(["/the/example/path"], jsonWriterObject.getJSONObject().getJSONArray(Images).getJSONObject(1).getJSONArray("Page List"));
+			assertEquals(2, jsonWriterObject.getJSONObject().getJSONArray("Images").getJSONObject(1).getInt("Number of Pages"));
+			assertEquals("/the/example/path", jsonWriterObject.getJSONObject().getJSONArray("Images").getJSONObject(1).getJSONArray("Page List").getString(0));
 		
 			assertEquals(50 , jsonWriterObject.getJSONObject().getJSONArray("Archives").getJSONObject(0).getInt("File Size"));
 			assertEquals(60 , jsonWriterObject.getJSONObject().getJSONArray("Videos").getJSONObject(0).getInt("File Size"));
