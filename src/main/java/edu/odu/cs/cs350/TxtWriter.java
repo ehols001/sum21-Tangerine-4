@@ -87,22 +87,26 @@ public class TxtWriter {
 	{	
 		pages.clear();
 		
-		String temp = "";
+		//String temp = "";
 		
 		for(int i = 0; i < website.size(); i++) 
 		{
+			pages.add(website.getWebpage(i).getLocalPath());
+			/*
 			if(temp == "" || temp != website.getWebpage(i).getLocalPath())
 			{
 				pages.add(website.getWebpage(i).getLocalPath());
 				temp = website.getWebpage(i).getLocalPath();
-			}
+			}*/
 		}
 	}
 	
 	/**
 	 * Writes formated Vector<Double> sizes and Vector<String> pages to YYYYMMDD-hhmmss-summary.txt file
+	 * 
+	 * @param website Website to retrieve pages from
 	 */
-	void writeToFile()
+	void writeToFile(Website website)
 	{
 		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
 		LocalDateTime fileCreationDateTime = LocalDateTime.now();
@@ -114,9 +118,10 @@ public class TxtWriter {
 			
 			DecimalFormat twoDP = new DecimalFormat("#.00");
 			
-			for (int i = 0; i < sizes.size(); i++)
+			for (int i = 0; i < website.size(); i++)
 			{
 				txtWriter.write(twoDP.format(sizes.get(i)) + "M   " + pages.get(i));
+				System.getProperty("line.separator");
 			}
 			
 			txtWriter.close();
