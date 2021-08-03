@@ -32,17 +32,17 @@ public class TestJsonWriter {
 	@Before 
 	public void websiteExample() {
 			
-		localImage= new FileResource(10, 1, "Local Image", "/local/image.png", "name");
-		externalImage= new FileResource(20, 2, "External Image", "www.google.com/image.png", "name");
-		script= new FileResource(30, 3, "Script", "/local/script.js", "name");
-		styleSheet= new FileResource(40, 4, "Stylesheet", "/local/style.css", "name");
+		localImage= new FileResource(10, 1, "Local Image", "/local/image.png", "name", "internal");
+		externalImage= new FileResource(20, 2, "External Image", "www.google.com/image.png", "name", "internal");
+		script= new FileResource(30, 3, "Script", "/local/script.js", "name", "internal");
+		styleSheet= new FileResource(40, 4, "Stylesheet", "/local/style.css", "name", "internal");
 		intraPageLink= new Anchor("http://intrapage.com", "Intra-Page");
 		interSiteLink= new Anchor("http://intersite.com", "Inter-Site");
 		externalLink= new Anchor("http://external.com", "External");
-		archive= new FileResource(50, 5, "Archive", "/local/archive.rar", "name");
-		video= new FileResource(60, 6, "Video", "/local/video.mp4", "name");
-		audio= new FileResource(70, 7, "Audio", "/local/audio.wav", "name");
-		misc= new FileResource(80, 8, "Miscellaneous", "local/misc.jar", "name");
+		archive= new FileResource(50, 5, "Archive", "/local/archive.rar", "name", "internal");
+		video= new FileResource(60, 6, "Video", "/local/video.mp4", "name", "internal");
+		audio= new FileResource(70, 7, "Audio", "/local/audio.wav", "name", "internal");
+		misc= new FileResource(80, 8, "Miscellaneous", "local/misc.jar", "name", "internal");
 			
 		//HTML Document to use in test cases
 		HTML= new HTMLDocument();

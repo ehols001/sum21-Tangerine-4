@@ -25,7 +25,7 @@ public class WebsiteParser {
 			File content = new File(fullPath);
 			Document doc = Jsoup.parse(content, "UTF-8");
 			extractLinks(doc, htmldoc);
-			//extractMedia(doc, htmldoc);
+			extractMedia(doc, htmldoc);
 			//extractScripts(doc, htmldoc);
 			//extractStyleSheets(doc, htmldoc);
 			//extractMisc(doc, htmldoc);
@@ -89,19 +89,15 @@ public class WebsiteParser {
 		
 		for(Element src : media) //for each src in the media list
 		{
-			if (src.normalName().equals("img")) {
-				
-			/**
-			 * This should return the abs path of the media file but it returns ""
-			 */
-			//String url = src.attr("abs:src"); //get the full path of the media src
-			
-			String url = src.baseUri(); //this is not ideal either
-			
-			//Add URL handling class stuff here
+//			if (src.normalName().equals("img")) {			
+
+			String localPath = src.attr("src");
+			localPath = localPath.replaceFirst("./", "");
+			String fullPath = Website.getLocalRoot() + localPath;
 			
 			String imageType = new String(src.normalName());
-			File file = new File(src.attr("src"));
+			//File file = new File(src.attr("src"));
+			File file = new File(fullPath);
 			try {
 				imageType = Files.probeContentType(file.toPath());
 			} catch (IOException e) {
@@ -109,19 +105,22 @@ public class WebsiteParser {
 				e.printStackTrace();
 			}
 			
+			String strippedRoot = UrlHandler.stripProtocol(Website.getRootUrl());
+			//String strippedUrl = UrlHandler.stripProtocol(fullPath);
+			//String convertedUrl = UrlHandler.urlToLocal(strippedUrl, strippedRoot);
+			String relation = new String("");
+			if(fullPath.contains(strippedRoot)) //if url domain matches website domain, it's internal
+				relation = "internal";
+			else if (!(fullPath.contains(strippedRoot)))
+				relation = "external";
 			
-//			if(url.contains(websiteDomain)) //if url domain matches website domain, it's internal and added to media
-//			{
-					//String convertedURL = stripUrl(url);
-					long size = (file.length() / 1048576); //convert Byte to MiB
-					double fileSize = (double) size;
-					String lfp = src.attr("src");
-					String name = file.getName();
-					//numPages??
-					FileResource newMedia = new FileResource(fileSize, 0, imageType, lfp, name);
-					htmldoc.setMedia(newMedia);
+			long size = file.length();
+			double fileSize = (double) size;
+			String lfp = src.attr("src");
+			String name = file.getName();
+			FileResource newMedia = new FileResource(fileSize, 0, imageType, lfp, name, relation);
+			htmldoc.setMedia(newMedia);
 //			}
-			}
 		}
 	}
 	
