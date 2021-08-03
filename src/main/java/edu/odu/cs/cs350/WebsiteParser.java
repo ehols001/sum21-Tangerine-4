@@ -89,38 +89,54 @@ public class WebsiteParser {
 		
 		for(Element src : media) //for each src in the media list
 		{
-//			if (src.normalName().equals("img")) {			
+			
 
 			String localPath = src.attr("src");
 			localPath = localPath.replaceFirst("./", "");
+			if (localPath.contains(".download"))
+				localPath = localPath.replace(".download", "");
 			String fullPath = Website.getLocalRoot() + localPath;
-			
-			String imageType = new String(src.normalName());
-			//File file = new File(src.attr("src"));
-			File file = new File(fullPath);
-			try {
-				imageType = Files.probeContentType(file.toPath());
-			} catch (IOException e) {
-				System.out.print("File type not detected");
-				e.printStackTrace();
+			//String rootURL = new String(UrlHandler.stripProtocol(Website.getRootUrl()));
+			String rootURL = src.baseUri();
+			if (rootURL.contains("index.html"))
+				rootURL = rootURL.replace("index.html", "");
+			rootURL = rootURL + localPath;
+			if (rootURL.contains(localPath)) {
+				
+				String fileType = new String(src.normalName());
+				//File file = new File(src.attr("src"));
+				File file = new File(fullPath);
+				try {
+					fileType = Files.probeContentType(file.toPath());
+				} catch (IOException e) {
+					System.out.print("File type not detected");
+					e.printStackTrace();
+				}
+				
+				String strippedRoot = UrlHandler.stripProtocol(Website.getRootUrl());
+				//String strippedUrl = UrlHandler.stripProtocol(fullPath);
+				//String convertedUrl = UrlHandler.urlToLocal(strippedUrl, strippedRoot);
+				String relation = new String("internal");
+//				if(fullPath.contains(strippedRoot)) //if url domain matches website domain, it's internal
+//					relation = "internal";
+//				else if (!(fullPath.contains(strippedRoot)))
+//					relation = "external";
+				
+				long size = file.length();
+				double fileSize = (double) size;
+				String name = file.getName();
+				FileResource newMedia = new FileResource(fileSize, 0, fileType, localPath, name, relation);
+				htmldoc.setMedia(newMedia);
 			}
-			
-			String strippedRoot = UrlHandler.stripProtocol(Website.getRootUrl());
-			//String strippedUrl = UrlHandler.stripProtocol(fullPath);
-			//String convertedUrl = UrlHandler.urlToLocal(strippedUrl, strippedRoot);
-			String relation = new String("");
-			if(fullPath.contains(strippedRoot)) //if url domain matches website domain, it's internal
-				relation = "internal";
-			else if (!(fullPath.contains(strippedRoot)))
-				relation = "external";
-			
-			long size = file.length();
-			double fileSize = (double) size;
-			String lfp = src.attr("src");
-			String name = file.getName();
-			FileResource newMedia = new FileResource(fileSize, 0, imageType, lfp, name, relation);
-			htmldoc.setMedia(newMedia);
-//			}
+			else {
+				localPath = "null/external";
+				String relation = "extenal";
+				double size = 0;
+				String fileType = new String(src.normalName());
+				FileResource newmedia = new FileResource(size, 0, fileType, localPath, "idk", relation);
+				htmldoc.setMedia(newmedia);
+			}
+
 		}
 	}
 	
