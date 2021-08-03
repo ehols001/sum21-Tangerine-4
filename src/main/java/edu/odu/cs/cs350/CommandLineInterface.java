@@ -86,7 +86,8 @@ public class CommandLineInterface {
 			}
 			TxtWriter textWriter = new TxtWriter(website);
 			textWriter.writeToFile();
-			//Call to Json writer
+			JsonWriter jsonWriter = new JsonWriter();
+			jsonWriter.JSONFormatter(website);
 			//Call to Excel writer
 		}
 		else
