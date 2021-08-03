@@ -121,7 +121,7 @@ public class TxtWriter {
 			for (int i = 0; i < website.size(); i++)
 			{
 				txtWriter.write(twoDP.format(sizes.get(i)) + "M   " + pages.get(i));
-				System.getProperty("line.separator");
+				txtWriter.write(System.getProperty("line.separator"));
 			}
 			
 			txtWriter.close();
