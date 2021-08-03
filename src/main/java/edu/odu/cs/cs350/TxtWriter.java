@@ -67,6 +67,20 @@ public class TxtWriter {
 		}
 	}
 	
+	double countPageSize(Website website) {
+		double pageSize = 0;
+		for (int i = 0; i < website.size(); i++) {
+			for (int j = 0; j < website.getWebpage(i).getMedia().size(); i++) {
+				if (website.getWebpage(i).getMedia().get(j).getType().contains("image")) {
+					pageSize += website.getWebpage(i).getMedia().get(j).getSize();
+				}
+				
+			}
+		return pageSize / 1048576;
+		}
+	return 0;
+	}
+	
 	/**
 	 * Returns Vector<String> of path names for each page
 	 * 
@@ -102,7 +116,7 @@ public class TxtWriter {
 	/**
 	 * Writes formated Vector<Double> sizes and Vector<String> pages to YYYYMMDD-hhmmss-summary.txt file
 	 */
-	void writeToFile()
+	void writeToFile(Website website)
 	{
 		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
 		LocalDateTime fileCreationDateTime = LocalDateTime.now();
@@ -112,11 +126,11 @@ public class TxtWriter {
 		{
 			FileWriter txtWriter = new FileWriter(dateTime + "-summary.txt");
 			
-			DecimalFormat twoDP = new DecimalFormat("#.00");
+			DecimalFormat twoDP = new DecimalFormat("#.##");
 			
-			for (int i = 0; i < sizes.size(); i++)
+			for (int i = 0; i < website.size(); i++)
 			{
-				txtWriter.write(twoDP.format(sizes.get(i)) + "M   " + pages.get(i));
+				txtWriter.write(twoDP.format(countPageSize(website)) + "M   " + pages.get(i));
 			}
 			
 			txtWriter.close();
