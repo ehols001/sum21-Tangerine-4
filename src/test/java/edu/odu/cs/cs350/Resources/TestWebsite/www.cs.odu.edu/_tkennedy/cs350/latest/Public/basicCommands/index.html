@@ -1,0 +1,600 @@
+
+<!-- saved from url=(0063)https://www.cs.odu.edu/~zeil/cs252/latest/Public/basicCommands/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="./index_files/md-scroll.css" media="screen, projection, print" rel="stylesheet" type="text/css"><link href="./index_files/md-scroll-ext.css" media="screen, projection, print" rel="stylesheet" type="text/css"><meta content="width=device-width, initial-scale=1" name="viewport"><link href="./index_files/googlecode.css" rel="stylesheet"><script src="./index_files/highlight.pack.js.download"> </script><script>hljs.initHighlightingOnLoad();</script><script src="./index_files/md-scroll.js.download" type="text/javascript"> </script><script src="./index_files/md-scroll-ext.js.download" type="text/javascript"> </script><script src="./index_files/rawdeflate.js.download" type="text/javascript"> </script><script src="./index_files/plantuml.js.download" type="text/javascript"> </script><script src="./index_files/mermaid.min.js.download" type="text/javascript"> </script><script type="text/javascript">
+             window.MathJax = {
+               tex2jax: {
+               inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+               processEscapes: true
+             }
+           };
+           </script><script src="./index_files/MathJax.js.download" type="text/javascript"> </script><title>Basic File Manipulation</title><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head><body><div id="MathJax_Message" style="display: none;"></div><script>sshowControl0 = { counter: 1,
+             showNumber: 0, max: 1};
+             window.onhashchange = hashHasChanged;</script><div class="navHeader" id="slideshowControlA0"><table class="navHeader"><tbody><tr class="slideshowcontrol"><td class="slideshowcontrolLeft"></td><td class="slideshowcontrolMiddle">
+<a class="imgLink" href="https://www.cs.odu.edu/~zeil/cs252/latest/Directory/outline/index.html" title="Course home/outline"><img src="./index_files/home.png"></a>
+<a href="mailto:zeil@cs.odu.edu?subject=CS252%2C%20Basic%20File%20Manipulation"><img src="./index_files/email.png" title="Email to instructor"></a><span style="margin: 0 32px;"></span></td><td class="slideshowcontrolRight"></td></tr></tbody></table></div><div class="mainBody"><div class="titleblock"><h1 class="title">Basic File Manipulation</h1><div class="date">Last modified: Oct 19, 2020</div></div><div class="toc">Contents:<div class="toc-h1"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/basicCommands/#getting-started-navigating-your-directories">1 Getting Started: Navigating Your Directories</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/basicCommands/#basic-navigation-mkdir-cd-ls-pwd">1.1 Basic Navigation: mkdir, cd, ls, pwd</a></div><div class="toc-h1"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/basicCommands/#manipulating-files">2 Manipulating Files</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/basicCommands/#copying-files-cp">2.1 Copying Files: cp</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/basicCommands/#looking-inside-text-files-with-more">2.2 Looking Inside Text Files with more</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/basicCommands/#making-mistakes">2.3 Making Mistakes</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/basicCommands/#getting-more-information-from-ls">2.4 Getting More Information from ls</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/basicCommands/#moving-and-renaming-files-mv">2.5 Moving and Renaming Files: mv</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/basicCommands/#deleting-files-rm-and-rmdir">2.6 Deleting Files: rm and rmdir</a></div><div class="toc-h1"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/basicCommands/#file-manipulation-in-other-operating-systems">3 File Manipulation in Other Operating Systems</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/basicCommands/#macos-file-systems">3.1 MacOs File Systems</a></div><div class="toc-h2"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/basicCommands/#windows-file-systems">3.2 Windows File Systems</a></div><div class="toc-h1"><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/basicCommands/#so-many-unix-commands">4 So Many Unix Commands</a></div></div><a id="gettingstartednavigatingyourdirectories"><h1 id="getting-started-navigating-your-directories">1 Getting Started: Navigating Your Directories</h1></a><a id="basicFileCmds"><p>We’ve already looked at some basic navigation commands. Now, let’s put them together with commands for setting up our own directories.</p>
+    </a><a id="basicnavigationmkdircdlspwd"><h2 id="basic-navigation-mkdir-cd-ls-pwd">1.1 Basic Navigation: mkdir, cd, ls, pwd</h2><p>If you have not yet done so, log in now so that you can work though the following commands.</p>
+    <div class="noFloat">&nbsp;</div><div class="sidebar pct50">
+<p>Again, when you encounter sections labeled “Try This:”, I <span class="emph">really</span> want you to log in and try the commands or procedures I describe.</p>
+    
+<p>Starting with this one, some of the “Try This:” exercises will set up files and directories that will be used in later exercises, so skipping these early examples may lead to problems later on. Some of the assignments will also check to be sure that you have done the Try This exercises before attempting the assignment.</p>
+    
+<ul>
+  <li>For the same reason, you should not delete the directories and  files set up during the Try This exercises. You are likely to  need them again later.</li>
+</ul>
+</div></a><blockquote class="example" id="example1"><a id="basicnavigationmkdircdlspwd"><div class="exampleTitle">Example 1: Try This</div>
+</a><a id="cdTryThis">
+<p>Now, let’s make a place to play in. <code>mkdir</code> will make a new directory. Enter the command </p>
+    
+<pre><code class="sh hljs bash"><span class="hljs-built_in">cd</span> ~
+mkdir playing
+</code></pre>
+<p>to create a directory named “playing”.</p>
+    
+<p>How does the <code>mkdir</code> command know <em>where</em> to put the new directory?</p>
+    
+</a><ul><a id="cdTryThis">
+  </a><li><a id="cdTryThis">
+    </a><p><a id="cdTryThis">It really doesn’t. “<code>playing</code>” is actually the  </a><a class="doc" href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/files/index.html#paths" target="CS252_Public">path</a> to the directory that we want to create.</p>
+    
+    <ul>
+      <li>
+      <p><code>playing</code> is a <em>relative</em> path (it doesn’t start with “<code>/</code>” or “<code>~</code>”),  which means that it starts from our current working directory.</p>
+    </li>
+    </ul>
+  </li>
+  <li>
+  <p>In this case, the working directory is what we just printed a  moment ago with the <code>pwd</code> command, so “<code>playing</code>” is actually  the abbreviation for <code>/home/<i>yourname</i>/playing</code></p>
+    </li>
+</ul>
+<p>Give the command </p>
+    
+<pre><code class="sh hljs ">ls
+</code></pre>
+<p>and you should see <code>playing</code> listed. In fact, it may be the only thing listed.</p>
+    
+<p>Now, let’s add some directories inside <code>playing</code>:</p>
+    
+<pre><code class=" hljs perl"><span class="hljs-keyword">mkdir</span> playing/cards
+<span class="hljs-keyword">mkdir</span> playing/games
+ls
+ls playing
+</code></pre>
+<p>Give the command sequence </p>
+    
+<pre><code class="sh hljs bash"><span class="hljs-built_in">pwd</span>
+<span class="hljs-built_in">cd</span> playing/cards
+<span class="hljs-built_in">pwd</span>
+<span class="hljs-built_in">cd</span> ..
+<span class="hljs-built_in">pwd</span>
+<span class="hljs-built_in">cd</span> games
+<span class="hljs-built_in">pwd</span>
+<span class="hljs-built_in">cd</span> ../cards
+<span class="hljs-built_in">pwd</span>
+<span class="hljs-built_in">cd</span> ./cards
+<span class="hljs-built_in">pwd</span>
+<span class="hljs-built_in">cd</span> ../..
+<span class="hljs-built_in">pwd</span>
+</code></pre>
+<p>to review the use of relative paths.</p>
+    
+<ul>
+  <li>Make sure that you <em>understand</em> how it is that you moved from place to with each of  those <code>cd</code> steps.</li>
+</ul>
+</blockquote><p>The <code>mkdir</code> command can also be used to create a whole “chain” of new directories at once with the <code>-p</code> option. Suppose that we wanted to create a directory named <code>a</code> inside a directory named <code>b</code> inside a directory named <code>c</code>, and that none of those directories exist yet.</p>
+    <p>Here are three ways to do that:</p>
+    <pre><code class=" hljs bash">mkdir c
+<span class="hljs-built_in">cd</span> c
+mkdir b
+<span class="hljs-built_in">cd</span> b
+mkdir a
+<span class="hljs-built_in">cd</span> ../..
+</code></pre><p>or</p>
+    <pre><code class=" hljs perl"><span class="hljs-keyword">mkdir</span> c
+<span class="hljs-keyword">mkdir</span> c/b
+<span class="hljs-keyword">mkdir</span> c/b/a
+</code></pre><p>or, quickest of all, just</p>
+    <pre><code class=" hljs perl"><span class="hljs-keyword">mkdir</span> -p c/b/a
+</code></pre><p>The <code>tree</code> command is not a standard command on all Unix systems, but can be added to most of them. <code>tree</code> allows you to visualize the structure of your directories and files.</p>
+    <blockquote class="example" id="example2"><div class="exampleTitle">Example 2: Try This</div>
+<a id="treeTryThis">
+<p>Try the following commands:</p>
+    
+<pre><code class=" hljs bash"><span class="hljs-built_in">cd</span> ~
+tree ~
+tree playing
+tree ~/playing
+</code></pre>
+</a></blockquote><a id="manipulatingfiles"><h1 id="manipulating-files">2 Manipulating Files</h1></a><a id="copyingfilescp"><h2 id="copying-files-cp">2.1 Copying Files: cp</h2><p>The <code>cp</code> command copies one or more files. You can give this command as </p>
+    <p><code>cp</code> <em>sourcePath</em> <em>destinationPath</em> </p>
+    <p>to make a copy of file whose path is <em>sourcePath</em>, the copy being named or located at the path <em>destinationPath</em>.</p>
+    <p>For example,</p>
+    <pre><code class=" hljs ">cp file1 file2
+</code></pre><p>would make a copy of an existing file, in the current working directory, named “file1”.</p>
+    <ul>
+  <li>
+    <p>Why does the file have to be in the current working directory?</p>
+    
+    <p>Because “file1” is a <em>path</em>, and because it does not start with ‘/’ or ‘~’, it is a <em>relative path</em>. </p>
+    
+  </li>
+  <li>
+    <p>Where the copy gets put, and what it is named, depends on whether <code>file2</code> exists or not.</p>
+    
+    <ul>
+      <li>If <code>file2</code> does not already exist, that copied file will be created, in the current  working directory (because “file2” is also a relative path), and will be named  “file2”.</li>
+      <li>If <code>file2</code> exists and is a directory, then the copy of <code>file1</code> will be placed  in that directory, but the original file name will be retained. Se we could get  a copy at the path <code>file2/file1</code>.</li>
+      <li>If <code>file2</code> exists but is an ordinary (non-directory file), it will be replaced/overwritten  by the new copy of `file``.</li>
+    </ul>
+  </li>
+</ul><p>You can copy multiple files in one command, but then you must give a directory as the destination path. </p>
+    <p><code>cp</code> <em>sourcePath1</em> <em>sourcePath2</em> … <em>sourcePathN</em> <em>directoryPath</em></p>
+    <blockquote class="example" id="example3"><div class="exampleTitle">Example 3: Try This:</div>
+<p>Now try the following: </p>
+    
+<pre><code class="sh hljs ruby">ls /usr/<span class="hljs-keyword">include</span>
+</code></pre>
+<p>You should see a large number of files, including many ending in “.h”. Copy two of these files and check to see that the copy was successful, as follows: </p>
+    
+<pre><code class=" hljs php">cp /usr/<span class="hljs-keyword">include</span>/math.h /usr/<span class="hljs-keyword">include</span>/stdio.h ~/playing
+ls ~/playing
+cd ~/playing
+cp /usr/<span class="hljs-keyword">include</span>/limits.h .
+ls
+cp limits.h maxmin.h
+ls
+ls .
+ls ~/playing
+</code></pre>
+<p>The first two <code>cp</code> commands above give a directory as the destination for the copy, so the new files should appear in that directory (with the same names as they had in their original directory). The second one uses the abbreviation “<code>.</code> ” to denote your current working directory.</p>
+    
+<p>The third cp command gives a file name as the destination, so the copy is given that new name.</p>
+    
+<p>The three <code>ls</code> statements in a row actually all list the same directory. With no parameter, the first <code>ls</code> lists your current directory. The final two <code>ls</code> commands simply give different paths to that same directory.</p>
+    
+<p>Try </p>
+    
+<pre><code class=" hljs bash"><span class="hljs-built_in">cd</span> ~/playing/games
+cp ~cs252/Assignments/editingAsst/constitution.txt thePeople.txt
+ls
+</code></pre>
+<p>You can see that this version of the <code>cp</code> command created a copy of the source file in the current directory, using the name supplied for the destination.</p>
+    
+<p>Finally, let’s get a summary of everything we have done to our <code>playing</code> directory.</p>
+    
+<pre><code class=" hljs ">tree ~/playing
+</code></pre>
+</blockquote></a><a id="lookinginsidetextfileswithmore"><h2 id="looking-inside-text-files-with-more">2.2 Looking Inside Text Files with more</h2><p>The <code>more</code> command,</p>
+    <p><code>more</code> <em>filePath1</em> … <em>filepathN</em></p>
+    <p>can be used to examine the contents of a file.</p>
+    <p>The <code>more</code> command is used to page through a file, one screen at a time. (It gets its name from the “more” prompt at the bottom of the screen, letting you know that there are more pages to be displayed.</p>
+    <ul>
+  <li>Hit the space bar to page forward through the file.</li>
+  <li>Use ‘b’ to move <strong>b</strong>ackwards and</li>
+  <li>Use ‘q’ to <strong>q</strong>uit when you are done.</li>
+</ul><p>(You can also type ‘/’, followed by a string of characters, to search the file for that string.)</p>
+    <blockquote class="example" id="example4"><div class="exampleTitle">Example 4: Try This:</div>
+<pre><code class=" hljs bash">more ~/playing/math.h
+<span class="hljs-built_in">cd</span> ~/playing
+more games/thePeople.txt
+</code></pre>
+</blockquote><p><code>more</code> can also be used to tame commands that generate so much output that it scrolls by before we can read it. We just add “<code>| more</code>” to the end of a command to page through its output. (We’ll learn the full meaning of the “<code>|</code>” in a much later lesson.)</p>
+    <blockquote class="example" id="example5"><div class="exampleTitle">Example 5: Try This:</div>
+<pre><code class=" hljs ruby">ls /usr/<span class="hljs-keyword">include</span>
+ls /usr/<span class="hljs-keyword">include</span> | more
+</code></pre>
+<p>The <code>cat</code> command dumps the contents of one or more text files to your screen.</p>
+    
+<pre><code class=" hljs bash"><span class="hljs-built_in">cd</span> ~/playing
+cat math.h games/thePeople.txt
+cat math.h games/thePeople.txt | more
+</code></pre>
+</blockquote></a><a id="makingmistakes"><h2 id="making-mistakes">2.3 Making Mistakes</h2><p>Before we go too much further in exploring new commands, let’s take a slight diversion. Sooner or later you are going to make a mistake when typing out a command – you may already have done so.</p>
+    <p>Don’t panic! Read the error message that you get carefully. It really will help.</p>
+    <p>Let’s make some deliberate mistakes so that you can get familiar with what some of the more common error messages look like.</p>
+    <blockquote class="example" id="example6"><div class="exampleTitle">Example 6: Try This: (path problems)</div>
+<p>Each of the commands listed below contains a path.</p>
+    
+<p>To start with, just look at these commands:</p>
+    
+<pre><code class=" hljs bash"><span class="hljs-built_in">cd</span> ~/playing
+ls ~/playing/math.h
+ls math.h
+ls ../playing/math.h
+ls playing/math.h
+<span class="hljs-built_in">cd</span> ~
+ls ~/playing/math.h
+ls math.h
+ls ../playing/math.h
+ls playing/math.h
+</code></pre>
+<p>Which commands use absolute paths and which use relative?</p>
+    
+<div class="details"><span class="summary">Answer</span> <input id="but_details_d5e367" onclick="toggleDisplay(&#39;_details_d5e367&#39;)" type="button" value="+"><div class="detailsBody" id="_details_d5e367" style="display: none;">
+<pre><code class=" hljs bash"><span class="hljs-built_in">cd</span> ~/playing           <span class="hljs-comment"># Absolute</span>
+ls ~/playing/math.h    <span class="hljs-comment"># Absolute</span>
+ls math.h              <span class="hljs-comment"># Relative</span>
+ls ../playing/math.h   <span class="hljs-comment"># Relative</span>
+ls playing/math.h      <span class="hljs-comment"># Relative</span>
+<span class="hljs-built_in">cd</span> ~                   <span class="hljs-comment"># Absolute</span>
+ls ~/playing/math.h    <span class="hljs-comment"># Absolute</span>
+ls math.h              <span class="hljs-comment"># Relative</span>
+ls ../playing/math.h   <span class="hljs-comment"># Relative</span>
+ls playing/math.h      <span class="hljs-comment"># Relative</span>
+</code></pre>
+</div></div>
+<p>Now, try typing out those commands, one by one. Not all of them will work. Some will generate error messages. Can you figure out why? </p>
+    
+<div class="details"><span class="summary">Answer</span> <input id="but_details_d5e376" onclick="toggleDisplay(&#39;_details_d5e376&#39;)" type="button" value="+"><div class="detailsBody" id="_details_d5e376" style="display: none;">
+<p>The absolute paths “work”, no matter where you have cd’d to.</p>
+    
+<p>The three relative paths, however, give results that depend very much on your current directory. If you don’t see why, use <code>ls</code> to explore your current directory and make sure you understand why some of these relative paths work and others fail.</p>
+    
+</div></div>
+</blockquote><blockquote class="example" id="example7"><div class="exampleTitle">Example 7: Try This: (bad commands)</div>
+<p>Let’s get back into our <code>playing</code> directory:</p>
+    
+<pre><code class=" hljs bash"><span class="hljs-built_in">cd</span> ~/playing
+</code></pre>
+<p>Now issue each of the following commands and observe the error messages you get:</p>
+    
+<pre><code class=" hljs php">noSuchCommand
+<span class="hljs-keyword">list</span>
+</code></pre>
+<p>The first response is obvious enough. Of course, it’s clear that <code>noSuchCommand</code> is not, in fact, the name of a valid command. You’re more likely to see that response, however, because you misspelled a command name.</p>
+    
+<p>The second command might be an example of such a misspelling, typing <code>list</code> instead of <code>ls</code>. The response is different, however, because <code>list</code> is close enough to some commands that could have been, but aren’t installed on our Linux server.</p>
+    
+<p>Most “commands” are, ultimately, files that contain executable programs. So what happens if we just start naming some file that <em>aren’t</em> executable programs? Try:</p>
+    
+<pre><code class=" hljs ">~/playing
+~/playing/math.h
+</code></pre>
+<p>The response to the first one is clear enough. <code>~/playing</code> is a directory name, not a command. The command shell that processes our typed input has no idea what we want to do with that directory. Do we want to list its contents (<code>ls</code>)? Do we want to step into it (<code>cd</code>)? Do we want to…? You can’t simply give a directory (or file) name and expect the operating system to guess what you want to do.</p>
+    
+<p>The response to the second command is a bit more cryptic. Why is it talking about “permissions”? We’ll see in a later lesson that we can set permissions on what both we ourselves and other people can do with our files. One of the things that we can give ourself or other people permission to do is to <em>execute</em> that file. Now, it only makes sense to execute a file if that file actually holds a program, not simply data of some kind.</p>
+    
+<p>How does the operating system know if a file contains a program? One important way is that it looks to see if we have given anyone permission to execute it. In this case, <code>math.h</code> does contain a program, so it was not set up with “execute” permission. So when we <em>try</em> to execute it, the operating system refuses, telling us that we lack the (execute) permission.</p>
+    
+</blockquote><blockquote class="example" id="example8"><div class="exampleTitle">Example 8: Try This: (bad parameters)</div>
+<p>Try:</p>
+    
+<pre><code class=" hljs bash"><span class="hljs-built_in">cd</span> ~/playing
+ls
+cp math.hh mathcopy.h
+ls
+</code></pre>
+<p>In the third line, we are deliberately misspelling the name of the file “<code>math.h</code>”. The “No such file” response should be obvious enough.</p>
+    
+<blockquote>
+  <p>This is a <strong>very</strong> common error message, one that is pretty much self-explanatory, and yet one that I get a <em>lot</em> of email about. Now, it’s very easy to misspell a file name. It’s also easy to forget where a file is or is supposed to be.</p>
+    
+  <p>But the appropriate response to this message is not to throw your hands up in the air and give up, nor is it to to email me the message and stop working until you hear back.</p>
+    
+  <p>Instead, <strong>look around</strong>. Use the <code>ls</code>, <code>pwd</code>, and <code>cd</code> commands that we have covered to look and see what has actually occurred.</p>
+    
+</blockquote>
+<p>The <code>cp</code> command can lead to lots of interesting errors and error messages. Earlier, for example, you gave the command “<code>cp
+/usr/include/math.h /usr/include/stdio.h ~/playing</code>” to copy two files at once into a directory. Let’s try a variation on that:</p>
+    
+<pre><code class=" hljs php">cp /usr/<span class="hljs-keyword">include</span>/math.h /usr/<span class="hljs-keyword">include</span>/stdio.h ~/playingzzz
+</code></pre>
+<p>If we are going to copy multiple files at once, we have to give <code>cp</code> the name of a directory in which to put them. In this example, we have (badly) misspelled the name of that directory.</p>
+    
+<p>Interestingly, we <em>don’t</em> get an error message from this:</p>
+    
+<pre><code class=" hljs php">cp /usr/<span class="hljs-keyword">include</span>/math.h ~/playingzzz
+</code></pre>
+<p>To see what has happened, do</p>
+    
+<pre><code class=" hljs ">ls ~
+more ~/playingzzz
+</code></pre>
+</blockquote><p>When we are only copying a single file, <code>cp</code> gives us the option of either giving a destination <em>directory</em> (which must already exist) or a destination <em>file</em> (which will be created if it does not exist.</p>
+    </a><blockquote class="example" id="example9"><a id="makingmistakes"><div class="exampleTitle">Example 9: Try This: (trying to copy directories instead of ordinary files)</div>
+<p>Try:</p>
+    
+<pre><code class=" hljs php">ls ~/playing
+cp /usr/<span class="hljs-keyword">include</span>/err.h /usr/<span class="hljs-keyword">include</span> /usr/<span class="hljs-keyword">include</span>/limits.h ~/playing
+ls ~/playing
+</code></pre>
+<p>You’ll see that the first and third file have, indeed, been copied. But the second file in the list was not, and the error message tells you why.</p>
+    
+</a><p><a id="makingmistakes">The <code>cp</code> command, under normal circumstances, copies only ordinary files and not directories. It is possible to </a><a class="doc" href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/commandGlossary/index.html#file-and-directory-manipulation" target="CS252_Public">change this behavior</a>, but because copying entire directory structures is somewhat risky (you can waste a <em>lot</em> of storage with some simple mistakes), it’s turned off by default.</p>
+    
+</blockquote><p>Most of the times when I see students getting the “<code>directory
+ omitted</code>” error, it’s because they use the directory name when they  should have named a file or a group of files <strong>inside</strong> that  directory.</p>
+    <blockquote>
+  <p>It’s as if I gave you a box of cookies and, instead of opening the box and eating the cookies, you instead chewed on the cardboard box itself (and then complained about the bland taste).</p>
+    
+</blockquote><a id="gettingmoreinformationfromls"><h2 id="getting-more-information-from-ls">2.4 Getting More Information from ls</h2><p>The <code>ls</code> command can give you more detailed information about your files if you add the <code>-l</code> option. (Note, that is a lower-case letter ‘L’, not a numeric digit one.)</p>
+    <blockquote class="example" id="example10"><div class="exampleTitle">Example 10: Try This:</div>
+<p>let’s add a little something extra to our playing directory:</p>
+    
+<pre><code class="sh hljs cs">mkdir ~/playing/<span class="hljs-keyword">catch</span>
+cp /bin/which ~/playing
+ls ~/playing
+</code></pre>
+<p>You should see the files that you copied earlier, plus the newly created <code>which</code> and <code>catch</code> files. But, which of these are directories? You might remember that <code>mkdir</code> creates directories, and so guess that <code>around</code> is a directory, but there’s no clue to that in this listing, and if you have a lot of files in a listing, you might not know or remember how they were all created.</p>
+    
+<p>Now try: </p>
+    
+<pre><code class="sh hljs bash">ls <span class="hljs-operator">-l</span> ~/playing
+</code></pre>
+<p>Now you have some additional information. This includes the size of the files and the date (and possibly the time) at which these files were last modified. The rather cryptic “rwx-” characters at the beginning are something that will be explained in a later lesson. However, if you look at the very first character on each line, it tells you something very useful. it will be ‘d’ if the file is a directory and ‘-’ if it is an ordinary, non-directory, file.</p>
+    
+<p>There are easier ways to find out if a file is a directory or not. The <code>-F</code> option asks <code>ls</code> to put a ‘/’ character at the end of any directory names and a ’*’ character at the end of any files that are executable programs/commands. Try the commands</p>
+    
+<pre><code class="sh hljs ">ls -F ~
+ls -F ~/playing
+</code></pre>
+<div class="noFloat">&nbsp;</div><div class="sidebar pct50">
+<p>Remember that these characters added to the listing by the <code>-F</code> option are not actually part of these file names. Don’t type these characters when you try to work with these files.</p>
+    
+</div>
+<p>You should be able to easily identify directories and ordinary files.</p>
+    
+<p><code>/bin</code> is where most of the basic Unix commands are stored, so it’s not surprising that a file copied from there would turn out to have been an executable command. In fact, try:</p>
+    
+<pre><code class="sh hljs ">ls -F /bin
+</code></pre>
+<p>Notice that the <code>ls</code>, <code>pwd</code>, and <code>mkdir</code> commands that you have been practicing with are all present in the directory listing for <code>/bin</code>. (You’ll also see some files listed with a ‘@’ character. These denote <span class="firstterm">symbolic links</span>, a special type of directory entry that we won’t deal with in this course.)</p>
+    
+</blockquote></a><a id="hiddenfiles"><h3 id="hidden-files">2.4.1 Hidden Files</h3><p>Most operating systems have a way of hiding selected files so that they do not appear in ordinary directory listing.</p>
+    <blockquote>
+  <p>In Unix, any file or directory name starting with a period (‘.’) is <em>hidden</em>.</p>
+    
+</blockquote><p>Hidden files can be revealed by adding a <code>-a</code> option to the <code>ls</code> command.</p>
+    <blockquote class="example" id="example11"><div class="exampleTitle">Example 11: Try This</div>
+<pre><code class=" hljs bash"><span class="hljs-built_in">cd</span> ~/playing
+ls -F games cards
+cp games/thePeople.txt cards/.secret.txt
+</code></pre>
+<p>Notice the ‘.’ in front of “secret”.</p>
+    
+<pre><code class=" hljs ">ls -F games
+ls -F cards
+more games/thePeople.txt
+more cards/.secret.txt
+</code></pre>
+<p>The secret file really is there, even though it does not show up in the listing.</p>
+    
+<p>To force <code>ls</code> to show you secret files, add the <code>-a</code> option, either as a seprate option or joined with others.</p>
+    
+<pre><code class=" hljs bash">ls <span class="hljs-operator">-a</span> -F cards
+ls <span class="hljs-operator">-a</span>F cards
+</code></pre>
+<p>You can now see the secret file. In addition to that, you see two other items listed, even though neither of them is, technically, a file inside the <code>cards</code> directory:</p>
+    
+<ul>
+  <li>‘<code>.</code>’: You might recall that this is shorthand for the current directory.</li>
+  <li>‘<code>..</code>’: This is shorthand for the parent or container of current directory.</li>
+</ul>
+<p>I don’t know why <code>ls</code> feels compelled to list these – it’s just kind of a distraction. </p>
+    
+</blockquote></a><a id="movingandrenamingfilesmv"><h2 id="moving-and-renaming-files-mv">2.5 Moving and Renaming Files: mv</h2><p>Similar to the <code>cp</code> command, the <code>mv</code> command can be used to move and/or rename a file.</p>
+    <blockquote class="example" id="example12"><div class="exampleTitle">Example 12: Try This:</div>
+<p>Wait, if necessary, until at least one minute has passed since you did the prior Try This. Give the commands</p>
+    
+<pre><code class="sh hljs bash">ls <span class="hljs-operator">-l</span> ~/playing
+mv ~/playing/cards ~/playing/withFire
+ls -F ~/playing
+cp ~/playing/which ~/playing/games/why
+mv ~/playing/which ~/playing/games/what
+ls -F ~/playing
+ls <span class="hljs-operator">-l</span> ~/playing/games
+</code></pre>
+<p>Notice that we are changing both names and locations of files with the <code>mv</code> command.</p>
+    
+<p>On the other hand, look at the date on which the files <code>which</code> and <code>what</code>, and <code>why</code> were last changed in the various listings. The fact that the <code>which</code> and <code>what</code> dates are the same is a good indication that <code>mv</code> has actually moved the existing files and not made a new copy of them. By contrast, <code>why</code>, which was produced as a copy, should have a more recent date.</p>
+    
+</blockquote></a><a id="deletingfilesrmandrmdir"><h2 id="deleting-files-rm-and-rmdir">2.6 Deleting Files: rm and rmdir</h2><p>The <code>rmdir</code> command is used to delete directories.<br>It will only do so if the directory is empty.</p>
+    <blockquote class="example" id="example13"><div class="exampleTitle">Example 13: Try This</div>
+<p>Give the following commands. Not all of the <code>rmdir</code> commands will work. Can you predict which ones will?</p>
+    
+<pre><code class=" hljs bash"><span class="hljs-built_in">cd</span> ~/playing
+tree .
+rmdir games
+rmdir catch
+rmdir withFire
+</code></pre>
+<div class="details"><span class="summary">Answer</span> <input id="but_details_d5e747" onclick="toggleDisplay(&#39;_details_d5e747&#39;)" type="button" value="+"><div class="detailsBody" id="_details_d5e747" style="display: none;">
+<ul>
+  <li>
+  <p>We can successfully remove <code>catch</code> because it contains no files.</p>
+    </li>
+  <li>
+  <p><code>games</code> cannot be removed because it contains (several) files.</p>
+    </li>
+  <li>
+  <p><code>withFire</code> cannot be removed because it contains the file  <code>.secret.txt</code>, even though that file is hidden. </p>
+    </li>
+</ul>
+</div></div>
+</blockquote><p>The <code>rm</code> command can be used to remove files.</p>
+    <blockquote class="example" id="example14"><div class="exampleTitle">Example 14: Try This</div>
+<p>Give the following commands. Not all of the <code>rmdir</code> commands will work. Can you predict which ones will?</p>
+    
+<pre><code class=" hljs bash"><span class="hljs-built_in">cd</span> ~/playing
+ls games
+rm games/why games/what
+ls games
+ls <span class="hljs-operator">-a</span> withFire
+rm withFire/.secret.txt
+ls <span class="hljs-operator">-a</span> withFire
+ls -F
+rmdir withFire
+ls -F
+</code></pre>
+<p>Because we have removed the only file in <code>withFire</code>, we can now use the <code>rmdir</code> command to remove it.</p>
+    
+</blockquote></a><a id="filemanipulationinotheroperatingsystems"><h1 id="file-manipulation-in-other-operating-systems">3 File Manipulation in Other Operating Systems</h1></a><a id="macosfilesystems"><h2 id="macos-file-systems">3.1 MacOs File Systems</h2></a><p><a id="macosfilesystems">If you do not have access to an Apple OS/X or macOs PC, skip to the </a><a href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/basicCommands/#windows-file-systems">next section</a>.</p>
+    <p>We’ve already seen how to navigate basic directory structures in MacOs.</p>
+    <p>Not surprisingly, the commands we have learned for manipulating files are the same in MacOs as in other Unix-based systems. </p>
+    <blockquote class="example" id="example15"><div class="exampleTitle">Example 15: Try This</div>
+<p>Open a text editor on your Mac and create a file with the following text:</p>
+    
+<pre><code class=" hljs ">The five boxing wizards jump quickly.
+</code></pre>
+<p>(This is a <em>pangram</em>, a sentence containing every letter of the alphabet at least once.)</p>
+    
+<p>Save that as a file named “<code>foo.txt</code>” in your home directory, `/Users/<i>yourLoginName</i>/’.</p>
+    
+<p>Open a <code>Terminal</code> window on your Mac. In that window, try the following commands. </p>
+    
+<pre><code class=" hljs bash"><span class="hljs-built_in">cd</span> ~
+<span class="hljs-built_in">pwd</span>
+ls -F
+mv foo.txt playing
+ls -F
+ls -F playing
+<span class="hljs-built_in">cd</span> playing
+<span class="hljs-built_in">pwd</span>
+cp foo.txt bar.txt
+ls -F
+more bar.txt
+rm foo.txt
+ls -F
+</code></pre>
+</blockquote><a id="windowsfilesystems"><h2 id="windows-file-systems">3.2 Windows File Systems</h2><p>If you do not have access to a Windows PC, skip this section.</p>
+    <p>Windows is the only commonly used operating system today that is not a Unix variant, so it will have lots of differences from Linux. Still, many of the concepts translate over, with some renaming of commands:</p>
+    </a><ul><a id="windowsfilesystems">
+  </a><li><a id="windowsfilesystems"><code>ls</code> from Unix becomes <code>dir</code> in Windows. (You’ve </a><a class="doc" href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/files/index.html#windows-file-systems" target="CS252_Public">already  practiced</a> with this.)</li>
+  <li><code>cp</code> from Unix becomes <code>copy</code> in Windows</li>
+  <li><code>mv</code> from Linux becomes <code>move</code> in Windows</li>
+  <li><code>rm</code> from Linux becomes <code>del</code> in Windows</li>
+  <li>There is no Windows equivalent to the Unix <code>pwd</code> command.
+    <ul>
+      <li>But <code>cd</code> with no parameters will print the  current working directory.</li>
+    </ul>
+  </li>
+</ul><blockquote class="example" id="example16"><div class="exampleTitle">Example 16: Try This</div>
+<p>Open <code>NotePad</code> on your PC and create a file with the following text:</p>
+    
+<pre><code class=" hljs ">The five boxing wizards jump quickly.
+</code></pre>
+<p>(This is a <em>pangram</em>, a sentence containing every letter of the alphabet at least once.)</p>
+    
+<p>Save that as a file named “<code>foo.txt</code>” in your home directory, `C:\Users\<i>yourLoginName</i>'.</p>
+    
+<p>Open a CMD window on your Windows PC. (Click the Start/Windows button on the left end of the task bar and type <code>cmd</code>, then hit enter.)</p>
+    
+<p>In that window, try the following commands. </p>
+    
+<pre><code class=" hljs tex">c:
+cd <span class="hljs-command">\users</span><span class="hljs-command">\</span><i><span class="hljs-command">yourLoginName</span></i><span class="hljs-command">\
+</span>mkdir playing
+dir
+move foo.txt playing
+dir
+dir playing
+cd playing
+dir
+copy foo.txt bar.txt
+dir
+more bar.txt
+del foo.txt
+dir
+</code></pre>
+</blockquote><a id="somanyunixcommands"><h1 id="so-many-unix-commands">4 So Many Unix Commands</h1><p>As we progress through this course, we will encounter quite a few commands. It’s not unusual to forget the name of a command that you have not used in a while.</p>
+    </a><p><a id="somanyunixcommands">You can find a glossary of the commands covered in this course in </a><a class="doc" href="https://www.cs.odu.edu/~zeil/cs252/latest/Public/commandGlossary/index.html" target="CS252_Public">Commands Glossary</a>. </p>
+    </div><script>sshowControl0 = { counter: 1,
+             showNumber: 0, max: 1};
+             window.onhashchange = hashHasChanged;</script><div class="navFooter" id="slideshowControl0"><table class="navFooter"><tbody><tr class="slideshowcontrol"><td class="slideshowcontrolLeft"></td><td class="slideshowcontrolMiddle">
+<a class="imgLink" href="https://www.cs.odu.edu/~zeil/cs252/latest/Directory/outline/index.html" title="Course home/outline"><img src="./index_files/home.png"></a>
+<a href="mailto:zeil@cs.odu.edu?subject=CS252%2C%20Basic%20File%20Manipulation"><img src="./index_files/email.png" title="Email to instructor"></a><span style="margin: 0 32px;"></span></td><td class="slideshowcontrolRight"></td></tr></tbody></table></div><div class="copyright">© 2015-2021, Old Dominion Univ.</div>
+</body></html>

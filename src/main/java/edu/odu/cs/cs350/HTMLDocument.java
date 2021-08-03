@@ -2,8 +2,8 @@ package edu.odu.cs.cs350;
 
 import java.util.ArrayList;
 
-
 public class HTMLDocument {
+	
 	private String localPath;
     private ArrayList<Anchor> links;
     private ArrayList<FileResource> media;
@@ -11,14 +11,12 @@ public class HTMLDocument {
     private ArrayList<FileResource> styleSheets;
     private ArrayList<FileResource> misc;
 	
-	
-	
     /**
-     * Construct an HTML Document with all
+     * Construct an HTMLDocument with all
      * containers empty
      */
 	public HTMLDocument() {
-		setLocalPath("");
+		setLocalPath("", "");
 		links = new ArrayList<Anchor>();
 		media = new ArrayList<FileResource>();
 		scripts = new ArrayList<FileResource>();
@@ -26,10 +24,25 @@ public class HTMLDocument {
 		styleSheets = new ArrayList<FileResource>();
 	}
 	
+	/**
+	 * Construct an new HTMLDocument from the given url
+	 * 
+	 * @param url page to generate an HTMLDocument from
+	 */
+	public HTMLDocument(String url)
+	{
+		setLocalPath(url, Website.getRootUrl());
+		links = new ArrayList<Anchor>();
+		media = new ArrayList<FileResource>();
+		scripts = new ArrayList<FileResource>();
+		misc = new ArrayList<FileResource>();
+		styleSheets = new ArrayList<FileResource>();
+	}
+		
     /**
      * Add a link URL
      *
-     * @param linkURL new url of a link
+     * @param link new url of a link
      */	
 	public void setLinks(Anchor link) {
 		this.links.add(link);
@@ -47,20 +60,20 @@ public class HTMLDocument {
     /**
      * Add a JavaScript file URL
      *
-     * @param scripts  a new url of a JavaScript file
+     * @param script a new url of a JavaScript file
      */	
-	public void setScripts(FileResource scripts) {
-		this.scripts.add(scripts);
+	public void setScripts(FileResource script) {
+		this.scripts.add(script);
 	}
 	
 	
     /**
      * Add a CSS URL
      *
-     * @param styleSheets new url of a CSS file
+     * @param styleSheet new url of a CSS file
      */	
-	public void setStyleSheets(FileResource styleSheets) {
-		this.styleSheets.add(styleSheets);
+	public void setStyleSheets(FileResource styleSheet) {
+		this.styleSheets.add(styleSheet);
 	}
 	
     /**
@@ -119,11 +132,13 @@ public class HTMLDocument {
     /**
      * Set the HTMLDoc localpath
      *
-     * @param localPath new local path where this document was found
+     * @param url Url of the current page
+     * @param rootUrl the root url of the website
      */	
-	public void setLocalPath(String localPath) {
-		this.localPath = localPath;
+	public void setLocalPath(String url, String rootUrl) {
+		String strippedRoot = UrlHandler.stripProtocol(rootUrl);
+		String filePath = UrlHandler.urlToLocal(url, strippedRoot);
+		this.localPath = filePath;
 	}
-	
 	
 }

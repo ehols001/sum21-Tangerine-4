@@ -32,21 +32,22 @@ public class TestJsonWriter {
 	@Before 
 	public void websiteExample() {
 			
-		localImage= new FileResource(10, 1, "Local Image", "/local/image.png");
-		externalImage= new FileResource(20, 2, "External Image", "www.google.com/image.png");
-		script= new FileResource(30, 3, "Script", "/local/script.js");
-		styleSheet= new FileResource(40, 4, "Stylesheet", "/local/style.css");
+		localImage= new FileResource(10, 1, "Local Image", "/local/image.png", "name", "internal");
+		externalImage= new FileResource(20, 2, "External Image", "www.google.com/image.png", "name", "internal");
+		script= new FileResource(30, 3, "Script", "/local/script.js", "name", "internal");
+		styleSheet= new FileResource(40, 4, "Stylesheet", "/local/style.css", "name", "internal");
 		intraPageLink= new Anchor("http://intrapage.com", "Intra-Page");
 		interSiteLink= new Anchor("http://intersite.com", "Inter-Site");
 		externalLink= new Anchor("http://external.com", "External");
-		archive= new FileResource(50, 5, "Archive", "/local/archive.rar");
-		video= new FileResource(60, 6, "Video", "/local/video.mp4");
-		audio= new FileResource(70, 7, "Audio", "/local/audio.wav");
-		misc= new FileResource(80, 8, "Miscellaneous", "local/misc.jar");
+		archive= new FileResource(50, 5, "Archive", "/local/archive.rar", "name", "internal");
+		video= new FileResource(60, 6, "Video", "/local/video.mp4", "name", "internal");
+		audio= new FileResource(70, 7, "Audio", "/local/audio.wav", "name", "internal");
+		misc= new FileResource(80, 8, "Miscellaneous", "local/misc.jar", "name", "internal");
+
 			
 		//HTML Document to use in test cases
 		HTML= new HTMLDocument();
-		HTML.setLocalPath("/the/example/path");
+		HTML.setLocalPath("www.test.com/the/example/path", "https://www.test.com");
 		HTML.setLinks(intraPageLink);
 		HTML.setLinks(interSiteLink);
 		HTML.setLinks(externalLink);

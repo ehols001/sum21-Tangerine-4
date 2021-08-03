@@ -22,11 +22,11 @@ public class TestTxtWriter
 		website2 = new Website();
 		htmldoc = new HTMLDocument();
 		htmldoc2 = new HTMLDocument();
-		image = new FileResource(10, 10, "image");
-		image2 = new FileResource(20, 10, "image");
+		image = new FileResource(10, 10, "image", "/local/image.jpeg", "name", "internal");
+		image2 = new FileResource(20, 10, "image", "/test/image.png", "name", "internal");
 		
-		htmldoc.setLocalPath("/enter/night/");
-		htmldoc2.setLocalPath("/exit/light/");
+		htmldoc.setLocalPath("www.test.com/example/enter/night/", "https://www.test.com/example");
+		htmldoc2.setLocalPath("www.test.com/example/exit/light/", "https://www.test.com/example");
 		htmldoc.setMedia(image);
 		htmldoc2.setMedia(image2);
 		website.addWebpage(htmldoc);

@@ -5,6 +5,8 @@ import java.util.*;
 public class Website {
 
 	private ArrayList<HTMLDocument> webpages;
+	private static String localRoot;
+	private static String rootUrl;
 
 	/**
 	 * Default constructor for initializing a new Website
@@ -12,14 +14,31 @@ public class Website {
 	public Website()
 	{
 		webpages = new ArrayList<HTMLDocument>();
+		localRoot = new String();
+		rootUrl = new String();
+	}
+	
+	/**
+	 * Website constructor that takes in two parameters
+	 * 
+	 * @param path the local root directory of the website
+	 * @param url the root url of the website
+	 */
+	public Website(String path, String url)
+	{
+		webpages = new ArrayList<HTMLDocument>();
+		localRoot = path;
+		rootUrl = url;
 	}
 	
 	/**
 	 * Add a webpage to a container of webpages
+	 * 
+	 * @param htmldoc HTMLDocument to add to the list of webpages
 	 */
-	public void addWebpage(HTMLDocument hd)
+	public void addWebpage(HTMLDocument htmldoc)
 	{
-		webpages.add(hd);
+		webpages.add(htmldoc);
 	}
 	
 	/**
@@ -57,4 +76,43 @@ public class Website {
 		return webpages.get(index);
 	}
 	
+	/**
+	 * Retrieves the root url of the website
+	 * 
+	 * @return rootUrl the root url of the website
+	 */
+	public static String getRootUrl()
+	{
+		return rootUrl;
+	}
+	
+	/**
+	 * Retrieves the local root directory of the website
+	 * 
+	 * @return localRoot the local root directory of the website
+	 */
+	public static String getLocalRoot()
+	{
+		return localRoot;
+	}
+	
 }
+	
+//	public void countPages() {
+//		int count = 0;
+//			for (int i = 0; i < size(); i++){
+//				double checkSize = getWebpage(i).getMedia().get(i).getSize();
+//				String fileName = getWebpage(i).getMedia().get(i).getName();
+//				for (int j = i + 1; j < size(); j++) {
+//					double currentSize = getWebpage(j).getMedia().get(j).getSize();
+//					String currentName = getWebpage(j).getMedia().get(j).getName();
+//					if (j != i && checkSize == currentSize && fileName == currentName){
+//						count++;
+//						getWebpage(i).getMedia().get(i).setPages(count);
+//					}
+//				}
+//				
+//			}
+//	}
+
+

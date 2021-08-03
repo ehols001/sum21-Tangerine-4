@@ -4,6 +4,9 @@ public class FileResource{
 	private double fileSize;
 	private int numPages;
 	private String fileType;
+	private String localPath;
+	private String fileName;
+	private String fileRelation;
   
 	
 	/**
@@ -14,6 +17,9 @@ public class FileResource{
 		this.fileSize = 0;
 		this.numPages = 0;
 		this.fileType = "";
+		this.localPath = "";
+		this.fileName = "";
+		this.fileRelation = "";
 	}
 
 	/**
@@ -22,10 +28,29 @@ public class FileResource{
 	 * @param number number of pages file is on
 	 * @param type type of file
 	 */
-	public FileResource(int size, int number, String type) {
+	public FileResource(double size, int number, String type, String lfp, String name, String relation) {
 		this.fileSize = size;
 		this.numPages = number;
 		this.fileType = type;
+		this.localPath = lfp;
+		this.fileName = name;
+		this.fileRelation = relation;
+	}
+	
+	public void setFileRelation(String relation) {
+		this.fileRelation = relation;
+	}
+	
+	public String getFileRelation() {
+		return this.fileRelation;
+	}
+	
+	public void setName(String name) {
+		this.fileName = name;
+	}
+	
+	public String getName() {
+		return this.fileName;
 	}
 	
 	/**
@@ -51,6 +76,22 @@ public class FileResource{
 	 */
 	public void setType(String type) {
 		this.fileType = type;
+	}
+	
+	/**
+	 * Set the local path of the file
+	 * @param lfp new localPath value
+	 */
+	public void setLocalPath(String lfp) {
+		this.localPath = lfp;
+	}
+	
+	/**
+	 * Retrieve the localPath
+	 * @return local path to the file
+	 */
+	public String getLocalPath() {
+		return this.localPath;
 	}
 	
 	/**
