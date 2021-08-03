@@ -7,16 +7,17 @@ import org.junit.Test;
 
 public class TestWebsiteParser {
 
-	String path = "/home/slowmobro/git/sum21-Tangerine-4/src/test/java/edu/odu/cs/cs350/Resources/TestWebsite/www.cs.odu.edu/_tkennedy/cs350/latest/";
-	String root = "https://www.cs.odu.edu/";
-	//String url = "www.cs.odu.edu/_tkennedy/cs350/latest/index.html";
-	String url = "www.cs.odu.edu/index.html";
+	String path = "C:/Users/ehols/Desktop/sum21-Tangerine-4/src/test/java/edu/odu/cs/cs350/"
+			+ "Resources/TestWebsite/www.cs.odu.edu/_tkennedy/cs350/latest/";
+	String root = "https://www.cs.odu.edu/~tkennedy/cs350/latest";
+	String url = "https://www.cs.odu.edu/~tkennedy/cs350/latest/index.html";
 	WebsiteParser parser = new WebsiteParser();
 	Website website = new Website(path, root);
 	HTMLDocument htmldoc = new HTMLDocument(url);
 	
 	@Before
 	public void setUp() {
+		url = UrlHandler.stripProtocol(url);
 		htmldoc.setLocalPath(url, root);
 	}
 
@@ -24,7 +25,7 @@ public class TestWebsiteParser {
 	@Test
 	public void testGenerateHtml() {
 		parser.generateHtml(htmldoc.getLocalPath(), htmldoc);
-		//assertFalse(htmldoc.getLinks().isEmpty());
+		assertFalse(htmldoc.getLinks().isEmpty());
 		//assertFalse(htmldoc.getMedia().isEmpty());
 		//assertFalse(htmldoc.getScripts().isEmpty());
 		//assertFalse(htmldoc.getStyleSheets().isEmpty());
