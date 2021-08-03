@@ -7,9 +7,10 @@ import org.junit.Test;
 
 public class TestWebsiteParser {
 
-	String path = "/home/example/www.test.org";
-	String root = "https://www.test.org/";
-	String url = "www.test.org/test/example/";
+	String path = "/home/slowmobro/git/sum21-Tangerine-4/src/test/java/edu/odu/cs/cs350/Resources/TestWebsite/www.cs.odu.edu/_tkennedy/cs350/latest/";
+	String root = "https://www.cs.odu.edu/";
+	//String url = "www.cs.odu.edu/_tkennedy/cs350/latest/index.html";
+	String url = "www.cs.odu.edu/index.html";
 	WebsiteParser parser = new WebsiteParser();
 	Website website = new Website(path, root);
 	HTMLDocument htmldoc = new HTMLDocument(url);
@@ -34,11 +35,16 @@ public class TestWebsiteParser {
 	@Test
 	public void testExtractLinks() {
 		//fail("Not yet implemented");
+		parser.generateHtml(htmldoc.getLocalPath(), htmldoc);
+		
 	}
 
 	@Test
 	public void testExtractMedia() {
 		//fail("Not yet implemented");
+		parser.generateHtml(htmldoc.getLocalPath(), htmldoc);
+		assertEquals(htmldoc.getMedia().get(0).getSize(), 320, 0.001);
+		assertEquals(htmldoc.getMedia().get(0).getType(), "image/png");
 	}
 
 	@Test
